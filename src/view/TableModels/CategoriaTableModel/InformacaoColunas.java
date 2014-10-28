@@ -8,18 +8,24 @@ package view.TableModels.CategoriaTableModel;
  *
  * @author bruno_azzi
  */
-public enum NomeDasColunas {
+public enum InformacaoColunas {
     
-    NOME("Categoria");
+    NOME("Categoria", 0);
     
     String descricao;
+    int value;
     
-    NomeDasColunas(String descricao){
+    InformacaoColunas(String descricao, int value){
         this.descricao = descricao;
+        this.value = value;
     }
 
     public String getDescricao() {
         return descricao;
+    }
+
+    public int getValue() {
+        return value;
     }
     
 }

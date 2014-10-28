@@ -22,8 +22,10 @@ import view.TableModels.CategoriaTableModel.CategoriaTableModel;
 public class CadastroCategorias extends javax.swing.JFrame {
 
     CategoriaTableModel categoriaTableModel = new CategoriaTableModel();
+    
     Categoria categoria = new Categoria();
     Fotocategoria fotocategoria = new Fotocategoria();
+    
     ImageChooser imageChooser = new ImageChooser(this);
 
     /**
@@ -119,7 +121,7 @@ public class CadastroCategorias extends javax.swing.JFrame {
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextField1))))
@@ -164,8 +166,9 @@ public class CadastroCategorias extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         populaCategoria();
+        
         if (categoria.getNome() != null && categoria.getFotoCategoria() != null) {
-            categoriaTableModel.add(new Categoria());
+            categoriaTableModel.add(categoria);
             limpaCampos();
         } else {
             JOptionPane.showMessageDialog(rootPane, Mensagens.CATEGORIA_CADASTRO_CAMPOs_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
@@ -234,7 +237,6 @@ public class CadastroCategorias extends javax.swing.JFrame {
 
     private void populaCategoria() {
         categoria.setNome(jTextField1.getText());
-        System.out.println(categoria.getNome());
         fotocategoria.setDescricao(imageChooser.getSingleImageFile().getName());
         fotocategoria.setFoto(imageChooser.getFoto());
         categoria.setFotoCategoria(fotocategoria);
@@ -242,6 +244,6 @@ public class CadastroCategorias extends javax.swing.JFrame {
 
     private void limpaCampos() {
         jTextField1.setText("");
-        //TODO limpar foto
+        jLabelCategoriaImage.setIcon(null);
     }
 }

@@ -5,7 +5,6 @@
 package view.TableModels.CategoriaTableModel;
 
 import control.CategoriaControl;
-import java.lang.String;
 import model.Categoria;
 import view.TableModels.GenericTableModel;
 
@@ -23,14 +22,14 @@ public class CategoriaTableModel extends GenericTableModel{
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         if(columnIndex < 0 || columnIndex >= quantidadeDeColunas) throw new IndexOutOfBoundsException();
-        if(columnIndex == 0) return String.class;
+        if(columnIndex == InformacaoColunas.NOME.getValue()) return String.class;
         return String.class;
     }
 
     @Override
     public String getColumnName(int columnIndex) {
         if(columnIndex > 0 || columnIndex >= quantidadeDeColunas) throw new IndexOutOfBoundsException();
-        if(columnIndex == 0) return NomeDasColunas.NOME.getDescricao();
+        if(columnIndex == InformacaoColunas.NOME.getValue()) return InformacaoColunas.NOME.getDescricao();
         return null;
     }
 
@@ -41,9 +40,8 @@ public class CategoriaTableModel extends GenericTableModel{
         if(rowIndex < 0 || rowIndex >= registros.size()) throw new IndexOutOfBoundsException();
         categoria = (Categoria) registros.get(rowIndex);
         if(columnIndex < 0 || columnIndex >= quantidadeDeColunas) throw new IndexOutOfBoundsException();
-        if(columnIndex == 0) return categoria.getNome();
-        System.out.println(categoria.getNome());
-        return "teste";
+        if(columnIndex == InformacaoColunas.NOME.getValue()) return categoria.getNome();
+        return "";
     }
     
     public void add(Categoria categoria){
