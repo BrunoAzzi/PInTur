@@ -18,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.swing.ImageIcon;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -116,6 +117,10 @@ public class Foto implements Serializable {
     @Override
     public String toString() {
         return "model.Foto[ codigo=" + codigo + " ]";
+    }
+    
+    public ImageIcon getIcon(){
+        return new ImageIcon(getImage());
     }
     
 }

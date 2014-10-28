@@ -12,6 +12,7 @@ package utilidades;
 public enum Mensagens {
     
     CATEGORIA_ADICIONAR_CONFIRMACAO("Deseja adicionar nova categoria?"),
+    CATEGORIA_CADASTRO_CAMPOs_INVALIDOS("Campo inválido no cadastro de caegorias!"),
     WARNING("Aviso!");
     
     String descricao;

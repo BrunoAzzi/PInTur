@@ -4,6 +4,9 @@
  */
 package view.categoria;
 
+import control.CategoriaControl;
+import java.util.ArrayList;
+import model.Categoria;
 import utilidades.Tela;
 
 /**
@@ -12,11 +15,15 @@ import utilidades.Tela;
  */
 public class CategoriaMenu extends javax.swing.JPanel {
 
+    ArrayList<Categoria> itemCategoriaMenu = CategoriaControl.listaCategorias();
     /**
      * Creates new form CategoriaMenu
      */
     public CategoriaMenu() {
         initComponents();
+        for(Categoria categoria : itemCategoriaMenu){
+            jScrollPane1.add(new ItemCategoriaMenu(categoria));
+        }
     }
 
     /**
@@ -35,6 +42,7 @@ public class CategoriaMenu extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
 
+        setBackground(new java.awt.Color(58, 110, 165));
         setMaximumSize(Tela.menuCategoriaDimension());
         setMinimumSize(Tela.menuCategoriaDimension());
         setPreferredSize(Tela.menuCategoriaDimension());
@@ -47,24 +55,26 @@ public class CategoriaMenu extends javax.swing.JPanel {
 
         jLabel4.setText("itens no carrinho");
 
+        jScrollPane1.setBackground(new java.awt.Color(58, 110, 165));
         jScrollPane1.setBorder(null);
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane1.setDoubleBuffered(true);
         jScrollPane1.setMaximumSize(Tela.menuCategoriaScrollPaneDimension());
         jScrollPane1.setMinimumSize(Tela.menuCategoriaScrollPaneDimension());
         jScrollPane1.setPreferredSize(Tela.menuCategoriaScrollPaneDimension());
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(4980, 1540));
+        jPanel1.setBackground(javax.swing.UIManager.getDefaults().getColor("Desktop.background"));
+        jPanel1.setPreferredSize(new java.awt.Dimension(40, 40));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 4980, Short.MAX_VALUE)
+            .addGap(0, 1102, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1540, Short.MAX_VALUE)
+            .addGap(0, 157, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -83,21 +93,21 @@ public class CategoriaMenu extends javax.swing.JPanel {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1045, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 292, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1102, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

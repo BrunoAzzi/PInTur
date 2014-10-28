@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utilidades;
+package view.TableModels;
 
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
@@ -17,6 +17,11 @@ public abstract class GenericTableModel extends AbstractTableModel{
     
     protected int quantidadeDeColunas;
     protected boolean isEditable;
+
+    public GenericTableModel(int quantidadeDeColunas, boolean isEditable) {
+        this.quantidadeDeColunas = quantidadeDeColunas;
+        this.isEditable = isEditable;
+    }
     
     //METODOS IMPLEMENTADOS
     @Override
@@ -44,15 +49,11 @@ public abstract class GenericTableModel extends AbstractTableModel{
         fireTableDataChanged();
     }
     
-    public Object getValueAt(int index){
-        return registros.get(index);
-    }
-    
     //METODOS ABSTRATOS
     @Override
     public abstract Class<?> getColumnClass(int columnIndex);
 
     @Override
-    public abstract String getColumnName(int column);
+    public abstract String getColumnName(int columnIndex);
     
 }

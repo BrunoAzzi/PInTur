@@ -9,7 +9,8 @@ import java.awt.FileDialog;
 import java.awt.Frame;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FilenameFilter;
+import javax.swing.ImageIcon;
+import model.Foto;
 
 /**
  *
@@ -40,6 +41,16 @@ public class ImageChooser extends FileDialog {
             
     public File getSingleImageFile(){
         return super.getFiles()[0];
+    }
+    
+    public Foto getFoto(){
+        Foto foto = new Foto();
+        foto.setImage(getImage());
+        return foto;
+    }
+    
+    public ImageIcon getIcon(){
+        return new ImageIcon(getImage());
     }
     
 }
