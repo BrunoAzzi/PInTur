@@ -17,6 +17,7 @@ import model.Foto;
  * @author brunoazzi
  */
 public class ImageChooser extends FileDialog {
+    File file;
 
     public ImageChooser(Frame parent) {
         super(parent);

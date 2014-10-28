@@ -70,6 +70,11 @@ public class CadastroCategorias extends javax.swing.JFrame {
         });
 
         jButton2.setText("Salvar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Remover");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +171,6 @@ public class CadastroCategorias extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         populaCategoria();
-        
         if (categoria.getNome() != null && categoria.getFotoCategoria() != null) {
             categoriaTableModel.add(categoria);
             limpaCampos();
@@ -187,6 +191,12 @@ public class CadastroCategorias extends javax.swing.JFrame {
             Logger.getLogger(CadastroCategorias.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        for(Categoria categoria : categoriaTableModel.getAllCategorias()){
+            System.out.println(categoria.getNome());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,10 +250,12 @@ public class CadastroCategorias extends javax.swing.JFrame {
         fotocategoria.setDescricao(imageChooser.getSingleImageFile().getName());
         fotocategoria.setFoto(imageChooser.getFoto());
         categoria.setFotoCategoria(fotocategoria);
+        System.out.println(categoria.getNome());
     }
 
     private void limpaCampos() {
         jTextField1.setText("");
         jLabelCategoriaImage.setIcon(null);
+        //categoria = null;
     }
 }
