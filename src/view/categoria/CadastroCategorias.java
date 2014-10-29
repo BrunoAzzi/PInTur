@@ -4,6 +4,9 @@
  */
 package view.categoria;
 
+import control.CategoriaControl;
+import control.FotoCategoriaControl;
+import control.FotoControl;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,10 +24,7 @@ import view.TableModels.CategoriaTableModel.CategoriaTableModel;
  */
 public class CadastroCategorias extends javax.swing.JFrame {
 
-    CategoriaTableModel categoriaTableModel = new CategoriaTableModel();
-    
-    Categoria categoria = new Categoria();
-    Fotocategoria fotocategoria = new Fotocategoria();
+    CategoriaTableModel categoriaTableModel = new CategoriaTableModel(1, false);
     
     ImageChooser imageChooser = new ImageChooser(this);
 
@@ -170,13 +170,9 @@ public class CadastroCategorias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        populaCategoria();
-        if (categoria.getNome() != null && categoria.getFotoCategoria() != null) {
-            categoriaTableModel.add(categoria);
-            limpaCampos();
-        } else {
-            JOptionPane.showMessageDialog(rootPane, Mensagens.CATEGORIA_CADASTRO_CAMPOs_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
-        }
+        if (!camposValidados()) JOptionPane.showMessageDialog(rootPane, Mensagens.CATEGORIA_CADASTRO_CAMPOs_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+        if(camposValidados()) categoriaTableModel.add(getCategoriaPopulada());
+        limpaCampos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -195,6 +191,12 @@ public class CadastroCategorias extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         for(Categoria categoria : categoriaTableModel.getAllCategorias()){
             System.out.println(categoria.getNome());
+        }
+        
+        for (Categoria categoria : categoriaTableModel.getAllCategorias()) {
+            FotoControl.add(categoria.getFotoCategoria().getFoto());
+            FotoCategoriaControl.add(categoria.getFotoCategoria());
+            CategoriaControl.add(categoria);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -245,17 +247,26 @@ public class CadastroCategorias extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
-    private void populaCategoria() {
-        categoria.setNome(jTextField1.getText());
-        fotocategoria.setDescricao(imageChooser.getSingleImageFile().getName());
-        fotocategoria.setFoto(imageChooser.getFoto());
-        categoria.setFotoCategoria(fotocategoria);
-        System.out.println(categoria.getNome());
-    }
-
     private void limpaCampos() {
         jTextField1.setText("");
         jLabelCategoriaImage.setIcon(null);
-        //categoria = null;
+        imageChooser = new ImageChooser(this);
+    }
+
+    private boolean camposValidados() {
+        return jTextField1.getText().equals("") || imageChooser.getSingleImageFile() != null;
+    }
+
+    private Categoria getCategoriaPopulada() {
+       Fotocategoria fotocategoria = new Fotocategoria();
+       Categoria categoria = new Categoria();
+       
+       fotocategoria.setDescricao(imageChooser.getFile());
+       fotocategoria.setFoto(imageChooser.getFoto());
+       
+       categoria.setNome(jTextField1.getText());
+       categoria.setFotoCategoria(fotocategoria);
+       
+       return categoria;
     }
 }

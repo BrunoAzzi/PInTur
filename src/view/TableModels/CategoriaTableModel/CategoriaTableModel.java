@@ -15,16 +15,15 @@ import model.Categoria;
  */
 public class CategoriaTableModel extends AbstractTableModel{
     
-    ArrayList<Categoria> categorias = new ArrayList<>();
+    public ArrayList<Categoria> categorias = new ArrayList();
     
     protected int quantidadeDeColunas;
     protected boolean isEditable;
 
-    public CategoriaTableModel() {
-        this.quantidadeDeColunas = 1;
-        this.isEditable = false;
+    public CategoriaTableModel(int quantidadeDeColunas, boolean isEditable) {
+        this.quantidadeDeColunas = quantidadeDeColunas;
+        this.isEditable = isEditable;
         categorias.addAll(CategoriaControl.listaCategorias());
-        fireTableDataChanged();
     }
 
     @Override
@@ -52,13 +51,6 @@ public class CategoriaTableModel extends AbstractTableModel{
         return "";
     }
     
-    public void add(Categoria categoria){
-        Categoria categoria1 = categoria;
-        categorias.add(categoria1);
-        System.out.println(categoria.getNome());
-        fireTableDataChanged();
-    }
-    
     public ArrayList<Categoria> getAllCategorias(){
         return new ArrayList(categorias);
     }
@@ -75,6 +67,11 @@ public class CategoriaTableModel extends AbstractTableModel{
     
     public void deleteRow(int rowindex){
         categorias.remove(rowindex);
+        fireTableDataChanged();
+    }
+    
+    public void add(Categoria value){
+        categorias.add(value);
         fireTableDataChanged();
     }
     

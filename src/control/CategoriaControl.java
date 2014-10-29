@@ -16,5 +16,9 @@ public class CategoriaControl {
     public static ArrayList<Categoria> listaCategorias(){
         return new ArrayList(Conexao.namedQuery("Categoria.findAll"));
     }
+
+    public static void add(Categoria categoria) {
+        Conexao.merge(categoria);
+    }
     
 }
