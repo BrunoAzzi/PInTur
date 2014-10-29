@@ -18,7 +18,7 @@ public class CategoriaControl {
     }
 
     public static void add(Categoria categoria) {
-        Conexao.merge(categoria);
+        Conexao.persist(categoria);
     }
     
 }

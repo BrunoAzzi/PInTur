@@ -25,7 +25,6 @@ import view.TableModels.CategoriaTableModel.CategoriaTableModel;
 public class CadastroCategorias extends javax.swing.JFrame {
 
     CategoriaTableModel categoriaTableModel = new CategoriaTableModel(1, false);
-    
     ImageChooser imageChooser = new ImageChooser(this);
 
     /**
@@ -189,10 +188,6 @@ public class CadastroCategorias extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        for(Categoria categoria : categoriaTableModel.getAllCategorias()){
-            System.out.println(categoria.getNome());
-        }
-        
         for (Categoria categoria : categoriaTableModel.getAllCategorias()) {
             FotoControl.add(categoria.getFotoCategoria().getFoto());
             FotoCategoriaControl.add(categoria.getFotoCategoria());

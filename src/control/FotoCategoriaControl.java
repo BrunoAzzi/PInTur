@@ -19,7 +19,7 @@ public class FotoCategoriaControl {
     }
 
     public static void add(Fotocategoria fotoCategoria) {
-        Conexao.merge(fotoCategoria);
+        Conexao.persist(fotoCategoria);
     }
     
 }
