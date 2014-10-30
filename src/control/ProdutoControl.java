@@ -22,9 +22,8 @@ public class ProdutoControl {
 
     public static Produto findByCodigo(Integer codigo) throws NullPointerException {
         if (codigo == null) {
-            throw new NullPointerException("O Codigo está vazio");
+            throw new NullPointerException("O Código está vazio");
         }
-
         try {
             return (Produto) Conexao.singleResultNamedQuery("Produto.findByCodigo", codigo, "codigo");
         } catch (NoResultException e) {

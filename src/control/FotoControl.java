@@ -13,7 +13,7 @@ import model.Foto;
 public class FotoControl {
 
     public static void add(Foto foto) {
-        Conexao.merge(foto);
+        Conexao.persist(foto);
     }
     
 }

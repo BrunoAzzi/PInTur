@@ -6,12 +6,12 @@ package view.categoria;
 
 import control.CategoriaControl;
 import control.FotoCategoriaControl;
-import control.FotoControl;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Categoria;
+import model.Foto;
 import model.Fotocategoria;
 import utilidades.ImageChooser;
 import utilidades.Imagem;
@@ -172,6 +172,7 @@ public class CadastroCategorias extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (!camposValidados()) JOptionPane.showMessageDialog(rootPane, Mensagens.CATEGORIA_CADASTRO_CAMPOs_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
         if(camposValidados()) categoriaTableModel.add(getCategoriaPopulada());
+        
         limpaCampos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -189,13 +190,11 @@ public class CadastroCategorias extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        for(Categoria categoria : categoriaTableModel.getAllCategorias()){
-            System.out.println(categoria.getNome());
-        }
-        
         for (Categoria categoria : categoriaTableModel.getAllCategorias()) {
-            FotoControl.add(categoria.getFotoCategoria().getFoto());
+            //FotoControl.add(categoria.getFotoCategoria().getFoto());
+            
             FotoCategoriaControl.add(categoria.getFotoCategoria());
+            
             CategoriaControl.add(categoria);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -258,15 +257,19 @@ public class CadastroCategorias extends javax.swing.JFrame {
     }
 
     private Categoria getCategoriaPopulada() {
+       Foto foto = new Foto();
        Fotocategoria fotocategoria = new Fotocategoria();
        Categoria categoria = new Categoria();
        
+       foto.setImage(imageChooser.getImage());
+       
        fotocategoria.setDescricao(imageChooser.getFile());
-       fotocategoria.setFoto(imageChooser.getFoto());
+       fotocategoria.setFoto(foto);
        
        categoria.setNome(jTextField1.getText());
        categoria.setFotoCategoria(fotocategoria);
        
        return categoria;
+       
     }
 }

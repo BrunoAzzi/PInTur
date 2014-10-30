@@ -5,7 +5,6 @@
 package control;
 
 import java.util.ArrayList;
-import model.Categoria;
 import model.Fotocategoria;
 
 /**
@@ -19,7 +18,9 @@ public class FotoCategoriaControl {
     }
 
     public static void add(Fotocategoria fotoCategoria) {
-        Conexao.merge(fotoCategoria);
+        Conexao.persist(fotoCategoria.getFoto());
+        Conexao.persist(fotoCategoria);
+        
     }
     
 }

@@ -32,9 +32,9 @@ public class Conexao {
         }
     }
 
-    protected static void merge(Object aThis) {
+    protected static void persist(Object aThis) {
         getTransaction();
-        em.merge(aThis);
+        em.persist(aThis);
         commit();
     }
 

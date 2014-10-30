@@ -7,10 +7,6 @@ package control;
 import java.util.ArrayList;
 import model.Categoria;
 
-/**
- *
- * @author bruno_azzi
- */
 public class CategoriaControl {
     
     public static ArrayList<Categoria> listaCategorias(){
@@ -18,7 +14,23 @@ public class CategoriaControl {
     }
 
     public static void add(Categoria categoria) {
-        Conexao.merge(categoria);
+        Conexao.persist(categoria);
+    }
+    
+    public static Categoria findByCodigo(Integer codigo){
+        return (Categoria) Conexao.singleResultNamedQuery("Categoria.findByCodigo", codigo, "codigo");
+    }
+    
+    public static Categoria findByNome(String nome){
+        return (Categoria) Conexao.singleResultNamedQuery("Categoria.findByNome", nome, "nome");
+    } 
+    
+    public static void deleteById(Integer id){        
+//        try {            
+            Conexao.remove(findByCodigo(id));
+//        } catch (NullPointerException e) {
+//            
+//        }
     }
     
 }
