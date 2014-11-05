@@ -5,6 +5,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -68,6 +69,10 @@ public class Produto implements Serializable {
     private List<Vendaefetuada> vendaefetuadaList;
 
     public Produto() {
+    }
+    
+    public Produto(String nome){
+        this.nome = nome;
     }
 
     public Produto(Integer codigo) {
@@ -148,6 +153,7 @@ public class Produto implements Serializable {
 
     @XmlTransient
     public List<Vendaefetuada> getVendaefetuadaList() {
+        if(vendaefetuadaList == null) return new ArrayList();
         return vendaefetuadaList;
     }
 

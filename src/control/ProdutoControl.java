@@ -30,6 +30,20 @@ public class ProdutoControl {
             JOptionPane.showMessageDialog(null, Warnings.OBJETO_NAO_ENCONTRADO.getMensagem(), JOptionPane.MESSAGE_PROPERTY, JOptionPane.WARNING_MESSAGE);
             return null;
         }
-
+    }
+    
+    public static ArrayList<Produto> findByNome(String nome){
+        return new ArrayList(Conexao.namedQuery("Produto.findByNome")); 
+    }
+      
+    public static void add(Produto produto){
+       Conexao.persist(produto);
+    }
+    
+    public static void deleteByCodigo(Integer codigo){
+        if(codigo == null){
+            throw new NullPointerException("O Código está vazio");
+        }
+        Conexao.remove(codigo);
     }
 }

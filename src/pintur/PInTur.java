@@ -5,7 +5,10 @@
 package pintur;
 
 import control.CategoriaControl;
+import control.ProdutoControl;
+import javax.sound.midi.Soundbank;
 import model.Categoria;
+import model.Produto;
 
 /**
  *
@@ -17,14 +20,9 @@ public class PInTur {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        CategoriaControl categoriaControl = new CategoriaControl();
-//        Categoria categoria = new Categoria();
-//        categoria.setNome("teste");
-//        categoria.setFotoCategoria("aaaa");
-//        
-//        
-//        categoriaControl.add(categoria);
-//        
-//        categoriaControl.findByCodigo(1);
+       ProdutoControl produtoControl = new ProdutoControl();
+//       produtoControl.findByNome("teste");
+        System.out.println(produtoControl.selectAll()); 
+       
     }
 }
