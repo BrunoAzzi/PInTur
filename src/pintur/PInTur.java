@@ -20,9 +20,6 @@ public class PInTur {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       ProdutoControl produtoControl = new ProdutoControl();
-//       produtoControl.findByNome("teste");
-        System.out.println(produtoControl.selectAll()); 
-       
+        //teste git checout
     }
 }

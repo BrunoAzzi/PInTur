@@ -18,9 +18,7 @@ public class FotoCategoriaControl {
     }
 
     public static void add(Fotocategoria fotoCategoria) {
-        Conexao.persist(fotoCategoria.getFoto());
         Conexao.persist(fotoCategoria);
-        
     }
     
 }

@@ -10,6 +10,7 @@ import java.awt.Frame;
 import java.io.File;
 import java.io.FileInputStream;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import model.Foto;
 
 /**
@@ -27,6 +28,8 @@ public class ImageChooser extends FileDialog {
     }
 
     public byte[] getImage(){
+        if(getSingleImageFile() == null) return null;
+        
         byte[] image = new byte[(int) getSingleImageFile().length()];
 
         try {
@@ -41,7 +44,8 @@ public class ImageChooser extends FileDialog {
     }
             
     public File getSingleImageFile(){
-        return super.getFiles()[0];
+        if(getFiles().length <= 0) return null;
+        return getFiles()[0];
     }
     
     public Foto getFoto(){
