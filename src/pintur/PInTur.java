@@ -4,12 +4,6 @@
  */
 package pintur;
 
-import control.CategoriaControl;
-import control.ProdutoControl;
-import javax.sound.midi.Soundbank;
-import model.Categoria;
-import model.Produto;
-
 /**
  *
  * @author bruno_azzi
