@@ -37,5 +37,8 @@ public class Tela {
         return new Dimension((int) (screenWidth*0.6), (int) (screenHeight*0.6));
     }
     
+    public static Dimension screenSizeTratado(){
+        return new Dimension((int) (screenWidth),(int) (screenHeight-20));
+    }
     
 }
