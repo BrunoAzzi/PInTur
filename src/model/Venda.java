@@ -22,16 +22,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+
 
 /**
  *
  * @author bruno_azzi
  */
 @Entity
-@Table(name = "venda", catalog = "PInTur", schema = "")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Venda.findAll", query = "SELECT v FROM Venda v"),
     @NamedQuery(name = "Venda.findByCodigo", query = "SELECT v FROM Venda v WHERE v.codigo = :codigo"),
@@ -39,7 +36,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Venda.findByTotal", query = "SELECT v FROM Venda v WHERE v.total = :total"),
     @NamedQuery(name = "Venda.findByQuantidadeDeParcelas", query = "SELECT v FROM Venda v WHERE v.quantidadeDeParcelas = :quantidadeDeParcelas")})
 public class Venda implements Serializable {
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -114,8 +110,6 @@ public class Venda implements Serializable {
     public void setFormaDePagamento(Formadepagamento formaDePagamento) {
         this.formaDePagamento = formaDePagamento;
     }
-
-    @XmlTransient
     public List<Vendaefetuada> getVendaefetuadaList() {
         return vendaefetuadaList;
     }
@@ -123,27 +117,6 @@ public class Venda implements Serializable {
     public void setVendaefetuadaList(List<Vendaefetuada> vendaefetuadaList) {
         this.vendaefetuadaList = vendaefetuadaList;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (codigo != null ? codigo.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Venda)) {
-            return false;
-        }
-        Venda other = (Venda) object;
-        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
-            return false;
-        }
-        return true;
-    }
-
     @Override
     public String toString() {
         return "model.Venda[ codigo=" + codigo + " ]";

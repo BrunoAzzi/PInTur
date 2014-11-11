@@ -32,8 +32,8 @@ public class PromocaoControl {
         }
     }
         
-    public static void add(Promocao produto){
-       Conexao.persist(produto);
+    public static void add(Promocao promocao){
+       Conexao.persist(promocao);
     }
     
     public static void deleteByCodigo(Integer codigo){

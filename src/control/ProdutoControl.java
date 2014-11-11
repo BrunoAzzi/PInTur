@@ -16,7 +16,7 @@ import model.Produto;
  */
 public class ProdutoControl {
 
-    public static ArrayList<Produto> selectAll() {
+    public static ArrayList<Produto> listaProdutos() {
         return new ArrayList(Conexao.namedQuery("Produto.findAll"));
     }
 
