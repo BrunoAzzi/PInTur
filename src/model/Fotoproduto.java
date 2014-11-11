@@ -19,8 +19,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -28,7 +26,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "fotoproduto", catalog = "PInTur", schema = "")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Fotoproduto.findAll", query = "SELECT f FROM Fotoproduto f"),
     @NamedQuery(name = "Fotoproduto.findByCodigo", query = "SELECT f FROM Fotoproduto f WHERE f.codigo = :codigo"),
@@ -85,33 +82,12 @@ public class Fotoproduto implements Serializable {
         this.foto = foto;
     }
 
-    @XmlTransient
     public List<Produto> getProdutoList() {
         return produtoList;
     }
 
     public void setProdutoList(List<Produto> produtoList) {
         this.produtoList = produtoList;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (codigo != null ? codigo.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Fotoproduto)) {
-            return false;
-        }
-        Fotoproduto other = (Fotoproduto) object;
-        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

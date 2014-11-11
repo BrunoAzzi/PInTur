@@ -19,8 +19,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.swing.ImageIcon;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -28,7 +26,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "foto", catalog = "PInTur", schema = "")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Foto.findAll", query = "SELECT f FROM Foto f"),
     @NamedQuery(name = "Foto.findByCodigo", query = "SELECT f FROM Foto f WHERE f.codigo = :codigo")})
@@ -76,7 +73,6 @@ public class Foto implements Serializable {
         this.image = image;
     }
 
-    @XmlTransient
     public List<Fotoproduto> getFotoprodutoList() {
         return fotoprodutoList;
     }
@@ -85,33 +81,12 @@ public class Foto implements Serializable {
         this.fotoprodutoList = fotoprodutoList;
     }
 
-    @XmlTransient
     public List<Fotocategoria> getFotocategoriaList() {
         return fotocategoriaList;
     }
 
     public void setFotocategoriaList(List<Fotocategoria> fotocategoriaList) {
         this.fotocategoriaList = fotocategoriaList;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (codigo != null ? codigo.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Foto)) {
-            return false;
-        }
-        Foto other = (Foto) object;
-        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
-            return false;
-        }
-        return true;
     }
 
     @Override
