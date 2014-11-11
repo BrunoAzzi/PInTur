@@ -183,7 +183,7 @@ public class Produto implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Produto[ codigo=" + codigo + " ]";
+        return getNome();
     }
     
 }
