@@ -4,19 +4,32 @@
  */
 package view.produto;
 
+import control.CategoriaControl;
+import java.awt.Component;
+import javax.swing.JOptionPane;
+import model.Categoria;
 import model.Produto;
+import utilidades.ImageChooser;
+import utilidades.Mensagens;
+import view.TableModels.ProdutoTableModel.ProdutoTableModel;
 
 /**
  *
  * @author gustavo_yuri
  */
 public class CadastroProdutos extends java.awt.Frame {
-
+    
+    ProdutoTableModel produtoTableModel = new ProdutoTableModel(1, false);
+    ImageChooser imageChooser = new ImageChooser(this);
+    private Component rootPane;
     /**
      * Creates new form CadastroProdutos
      */
     public CadastroProdutos() {
         initComponents();
+        for (Categoria categoria : CategoriaControl.listaCategorias()) {
+            jcbCategoria.addItem(categoria.getNome());            
+        }
     }
 
     /**
@@ -93,8 +106,6 @@ public class CadastroProdutos extends java.awt.Frame {
                 jtfNomeActionPerformed(evt);
             }
         });
-
-        jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel7.setText("Nome");
 
@@ -210,7 +221,12 @@ public class CadastroProdutos extends java.awt.Frame {
     }//GEN-LAST:event_jtfNomeActionPerformed
 
     private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
-        // TODO add your handling code here:
+        if(camposValidados()){
+            produtoTableModel.add(getProdutoPopulado());
+        }else{
+            JOptionPane.showMessageDialog(rootPane, Mensagens.PRODUTO_CADASTRO_CAMPOs_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+        }        
+        limpaCampos();               
     }//GEN-LAST:event_jbNovoActionPerformed
 
     /**
@@ -252,15 +268,19 @@ public class CadastroProdutos extends java.awt.Frame {
     
     private boolean camposValidados(){
         return !(jtfNome.getText().equals("")) && !(jtfDescricao.getText().equals("")
-                 && !jtfValor.getText().equals(""));
-        //TODO Fazer imageChooser
+                 && !jtfValor.getText().equals("") && imageChooser.getSingleImageFile() != null);
     }    
     
     private Produto getProdutoPopulado(){
         Produto novoProduto = new Produto();
+        Categoria categoriaProduto = new Categoria();        
+        System.out.println(jcbCategoria.getSelectedItem());  
+        categoriaProduto = (Categoria)jcbCategoria.getSelectedItem();  
+        
         novoProduto.setNome(jtfNome.getText());
         novoProduto.setDescricao(jtfDescricao.getText());
         novoProduto.setValor(new Double(jtfValor.getText()));
+        novoProduto.setCategoria(categoriaProduto); 
         
         return novoProduto;
     }
