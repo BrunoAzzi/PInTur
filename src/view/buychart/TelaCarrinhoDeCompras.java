@@ -117,6 +117,7 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Formas de Pagamento:");
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Fechar Compra");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,24 +236,24 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-            jComboBoxQuantidadeDeParcelas.setVisible(true);
-            jLabelQuantidadeDeParcelas.setVisible(true);        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
-
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-            jComboBoxQuantidadeDeParcelas.setVisible(false);
-            jLabelQuantidadeDeParcelas.setVisible(false);
+        jComboBoxQuantidadeDeParcelas.setVisible(false);
+        jLabelQuantidadeDeParcelas.setVisible(false);
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-            jComboBoxQuantidadeDeParcelas.setVisible(false);
-            jLabelQuantidadeDeParcelas.setVisible(false);        // TODO add your handling code here:
+        jComboBoxQuantidadeDeParcelas.setVisible(false);
+        jLabelQuantidadeDeParcelas.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        jComboBoxQuantidadeDeParcelas.setVisible(true);
+        jLabelQuantidadeDeParcelas.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
+
     private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
-            jComboBoxQuantidadeDeParcelas.setVisible(true);
-            jLabelQuantidadeDeParcelas.setVisible(true);        // TODO add your handling code here:
+        jComboBoxQuantidadeDeParcelas.setVisible(true);
+        jLabelQuantidadeDeParcelas.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton5ActionPerformed
 
     /**

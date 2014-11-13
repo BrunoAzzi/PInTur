@@ -65,6 +65,7 @@ public class CadastroCategorias extends javax.swing.JFrame {
         jTable1.setModel(categoriaTableModel);
         jScrollPane1.setViewportView(jTable1);
 
+        jButton3.setBackground(new java.awt.Color(51, 102, 255));
         jButton3.setText("Remover");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +73,7 @@ public class CadastroCategorias extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(51, 102, 255));
         jButton2.setText("Salvar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +81,7 @@ public class CadastroCategorias extends javax.swing.JFrame {
             }
         });
 
+        jButtonNovaCategoria.setBackground(new java.awt.Color(51, 102, 255));
         jButtonNovaCategoria.setText("Novo");
         jButtonNovaCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

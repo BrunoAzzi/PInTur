@@ -23,7 +23,7 @@ public class CarrinhoDeCompras {
     }
     
     public static void removeAllProdutosFromCarrinho(){
-        produtos.re
+        produtos.clear();
     }
     
 }
