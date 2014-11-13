@@ -16,31 +16,31 @@ import model.Produto;
 public class ProdutoTableModel extends AbstractTableModel {
 
     public ArrayList<Produto> produtos = new ArrayList();
+    
     public int quantidadeDeColunas;
     public boolean isEditable;
 
     public ProdutoTableModel(int quantidadeDeColunas, boolean isEditable) {
         this.quantidadeDeColunas = quantidadeDeColunas;
         this.isEditable = isEditable;
-        produtos.addAll(ProdutoControl.listaProdutos());
+        produtos.addAll(ProdutoControl.listaProdutos());       
     }
     
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         if(columnIndex < 0 || columnIndex >= quantidadeDeColunas) throw new IndexOutOfBoundsException();
-        if(columnIndex == InformacaoColunas.NOME.getValue()) return String.class;
-        if(columnIndex == InformacaoColunas.DESCRICAO.getValue()) return String.class;
-        if(columnIndex == InformacaoColunas.VALOR.getValue()) return Double.class;
-        
+        if(columnIndex == InformacaoColunasProduto.NOME.getValue()) return String.class;
+        if(columnIndex == InformacaoColunasProduto.DESCRICAO.getValue()) return String.class;
+        if(columnIndex == InformacaoColunasProduto.VALOR.getValue()) return Double.class;        
         return String.class;
     }
 
     @Override
     public String getColumnName(int columnIndex) {
         if(columnIndex > 0 || columnIndex >= quantidadeDeColunas) throw new IndexOutOfBoundsException();
-        if(columnIndex == InformacaoColunas.NOME.getValue()) return InformacaoColunas.NOME.getDescricao();
-        if(columnIndex == InformacaoColunas.DESCRICAO.getValue()) return InformacaoColunas.DESCRICAO.getDescricao();
-        if(columnIndex == InformacaoColunas.VALOR.getValue()) return InformacaoColunas.VALOR.getDescricao();
+        if(columnIndex == InformacaoColunasProduto.NOME.getValue()) return InformacaoColunasProduto.NOME.getDescricao();
+        if(columnIndex == InformacaoColunasProduto.DESCRICAO.getValue()) return InformacaoColunasProduto.DESCRICAO.getDescricao();
+        if(columnIndex == InformacaoColunasProduto.VALOR.getValue()) return InformacaoColunasProduto.VALOR.getDescricao();
         return null;
     }
 
@@ -50,9 +50,9 @@ public class ProdutoTableModel extends AbstractTableModel {
         if(rowIndex < 0 || rowIndex >= produtos.size()) throw new IndexOutOfBoundsException();
         produto = (Produto) produtos.get(rowIndex);
         if(columnIndex < 0 || columnIndex >= quantidadeDeColunas) throw new IndexOutOfBoundsException();
-        if(columnIndex == InformacaoColunas.NOME.getValue()) return produto.getNome();
-        if(columnIndex == InformacaoColunas.DESCRICAO.getValue()) return produto.getDescricao();
-        if(columnIndex == InformacaoColunas.VALOR.getValue()) return produto.getValor();
+        if(columnIndex == InformacaoColunasProduto.NOME.getValue()) return produto.getNome();
+        if(columnIndex == InformacaoColunasProduto.DESCRICAO.getValue()) return produto.getDescricao();
+        if(columnIndex == InformacaoColunasProduto.VALOR.getValue()) return produto.getValor();
         return "";
     }
 

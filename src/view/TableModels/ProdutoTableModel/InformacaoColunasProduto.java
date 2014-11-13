@@ -8,16 +8,16 @@ package view.TableModels.ProdutoTableModel;
  *
  * @author gustavo_yuri
  */
-public enum InformacaoColunas {
+public enum InformacaoColunasProduto {
     
     NOME("Nome", 0),
-    DESCRICAO("Descricao", 1),
+    DESCRICAO("Descrição", 1),
     VALOR("Valor", 2);
     
     String descricao;
     int value;
 
-    private InformacaoColunas(String descricao, int value) {
+    private InformacaoColunasProduto(String descricao, int value) {
         this.descricao = descricao;
         this.value = value;
     }

@@ -183,7 +183,7 @@ public class Produto implements Serializable {
 
     @Override
     public String toString() {
-        return getNome();
+        return getNome();                
     }
     
 }

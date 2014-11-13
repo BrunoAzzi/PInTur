@@ -84,5 +84,9 @@ public class Categoria implements Serializable {
     public void setProdutoList(List<Produto> produtoList) {
         this.produtoList = produtoList;
     }
-    
+
+    @Override
+    public String toString() {
+        return getNome();
+    }    
 }
