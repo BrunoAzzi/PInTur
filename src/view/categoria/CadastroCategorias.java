@@ -12,7 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Categoria;
-import model.Foto;
 import model.Fotocategoria;
 import utilidades.ImageChooser;
 import utilidades.Imagem;
@@ -300,7 +299,6 @@ public class CadastroCategorias extends javax.swing.JFrame {
 
         categoria.setNome(jTextField1.getText());
         categoria.setFotoCategoria(fotocategoria);
-
         return categoria;
         
     }

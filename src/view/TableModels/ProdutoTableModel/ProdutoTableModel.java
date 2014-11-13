@@ -39,6 +39,8 @@ public class ProdutoTableModel extends AbstractTableModel {
     public String getColumnName(int columnIndex) {
         if(columnIndex > 0 || columnIndex >= quantidadeDeColunas) throw new IndexOutOfBoundsException();
         if(columnIndex == InformacaoColunas.NOME.getValue()) return InformacaoColunas.NOME.getDescricao();
+        if(columnIndex == InformacaoColunas.DESCRICAO.getValue()) return InformacaoColunas.DESCRICAO.getDescricao();
+        if(columnIndex == InformacaoColunas.VALOR.getValue()) return InformacaoColunas.VALOR.getDescricao();
         return null;
     }
 
@@ -49,17 +51,19 @@ public class ProdutoTableModel extends AbstractTableModel {
         produto = (Produto) produtos.get(rowIndex);
         if(columnIndex < 0 || columnIndex >= quantidadeDeColunas) throw new IndexOutOfBoundsException();
         if(columnIndex == InformacaoColunas.NOME.getValue()) return produto.getNome();
+        if(columnIndex == InformacaoColunas.DESCRICAO.getValue()) return produto.getDescricao();
+        if(columnIndex == InformacaoColunas.VALOR.getValue()) return produto.getValor();
         return "";
     }
 
     @Override
     public int getRowCount() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return produtos.size();
     }
 
     @Override
     public int getColumnCount() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return quantidadeDeColunas;
     }    
 
     public void deleteRow(int rowIndex) {
