@@ -17,7 +17,7 @@ import model.Promocao;
  * @author everton_m
  */
 public class CadastroPromocao extends javax.swing.JFrame {
-
+DefaultListModel defaultListModel = new DefaultListModel();
     /**
      * Creates new form CadastroPromocao
      */
@@ -25,7 +25,7 @@ public class CadastroPromocao extends javax.swing.JFrame {
         
         initComponents();
         this.setBackground( new Color(255, 255, 192) );
-        DefaultListModel defaultListModel = new DefaultListModel();
+        
         ProdutoControl produtoControl = new ProdutoControl();
         for (Produto produto : produtoControl.listaProdutos()) {
             defaultListModel.addElement(produto);
