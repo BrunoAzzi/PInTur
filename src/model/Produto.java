@@ -58,8 +58,8 @@ public class Produto implements Serializable {
     @Basic(optional = false)
     @Column(name = "quantidade", nullable = false)
     private int quantidade;
-    @JoinColumn(name = "Promocao", referencedColumnName = "codigo", nullable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "Promocao", referencedColumnName = "codigo")
+    @ManyToOne
     private Promocao promocao;
     @JoinColumn(name = "Categoria", referencedColumnName = "codigo", nullable = false)
     @ManyToOne(optional = false)

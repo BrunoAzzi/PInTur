@@ -4,17 +4,27 @@
  */
 package view.produto;
 
+import control.ProdutoControl;
+import java.util.ArrayList;
+import model.Produto;
+
 /**
  *
  * @author gustavo_yuri
  */
 public class ListaProdutos extends java.awt.Panel {
-
+    ProdutoControl produtoControle = new ProdutoControl();
+    ArrayList<ItemListaProduto> itemListaProdutos = new ArrayList();
+    
     /**
      * Creates new form ListaProdutos
      */
-    public ListaProdutos() {
+    public ListaProdutos() {             
         initComponents();
+        for (Produto produto : produtoControle.listaProdutos()) {
+            //TODO Fazer
+            itemListaProdutos.add(null);
+        }
     }
 
     /**
@@ -26,7 +36,6 @@ public class ListaProdutos extends java.awt.Panel {
     private void initComponents() {
 
         JLabelProdutos = new javax.swing.JLabel();
-        scrollPane1 = new java.awt.ScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
 
@@ -41,33 +50,36 @@ public class ListaProdutos extends java.awt.Panel {
         JLabelProdutos.setForeground(new java.awt.Color(255, 255, 255));
         JLabelProdutos.setText("Produtos");
 
-        scrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        scrollPane1.setVisible(false);
-
         jScrollPane1.setBorder(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 380, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 380, Short.MAX_VALUE)
+        );
+
         jScrollPane1.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JLabelProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
             .addComponent(jScrollPane1)
+            .addComponent(JLabelProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JLabelProdutos)
-                    .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(JLabelProdutos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+                .addComponent(jScrollPane1))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -79,6 +91,5 @@ public class ListaProdutos extends java.awt.Panel {
     private javax.swing.JLabel JLabelProdutos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private java.awt.ScrollPane scrollPane1;
     // End of variables declaration//GEN-END:variables
 }
