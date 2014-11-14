@@ -252,7 +252,7 @@ public class CadastroProdutos extends java.awt.Frame {
     private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
 
         if (camposValidados()) {
-            produtoTableModel.add(getProdutoPopulado());            
+            produtoTableModel.add(getProdutoPopulado());
         } else {
             JOptionPane.showMessageDialog(rootPane, Mensagens.PRODUTO_CADASTRO_CAMPOs_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
         }
@@ -261,11 +261,7 @@ public class CadastroProdutos extends java.awt.Frame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         imageChooser.setVisible(true);
-        try {
-            jlProdutoImage.setIcon(Imagem.resizeImage(100, 100, imageChooser.getSingleImageFile()));
-        } catch (IOException ex) {
-            Logger.getLogger(CadastroProdutos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        jlProdutoImage.setIcon(Imagem.resizeImage(100, 100, imageChooser.getSingleImageFile()));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jtfValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfValorActionPerformed
@@ -279,7 +275,7 @@ public class CadastroProdutos extends java.awt.Frame {
     }//GEN-LAST:event_jbRemoverActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        for(Produto produto : produtoTableModel.getAllProdutos()){
+        for (Produto produto : produtoTableModel.getAllProdutos()) {
             FotoControl.add(produto.getFotoProduto().getFoto());
             FotoProdutoControl.add(produto.getFotoProduto());
             ProdutoControl.add(produto);
@@ -346,7 +342,7 @@ public class CadastroProdutos extends java.awt.Frame {
         novoProduto.setCategoria(categoriaProduto);
         novoProduto.setQuantidade(new Integer(jtfQuantidade.getText()));
         novoProduto.setFotoProduto(fotoproduto);
-        
+
         return novoProduto;
     }
 }

@@ -7,9 +7,6 @@ package view.categoria;
 import control.CategoriaControl;
 import control.FotoCategoriaControl;
 import control.FotoControl;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Categoria;
 import model.Fotocategoria;
@@ -205,14 +202,8 @@ public class CadastroCategorias extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
         imageChooser.setVisible(true);
-        try {
-            jLabelCategoriaImage.setIcon(Imagem.resizeImage(100, 100, imageChooser.getSingleImageFile()));
-        } catch (IOException ex) {
-            Logger.getLogger(CadastroCategorias.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        jLabelCategoriaImage.setIcon(Imagem.resizeImage(100, 100, imageChooser.getSingleImageFile()));       
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

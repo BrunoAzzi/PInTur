@@ -13,6 +13,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,12 +62,27 @@ public class Imagem {
    
     //TODO Checar metodo alternativo de redimensionamento de imagem;
 
-    public static ImageIcon resizeImage(int width, int heigth, File file) throws IOException {
-        BufferedImage bi = ImageIO.read(file);
+    public static ImageIcon resizeImage(int width, int heigth, File file){
+        BufferedImage bi = null;
+        try {
+            bi = ImageIO.read(file);
+        } catch (IOException ex) {
+            Logger.getLogger(Imagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
         BufferedImage aux = new BufferedImage(width, heigth, bi.getType());//cria um buffer auxiliar com o tamanho desejado    
         Graphics2D g = aux.createGraphics();//pega a classe graphics do aux para edicao    
         AffineTransform at = AffineTransform.getScaleInstance((double) width / bi.getWidth(), (double) heigth / bi.getHeight());//cria a transformacao
         g.drawRenderedImage(bi, at);//pinta e transforma a imagem real no auxiliar
         return new ImageIcon(aux);
+    }
+
+    public static ImageIcon resizeImage(int width, int heigth, URL url){
+        File basketImageFile = null;
+        try {
+            basketImageFile = new File(url.toURI());
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(Imagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return resizeImage(width, heigth, basketImageFile);
     }
 }
