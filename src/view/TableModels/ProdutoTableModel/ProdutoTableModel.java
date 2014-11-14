@@ -37,7 +37,7 @@ public class ProdutoTableModel extends AbstractTableModel {
 
     @Override
     public String getColumnName(int columnIndex) {
-        if(columnIndex > 0 || columnIndex >= quantidadeDeColunas) throw new IndexOutOfBoundsException();
+        if(columnIndex < 0 || columnIndex >= quantidadeDeColunas) throw new IndexOutOfBoundsException();
         if(columnIndex == InformacaoColunasProduto.NOME.getValue()) return InformacaoColunasProduto.NOME.getDescricao();
         if(columnIndex == InformacaoColunasProduto.DESCRICAO.getValue()) return InformacaoColunasProduto.DESCRICAO.getDescricao();
         if(columnIndex == InformacaoColunasProduto.VALOR.getValue()) return InformacaoColunasProduto.VALOR.getDescricao();
