@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Promocao.findByCodigo", query = "SELECT p FROM Promocao p WHERE p.codigo = :codigo"),
     @NamedQuery(name = "Promocao.findByDataInicio", query = "SELECT p FROM Promocao p WHERE p.dataInicio = :dataInicio"),
     @NamedQuery(name = "Promocao.findByDataFinal", query = "SELECT p FROM Promocao p WHERE p.dataFinal = :dataFinal"),
+    
     @NamedQuery(name = "Promocao.findByValorPromocional", query = "SELECT p FROM Promocao p WHERE p.valorPromocional = :valorPromocional")})
 public class Promocao implements Serializable {
     private static final long serialVersionUID = 1L;

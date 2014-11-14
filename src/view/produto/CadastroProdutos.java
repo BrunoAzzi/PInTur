@@ -30,10 +30,8 @@ public class CadastroProdutos extends java.awt.Frame {
 
     DefaultComboBoxModel<Categoria> defaultComboBoxModel = new DefaultComboBoxModel();
     ImageChooser imageChooser = new ImageChooser(this);
-    //TODO Verificar problema com Index da tabela
-    ProdutoTableModel produtoTableModel = new ProdutoTableModel(1, false);
+    ProdutoTableModel produtoTableModel = new ProdutoTableModel(3, false);
     private Component rootPane;
-
     /**
      * Creates new form CadastroProdutos
      */
@@ -49,10 +47,10 @@ public class CadastroProdutos extends java.awt.Frame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jlProdutoImage = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jtfNome = new javax.swing.JTextField();
         jtfDescricao = new javax.swing.JTextField();
         jcbCategoria = new javax.swing.JComboBox();
@@ -81,15 +79,13 @@ public class CadastroProdutos extends java.awt.Frame {
             }
         });
 
-        jTable1.setModel(produtoTableModel);
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(2).setResizable(false);
+        jPanel1.setBackground(new java.awt.Color(255, 255, 204));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Foto"));
+        jPanel1.setMaximumSize(new java.awt.Dimension(110, 110));
+        jPanel1.setMinimumSize(new java.awt.Dimension(110, 110));
+        jPanel1.setPreferredSize(new java.awt.Dimension(110, 110));
 
-        jPanel1.setMaximumSize(new java.awt.Dimension(109, 109));
-        jPanel1.setMinimumSize(new java.awt.Dimension(109, 109));
-        jPanel1.setPreferredSize(new java.awt.Dimension(109, 109));
-
-        jlProdutoImage.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jlProdutoImage.setAlignmentY(0.0F);
         jlProdutoImage.setMaximumSize(new java.awt.Dimension(105, 105));
         jlProdutoImage.setMinimumSize(new java.awt.Dimension(105, 105));
         jlProdutoImage.setPreferredSize(new java.awt.Dimension(105, 105));
@@ -98,14 +94,18 @@ public class CadastroProdutos extends java.awt.Frame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jlProdutoImage, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jlProdutoImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlProdutoImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jlProdutoImage, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
+
+        jTable1.setModel(produtoTableModel);
+        jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getColumn(2).setResizable(false);
 
         jtfNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,10 +222,10 @@ public class CadastroProdutos extends java.awt.Frame {
                     .addComponent(jcbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -341,8 +341,8 @@ public class CadastroProdutos extends java.awt.Frame {
         novoProduto.setValor(new Double(jtfValor.getText()));
         novoProduto.setCategoria(categoriaProduto);
         novoProduto.setQuantidade(new Integer(jtfQuantidade.getText()));
-        novoProduto.setFotoProduto(fotoproduto);
-
+        novoProduto.setFotoProduto(fotoproduto);     
+        
         return novoProduto;
     }
 }

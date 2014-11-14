@@ -8,9 +8,10 @@ import control.ProdutoControl;
 import control.PromocaoControl;
 import java.awt.Color;
 import javax.swing.DefaultListModel;
-import javax.swing.table.DefaultTableModel;
 import model.Produto;
 import model.Promocao;
+import view.TableModels.ProdutoTableModel.ProdutoTableModel;
+import view.TableModels.PromocaoTableModel.PromocaoTableModel;
 
 /**
  *
@@ -21,6 +22,8 @@ DefaultListModel defaultListModel = new DefaultListModel();
     /**
      * Creates new form CadastroPromocao
      */
+     PromocaoTableModel promocaoTableModel = new PromocaoTableModel(4,false);
+     
     public CadastroPromocao() {
         
         initComponents();
@@ -29,15 +32,8 @@ DefaultListModel defaultListModel = new DefaultListModel();
         ProdutoControl produtoControl = new ProdutoControl();
         for (Produto produto : produtoControl.listaProdutos()) {
             defaultListModel.addElement(produto);
-            
-  
             jList1.setModel(defaultListModel);
-            
         }
- 
-
-        
-        //jList1.add();
         
     }
 
@@ -60,12 +56,12 @@ DefaultListModel defaultListModel = new DefaultListModel();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jDateChooserDateInicial = new com.toedter.calendar.JDateChooser();
+        jDateChooserDataFinal = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldValorPromocional = new javax.swing.JFormattedTextField();
         jButton4 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
@@ -102,23 +98,13 @@ DefaultListModel defaultListModel = new DefaultListModel();
         jButton3.setText("Remover");
         jButton3.setBorder(null);
         jButton3.setBorderPainted(false);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Produto", "Descrição", "Valor"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
+
+        jTable1.setModel(promocaoTableModel);
         jTable1.setGridColor(new java.awt.Color(255, 255, 255));
         jScrollPane2.setViewportView(jTable1);
 
@@ -128,7 +114,7 @@ DefaultListModel defaultListModel = new DefaultListModel();
 
         jLabel4.setText("Novo Valor do Produto");
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        jFormattedTextFieldValorPromocional.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
 
         jButton4.setBackground(new java.awt.Color(30, 144, 255));
         jButton4.setText("Salvar");
@@ -152,9 +138,9 @@ DefaultListModel defaultListModel = new DefaultListModel();
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jFormattedTextFieldValorPromocional, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jDateChooserDataFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDateChooserDateInicial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(ProdutosLayout.createSequentialGroup()
                                 .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -183,15 +169,15 @@ DefaultListModel defaultListModel = new DefaultListModel();
                     .addGroup(ProdutosLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jDateChooserDateInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jDateChooserDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jFormattedTextFieldValorPromocional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -218,26 +204,31 @@ DefaultListModel defaultListModel = new DefaultListModel();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        // Produto retirado da lista no qual a promocao sera inserida;
         Produto produto = (Produto) jList1.getSelectedValue();
-        jTable1.setValueAt(produto, 0, 0);
-        
-        
+        // Nova promocao
+        Promocao novaPromocao = new Promocao();
+        // Popular a promocao
+        populaPromocao(novaPromocao);
+        //Colocando o a promocao em produto;
+        produto.setPromocao(novaPromocao);
+        //Adicionar Produto na tabela
+        promocaoTableModel.add(produto);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        PromocaoControl promocaoControl = new PromocaoControl();
         ProdutoControl produtoControl = new ProdutoControl();
-        Produto produto = (Produto) jList1.getSelectedValue();
+        PromocaoControl promocaoControl = new PromocaoControl();
         
-        Promocao promocao = new Promocao();
-        promocao.setDataInicio(jDateChooser1.getDate());
-        promocao.setDataFinal(jDateChooser2.getDate());
-        promocao.setValorPromocional(new Double(jFormattedTextField1.getText()));
-        promocaoControl.add(promocao);
-        produto.setPromocao(promocao);
-        produtoControl.add(produto);
+        for(Produto produto : promocaoTableModel.getAllProdutos()){
+            promocaoControl.add(produto.getPromocao());
+            produtoControl.add(produto);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        promocaoTableModel.deleteRow(jTable1.getSelectedRow());
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,9 +269,9 @@ DefaultListModel defaultListModel = new DefaultListModel();
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private com.toedter.calendar.JDateChooser jDateChooserDataFinal;
+    private com.toedter.calendar.JDateChooser jDateChooserDateInicial;
+    private javax.swing.JFormattedTextField jFormattedTextFieldValorPromocional;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -292,4 +283,10 @@ DefaultListModel defaultListModel = new DefaultListModel();
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void populaPromocao(Promocao novaPromocao) {
+        novaPromocao.setDataInicio(jDateChooserDateInicial.getDate());
+        novaPromocao.setDataFinal(jDateChooserDataFinal.getDate());
+        novaPromocao.setValorPromocional(new Double(jFormattedTextFieldValorPromocional.getText()));
+    }
 }

@@ -36,7 +36,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Produto.findByNome", query = "SELECT p FROM Produto p WHERE p.nome = :nome"),
     @NamedQuery(name = "Produto.findByDescricao", query = "SELECT p FROM Produto p WHERE p.descricao = :descricao"),
     @NamedQuery(name = "Produto.findByValor", query = "SELECT p FROM Produto p WHERE p.valor = :valor"),
+    @NamedQuery(name = "Produto.findByPromocao", query = "SELECT p FROM Produto p WHERE p.promocao IS NOT NULL"),
     @NamedQuery(name = "Produto.findByQuantidade", query = "SELECT p FROM Produto p WHERE p.quantidade = :quantidade")})
+
 public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -56,8 +58,8 @@ public class Produto implements Serializable {
     @Basic(optional = false)
     @Column(name = "quantidade", nullable = false)
     private int quantidade;
-    @JoinColumn(name = "Promocao", referencedColumnName = "codigo", nullable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "Promocao", referencedColumnName = "codigo")
+    @ManyToOne
     private Promocao promocao;
     @JoinColumn(name = "Categoria", referencedColumnName = "codigo", nullable = false)
     @ManyToOne(optional = false)
