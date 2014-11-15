@@ -8,14 +8,14 @@ package view.TableModels.CategoriaTableModel;
  *
  * @author bruno_azzi
  */
-public enum InformacaoColunas {
+public enum InformacaoColunasCategoria {
     
     NOME("Categoria", 0);
     
     String descricao;
     int value;
     
-    InformacaoColunas(String descricao, int value){
+    InformacaoColunasCategoria(String descricao, int value){
         this.descricao = descricao;
         this.value = value;
     }

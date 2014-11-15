@@ -13,14 +13,14 @@ import model.Categoria;
  *
  * @author bruno_azzi
  */
-public class CategoriaTableModel extends AbstractTableModel{
-    
+public class ListarCategoriaTableModel extends AbstractTableModel{
+
     public ArrayList<Categoria> categorias = new ArrayList();
     
     protected int quantidadeDeColunas;
     protected boolean isEditable;
 
-    public CategoriaTableModel(int quantidadeDeColunas, boolean isEditable) {
+    public ListarCategoriaTableModel(int quantidadeDeColunas, boolean isEditable) {
         this.quantidadeDeColunas = quantidadeDeColunas;
         this.isEditable = isEditable;
         categorias.addAll(CategoriaControl.listaCategorias());
@@ -75,4 +75,8 @@ public class CategoriaTableModel extends AbstractTableModel{
         fireTableDataChanged();
     }
     
+    public Categoria getCategoriaAt(int rowIndex){
+        if(rowIndex < 0 || rowIndex >= categorias.size()) throw new IndexOutOfBoundsException();
+        return categorias.get(rowIndex);
+    }
 }
