@@ -262,11 +262,8 @@ public class CadastroProdutos extends java.awt.Frame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         imageChooser.setVisible(true);
-        try {
-            jlProdutoImage.setIcon(Imagem.resizeImage(105, 105, imageChooser.getSingleImageFile()));
-        } catch (IOException ex) {
-            Logger.getLogger(CadastroProdutos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            jlProdutoImage.setIcon(Imagem.resizeImage(105, 105, imageChooser.getSingleImageFile()));        
+            Logger.getLogger(CadastroProdutos.class.getName()).log(Level.SEVERE, null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jtfValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfValorActionPerformed

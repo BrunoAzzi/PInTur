@@ -13,7 +13,9 @@ import model.Produto;
  * @author gustavo_yuri
  */
 public class ListaProdutos extends java.awt.Panel {
+    
     ProdutoControl produtoControle = new ProdutoControl();
+    ItemListaProduto itemListaProduto = new ItemListaProduto();
     ArrayList<ItemListaProduto> itemListaProdutos = new ArrayList();
     
     /**
@@ -22,8 +24,7 @@ public class ListaProdutos extends java.awt.Panel {
     public ListaProdutos() {             
         initComponents();
         for (Produto produto : produtoControle.listaProdutos()) {
-            //TODO Fazer
-            itemListaProdutos.add(null);
+            itemListaProdutos.add(itemListaProduto.getItemListaProdutoPopulada(produto));
         }
     }
 

@@ -4,17 +4,21 @@
  */
 package view.produto;
 
+import control.ProdutoControl;
+import model.Produto;
+
 /**
  *
  * @author gustavo_yuri
  */
 public class ItemListaProduto extends java.awt.Panel {
 
+    ProdutoControl produtoControl = new ProdutoControl();
     /**
      * Creates new form ItemListaProduto
      */
     public ItemListaProduto() {
-        initComponents();
+        initComponents();        
     }
 
     /**
@@ -106,4 +110,10 @@ public class ItemListaProduto extends java.awt.Panel {
 
 
     //TODO Fazer método que coloque a alma dentro do corpo
+    public ItemListaProduto getItemListaProdutoPopulada(Produto produto){
+        ItemListaProduto itemListaProdutoPopulado = new ItemListaProduto();
+        jlNomeProduto.setText(produto.getNome());
+        jlValorProduto.setText(String.valueOf(produto.getValor()));
+        return itemListaProdutoPopulado;
+    }
 }
