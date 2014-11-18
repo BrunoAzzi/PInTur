@@ -4,19 +4,27 @@
  */
 package view;
 
+import utilidades.Tela;
+import view.produto.ItemListaProduto;
+import view.produto.ListaProdutos;
+
 /**
  *
  * @author bruno_azzi
  */
 public class TesteMenuPrincipal extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form TesteMenuPrincipal
      */
     public TesteMenuPrincipal() {
-        initComponents();
+        initComponents();    
+        ListaProdutos listaProdutos = new ListaProdutos();
+        listaProdutos.setVisible(true); 
+        listaProdutos.setSize(Tela.screenSizeTratado());
+        this.add(listaProdutos);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,7 +44,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 300, Short.MAX_VALUE)
+            .add(0, 421, Short.MAX_VALUE)
         );
 
         pack();

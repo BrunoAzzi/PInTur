@@ -9,9 +9,6 @@ import control.FotoControl;
 import control.FotoProdutoControl;
 import control.ProdutoControl;
 import java.awt.Component;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import model.Categoria;
@@ -73,6 +70,7 @@ public class CadastroProdutos extends java.awt.Frame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(51, 102, 255));
         jButton1.setText("...");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,6 +120,7 @@ public class CadastroProdutos extends java.awt.Frame {
 
         jLabel10.setText("Categoria");
 
+        jbNovo.setBackground(new java.awt.Color(51, 102, 255));
         jbNovo.setText("Novo");
         jbNovo.setMaximumSize(new java.awt.Dimension(77, 23));
         jbNovo.setMinimumSize(new java.awt.Dimension(77, 23));
@@ -132,6 +131,7 @@ public class CadastroProdutos extends java.awt.Frame {
             }
         });
 
+        jbSalvar.setBackground(new java.awt.Color(51, 102, 255));
         jbSalvar.setText("Salvar");
         jbSalvar.setMaximumSize(new java.awt.Dimension(77, 23));
         jbSalvar.setMinimumSize(new java.awt.Dimension(77, 23));
@@ -142,6 +142,7 @@ public class CadastroProdutos extends java.awt.Frame {
             }
         });
 
+        jbRemover.setBackground(new java.awt.Color(51, 102, 255));
         jbRemover.setText("Remover");
         jbRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,7 +150,7 @@ public class CadastroProdutos extends java.awt.Frame {
             }
         });
 
-        jtfValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
+        jtfValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         jtfValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfValorActionPerformed(evt);
@@ -262,11 +263,7 @@ public class CadastroProdutos extends java.awt.Frame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         imageChooser.setVisible(true);
-        try {
-            jlProdutoImage.setIcon(Imagem.resizeImage(105, 105, imageChooser.getSingleImageFile()));
-        } catch (IOException ex) {
-            Logger.getLogger(CadastroProdutos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            jlProdutoImage.setIcon(Imagem.resizeImage(105, 105, imageChooser.getSingleImageFile()));            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jtfValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfValorActionPerformed
@@ -331,11 +328,11 @@ public class CadastroProdutos extends java.awt.Frame {
         if(jtfQuantidade.getText().equals("")) return false;
         if(jtfValor.getText().equals("")) return false;
         //TODO FAZER PARA OUTROS CAMPOS
-        double valorDouble = new Double(jtfValor.getText());
+        Double valorDouble = (Double) (jtfValor.getValue());
         int quantidade = new Integer(jtfQuantidade.getText());
         
-        if(valorDouble < 0) return false;
-        if(quantidade < 0) return false;
+        if(valorDouble < 0d) return false;
+        if(quantidade < 0d) return false;
         
         return true;
     }
@@ -349,8 +346,10 @@ public class CadastroProdutos extends java.awt.Frame {
         fotoproduto.setFoto(imageChooser.getFoto());
         novoProduto.setNome(jtfNome.getText());
         novoProduto.setDescricao(jtfDescricao.getText());
-        //TODO verificar erro quando utilizado com formated text field
-        novoProduto.setValor(new Double(jtfValor.getText()));
+        
+        //TODO verificar erro quando utilizado com formatted text field
+        jtfValor.getText().replace(",", ".");
+        novoProduto.setValor(Double.parseDouble(jtfValor.getText()));
         novoProduto.setCategoria(categoriaProduto);
         novoProduto.setQuantidade(new Integer(jtfQuantidade.getText()));
         novoProduto.setFotoProduto(fotoproduto);
