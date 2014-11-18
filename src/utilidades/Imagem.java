@@ -13,6 +13,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -85,4 +86,38 @@ public class Imagem {
         }
         return resizeImage(width, heigth, basketImageFile);
     }
+    
+    public static ImageIcon resizeImage(int width, int heigth, ImageIcon image){
+        BufferedImage bi = null;
+        try {
+            bi = ImageIO.read(ImageIO.createImageInputStream(image));
+        } catch (IOException ex) {
+            Logger.getLogger(Imagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        BufferedImage aux = new BufferedImage(width, heigth, bi.getType());//cria um buffer auxiliar com o tamanho desejado    
+        Graphics2D g = aux.createGraphics();//pega a classe graphics do aux para edicao    
+        AffineTransform at = AffineTransform.getScaleInstance((double) width / bi.getWidth(), (double) heigth / bi.getHeight());//cria a transformacao
+        g.drawRenderedImage(bi, at);//pinta e transforma a imagem real no auxiliar
+        return new ImageIcon(aux);
+    }
+    
+//    public static File testeFileResizeImage(int width, int heigth, File file){
+//        File returnFile = new File("image.jpg");
+//        BufferedImage bi = null;
+//        try {
+//            bi = ImageIO.read(file);
+//        } catch (IOException ex) {
+//            Logger.getLogger(Imagem.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        BufferedImage aux = new BufferedImage(width, heigth, bi.getType());//cria um buffer auxiliar com o tamanho desejado    
+//        Graphics2D g = aux.createGraphics();//pega a classe graphics do aux para edicao    
+//        AffineTransform at = AffineTransform.getScaleInstance((double) width / bi.getWidth(), (double) heigth / bi.getHeight());//cria a transformacao
+//        g.drawRenderedImage(bi, at);//pinta e transforma a imagem real no auxiliar
+//        try {
+//            ImageIO.write(bi, "jpg", returnFile);
+//        } catch (IOException ex) {
+//            Logger.getLogger(Imagem.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return returnFile;
+//    }
 }

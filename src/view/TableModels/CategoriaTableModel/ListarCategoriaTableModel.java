@@ -79,4 +79,9 @@ public class ListarCategoriaTableModel extends AbstractTableModel{
         if(rowIndex < 0 || rowIndex >= categorias.size()) throw new IndexOutOfBoundsException();
         return categorias.get(rowIndex);
     }
+
+    public void update() {
+        categorias = CategoriaControl.listaCategorias();
+        fireTableDataChanged();
+    }
 }

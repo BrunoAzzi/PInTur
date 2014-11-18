@@ -58,4 +58,19 @@ public class ImageChooser extends FileDialog {
         return new ImageIcon(getImage());
     }
     
+//    public byte[] getTesteResizedImage(){
+//        if(getSingleImageFile() == null) return null;
+//        
+//        byte[] image = new byte[(int) Imagem.testeFileResizeImage(100, 100, getSingleImageFile()).length()];
+//
+//        try {
+//            FileInputStream fileInputStream = new FileInputStream(Imagem.testeFileResizeImage(100, 100, getSingleImageFile()));
+//            fileInputStream.read(image);
+//            fileInputStream.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        
+//        return image;
+//    }
 }

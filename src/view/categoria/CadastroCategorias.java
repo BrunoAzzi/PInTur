@@ -285,7 +285,7 @@ public class CadastroCategorias extends javax.swing.JFrame {
         Fotocategoria fotocategoria = new Fotocategoria();
         Categoria categoria = new Categoria();
 
-        fotocategoria.setDescricao(imageChooser.getFile());
+        fotocategoria.setDescricao(imageChooser.getSingleImageFile().getName());
         fotocategoria.setFoto(imageChooser.getFoto());
 
         categoria.setNome(jTextField1.getText());

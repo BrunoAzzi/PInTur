@@ -39,11 +39,21 @@ public class ListarCategoria extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 204));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                UpdateLista(evt);
+            }
+        });
 
         jTable2.setModel(listarCateforiasTableModel);
         jScrollPane2.setViewportView(jTable2);
 
         jButton4.setText("Remover");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Editar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -66,7 +76,7 @@ public class ListarCategoria extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton6)
@@ -114,9 +124,20 @@ public class ListarCategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        EditarCategoria editarCategoria = new EditarCategoria(listarCateforiasTableModel.getCategoriaAt(jTable2.getSelectedRow()));
+        EditarCategoria editarCategoria = new EditarCategoria();
+        editarCategoria.setCategoria(listarCateforiasTableModel.getCategoriaAt(jTable2.getSelectedRow()));
         editarCategoria.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if(preRequisitosParaRemocaoIsOk()){
+            listarCateforiasTableModel.deleteRow(jTable2.getSelectedRow());
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void UpdateLista(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_UpdateLista
+        listarCateforiasTableModel.update();
+    }//GEN-LAST:event_UpdateLista
 
     /**
      * @param args the command line arguments
