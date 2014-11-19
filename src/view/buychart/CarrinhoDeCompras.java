@@ -13,17 +13,16 @@ import model.Produto;
  */
 public class CarrinhoDeCompras {
 
-    private static ArrayList<Produto> produtos = new ArrayList();
+    private ArrayList<Produto> produtos = new ArrayList();
 
-    public static void addProdutoNoCarrinho(Produto produto) {
+    public void addProdutoNoCarrinho(Produto produto) {
         if (produto == null) {
             throw new NullPointerException();
         }
         produtos.add(produto);
     }
-    
-    public static void removeAllProdutosFromCarrinho(){
+
+    public void removeAllProdutosFromCarrinho() {
         produtos.clear();
     }
-    
 }

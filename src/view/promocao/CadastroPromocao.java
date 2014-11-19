@@ -87,7 +87,7 @@ DefaultListModel defaultListModel = new DefaultListModel();
 
         jLabel1.setText("Produto");
 
-        jButton2.setBackground(new java.awt.Color(30, 144, 255));
+        jButton2.setBackground(new java.awt.Color(51, 102, 255));
         jButton2.setText("Novo");
         jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -96,7 +96,7 @@ DefaultListModel defaultListModel = new DefaultListModel();
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(30, 144, 255));
+        jButton3.setBackground(new java.awt.Color(51, 102, 255));
         jButton3.setText("Remover");
         jButton3.setBorder(null);
         jButton3.setBorderPainted(false);
@@ -118,7 +118,7 @@ DefaultListModel defaultListModel = new DefaultListModel();
 
         jFormattedTextFieldValorPromocional.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
 
-        jButton4.setBackground(new java.awt.Color(30, 144, 255));
+        jButton4.setBackground(new java.awt.Color(51, 102, 255));
         jButton4.setText("Salvar");
         jButton4.setBorder(null);
         jButton4.setBorderPainted(false);

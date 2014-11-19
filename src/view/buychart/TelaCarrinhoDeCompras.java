@@ -5,6 +5,8 @@
  */
 package view.buychart;
 
+import java.util.ArrayList;
+import model.Produto;
 import utilidades.Tela;
 
 /**
@@ -12,6 +14,8 @@ import utilidades.Tela;
  * @author brunoazzi
  */
 public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
+    
+    public ArrayList<Produto> produtosNoCarrinhoDeCompras = new ArrayList();
 
     /**
      * Creates new form TelaCarrinhoDeCompras
