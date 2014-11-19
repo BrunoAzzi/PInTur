@@ -7,9 +7,11 @@ package view.promocao;
 import control.ProdutoControl;
 import control.PromocaoControl;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import model.Produto;
 import model.Promocao;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import view.TableModels.ProdutoTableModel.ProdutoTableModel;
 import view.TableModels.PromocaoTableModel.PromocaoTableModel;
 
@@ -206,6 +208,7 @@ DefaultListModel defaultListModel = new DefaultListModel();
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // Produto retirado da lista no qual a promocao sera inserida;
         Produto produto = (Produto) jList1.getSelectedValue();
+
         // Nova promocao
         Promocao novaPromocao = new Promocao();
         // Popular a promocao
