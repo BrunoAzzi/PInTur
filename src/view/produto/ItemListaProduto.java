@@ -4,7 +4,6 @@
  */
 package view.produto;
 
-import control.ProdutoControl;
 import model.Produto;
 
 /**
@@ -12,8 +11,8 @@ import model.Produto;
  * @author gustavo_yuri
  */
 public class ItemListaProduto extends java.awt.Panel {
-
-    ProdutoControl produtoControl = new ProdutoControl();
+    
+    private Produto produto = new Produto();
     /**
      * Creates new form ItemListaProduto
      */
@@ -31,7 +30,7 @@ public class ItemListaProduto extends java.awt.Panel {
 
         jlNomeProduto = new javax.swing.JLabel();
         jlValorProduto = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jlImagemItemProduto = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -46,7 +45,7 @@ public class ItemListaProduto extends java.awt.Panel {
         jlValorProduto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlValorProduto.setText("<Valor>");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Product-Blacl.png"))); // NOI18N
+        jlImagemItemProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Product-Blacl.png"))); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Shopping-Cart-01-Black 30x30.png"))); // NOI18N
@@ -76,14 +75,14 @@ public class ItemListaProduto extends java.awt.Panel {
                         .addComponent(jButton1))
                     .addComponent(jlValorProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jlNomeProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jlImagemItemProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlImagemItemProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jlNomeProduto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -103,17 +102,21 @@ public class ItemListaProduto extends java.awt.Panel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jlImagemItemProduto;
     private javax.swing.JLabel jlNomeProduto;
     private javax.swing.JLabel jlValorProduto;
     // End of variables declaration//GEN-END:variables
 
 
     //TODO Fazer método que coloque a alma dentro do corpo
-    public ItemListaProduto getItemListaProdutoPopulada(Produto produto){
-        ItemListaProduto itemListaProdutoPopulado = new ItemListaProduto();
+    public void populaItemListaProduto(Produto produto){
+        this.produto = produto;
+        jlImagemItemProduto.setIcon(produto.getFotoProduto().getFoto().getIcon());        
         jlNomeProduto.setText(produto.getNome());
-        jlValorProduto.setText(String.valueOf(produto.getValor()));
-        return itemListaProdutoPopulado;
+        jlValorProduto.setText(Double.toString(produto.getValor())); 
+    }
+
+    public Produto getProduto() {
+        return produto;
     }
 }

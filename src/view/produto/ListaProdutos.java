@@ -13,19 +13,17 @@ import model.Produto;
  * @author gustavo_yuri
  */
 public class ListaProdutos extends java.awt.Panel {
-    
+
     ProdutoControl produtoControle = new ProdutoControl();
     ItemListaProduto itemListaProduto = new ItemListaProduto();
     ArrayList<ItemListaProduto> itemListaProdutos = new ArrayList();
-    
+
     /**
      * Creates new form ListaProdutos
      */
-    public ListaProdutos() {             
+    public ListaProdutos() {
         initComponents();
-        for (Produto produto : produtoControle.listaProdutos()) {
-            itemListaProdutos.add(itemListaProduto.getItemListaProdutoPopulada(produto));
-        }
+        guardaVolumes();
     }
 
     /**
@@ -53,7 +51,7 @@ public class ListaProdutos extends java.awt.Panel {
 
         jScrollPane1.setBorder(null);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 255));
+        jPanel1.setBackground(new java.awt.Color(51, 102, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -87,10 +85,34 @@ public class ListaProdutos extends java.awt.Panel {
     private void formComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_formComponentAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_formComponentAdded
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLabelProdutos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void guardaVolumes() {
+        int valueX = 0;
+        int valueY = 0;
+        for (Produto produto : produtoControle.listaProdutos()) {
+            ItemListaProduto itemListaProduto = new ItemListaProduto();
+            itemListaProduto.populaItemListaProduto(produto);
+            //itemListaProdutos.add(itemListaProduto);
+//            jPanel1.repaint();
+//            jPanel1.revalidate();
+            itemListaProduto.setVisible(true);
+            itemListaProduto.setBounds(valueX, valueY, 142, 222);            
+            if (valueX < 293) {
+                valueX += 152;
+            } else {
+                valueX = 0;
+            }
+            if (valueX == 152) {
+                valueY = 0;
+            }else{
+                valueY += 232;
+            }
+            jPanel1.add(itemListaProduto);
+        }
+    }
 }

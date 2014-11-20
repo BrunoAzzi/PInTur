@@ -56,8 +56,8 @@
                                   <Component id="jtfNome" max="32767" attributes="0"/>
                                   <Component id="jtfDescricao" max="32767" attributes="0"/>
                                   <Component id="jcbCategoria" max="32767" attributes="0"/>
-                                  <Component id="jtfValor" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jtfQuantidade" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jtfValor" alignment="1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -124,6 +124,9 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="66" red="33" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="..."/>
       </Properties>
       <Events>
@@ -252,6 +255,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jbNovo">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="66" red="33" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Novo"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[77, 23]"/>
@@ -269,6 +275,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jbSalvar">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="66" red="33" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Salvar"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[77, 23]"/>
@@ -286,20 +295,13 @@
     </Component>
     <Component class="javax.swing.JButton" name="jbRemover">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="66" red="33" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Remover"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbRemoverActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="jtfValor">
-      <Properties>
-        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format format="" subtype="-1" type="0"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfValorActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfQuantidade">
@@ -308,6 +310,11 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Qtd."/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="jtfValor">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfValorActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
