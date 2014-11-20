@@ -56,8 +56,8 @@
                                   <Component id="jtfNome" max="32767" attributes="0"/>
                                   <Component id="jtfDescricao" max="32767" attributes="0"/>
                                   <Component id="jcbCategoria" max="32767" attributes="0"/>
-                                  <Component id="jtfValor" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jtfQuantidade" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jtfValor" alignment="1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -164,7 +164,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jlProdutoImage" min="-2" pref="84" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="5" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -304,22 +304,17 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbRemoverActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="jtfValor">
-      <Properties>
-        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format format="#0" subtype="-1" type="0"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfValorActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JTextField" name="jtfQuantidade">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Qtd."/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="jtfValor">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfValorActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

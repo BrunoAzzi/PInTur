@@ -59,9 +59,9 @@ public class CadastroProdutos extends java.awt.Frame {
         jbNovo = new javax.swing.JButton();
         jbSalvar = new javax.swing.JButton();
         jbRemover = new javax.swing.JButton();
-        jtfValor = new javax.swing.JFormattedTextField();
         jtfQuantidade = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jtfValor = new javax.swing.JFormattedTextField();
 
         setBackground(new java.awt.Color(255, 255, 204));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -99,7 +99,7 @@ public class CadastroProdutos extends java.awt.Frame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jlProdutoImage, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 5, Short.MAX_VALUE))
         );
 
         jTable1.setModel(produtoTableModel);
@@ -150,14 +150,13 @@ public class CadastroProdutos extends java.awt.Frame {
             }
         });
 
-        jtfValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jLabel1.setText("Qtd.");
+
         jtfValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfValorActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("Qtd.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -189,8 +188,8 @@ public class CadastroProdutos extends java.awt.Frame {
                                     .addComponent(jtfNome)
                                     .addComponent(jtfDescricao)
                                     .addComponent(jcbCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jtfValor)
-                                    .addComponent(jtfQuantidade, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addComponent(jtfQuantidade, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jtfValor, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jbNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -266,9 +265,6 @@ public class CadastroProdutos extends java.awt.Frame {
             jlProdutoImage.setIcon(Imagem.resizeImage(105, 105, imageChooser.getSingleImageFile()));            
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jtfValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfValorActionPerformed
-    }//GEN-LAST:event_jtfValorActionPerformed
-
     private void jbRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRemoverActionPerformed
         if (jTable1.getSelectedRow() >= 0) {
             produtoTableModel.deleteRow(jTable1.getSelectedRow());
@@ -282,6 +278,10 @@ public class CadastroProdutos extends java.awt.Frame {
             ProdutoControl.add(produto);
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
+
+    private void jtfValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfValorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfValorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,13 +327,13 @@ public class CadastroProdutos extends java.awt.Frame {
     private boolean isCamposValidados() {
         if(jtfQuantidade.getText().equals("")) return false;
         if(jtfValor.getText().equals("")) return false;
-        //TODO FAZER PARA OUTROS CAMPOS
-        Double valorDouble = (Double) (jtfValor.getValue());
-        int quantidade = new Integer(jtfQuantidade.getText());
-        
-        if(valorDouble < 0d) return false;
-        if(quantidade < 0d) return false;
-        
+        if(jtfNome.getText().equals("")) return false;
+        if(jtfDescricao.getText().equals("")) return false;    
+        String produtoValorTratado = jtfValor.getText().replace(',', '.').trim();
+        Double valorDouble = (new Double(produtoValorTratado));
+        int quantidade = new Integer(jtfQuantidade.getText());        
+        if(valorDouble < 0) return false;
+        if(quantidade < 0) return false;        
         return true;
     }
 
@@ -345,11 +345,9 @@ public class CadastroProdutos extends java.awt.Frame {
         fotoproduto.setDescricao(imageChooser.getFile());
         fotoproduto.setFoto(imageChooser.getFoto());
         novoProduto.setNome(jtfNome.getText());
-        novoProduto.setDescricao(jtfDescricao.getText());
-        
-        //TODO verificar erro quando utilizado com formatted text field
-        jtfValor.getText().replace(",", ".");
-        novoProduto.setValor(Double.parseDouble(jtfValor.getText()));
+        novoProduto.setDescricao(jtfDescricao.getText());          
+        String produtoValorTratado = jtfValor.getText().replace(',', '.').trim();
+        novoProduto.setValor(new Double(produtoValorTratado));
         novoProduto.setCategoria(categoriaProduto);
         novoProduto.setQuantidade(new Integer(jtfQuantidade.getText()));
         novoProduto.setFotoProduto(fotoproduto);

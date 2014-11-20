@@ -15,6 +15,7 @@ import model.Produto;
 public class ListaProdutos extends java.awt.Panel {
 
     ProdutoControl produtoControle = new ProdutoControl();
+    ItemListaProduto itemListaProduto = new ItemListaProduto();
     ArrayList<ItemListaProduto> itemListaProdutos = new ArrayList();
 
     /**
@@ -100,8 +101,7 @@ public class ListaProdutos extends java.awt.Panel {
 //            jPanel1.repaint();
 //            jPanel1.revalidate();
             itemListaProduto.setVisible(true);
-            itemListaProduto.setBounds(valueX, valueY, 142, 222);
-            jPanel1.add(itemListaProduto);
+            itemListaProduto.setBounds(valueX, valueY, 142, 222);            
             if (valueX < 293) {
                 valueX += 152;
             } else {
@@ -112,6 +112,7 @@ public class ListaProdutos extends java.awt.Panel {
             }else{
                 valueY += 232;
             }
+            jPanel1.add(itemListaProduto);
         }
     }
 }

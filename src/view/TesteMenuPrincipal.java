@@ -5,7 +5,6 @@
 package view;
 
 import utilidades.Tela;
-import view.produto.ItemListaProduto;
 import view.produto.ListaProdutos;
 
 /**
@@ -21,7 +20,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
         initComponents();    
         ListaProdutos listaProdutos = new ListaProdutos();
         listaProdutos.setVisible(true); 
-        listaProdutos.setSize(Tela.screenSizeTratado());
+        listaProdutos.setSize(Tela.menuDescricaoProduto());
         this.add(listaProdutos);
     }
     

@@ -17,7 +17,7 @@ public class ItemListaProduto extends java.awt.Panel {
      * Creates new form ItemListaProduto
      */
     public ItemListaProduto() {
-        initComponents();
+        initComponents();        
     }
 
     /**
