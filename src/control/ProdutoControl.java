@@ -49,4 +49,12 @@ public class ProdutoControl {
         }
         Conexao.remove(codigo);
     }
+    
+    public static void delete(Produto produto){
+        try{
+            Conexao.remove(produto);
+        }catch(Exception exception){
+            exception.printStackTrace();
+        }
+    }
 }
