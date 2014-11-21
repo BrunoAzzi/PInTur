@@ -99,7 +99,7 @@ public class CadastroProdutos extends java.awt.Frame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jlProdutoImage, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 5, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         jTable1.setModel(produtoTableModel);
@@ -152,6 +152,7 @@ public class CadastroProdutos extends java.awt.Frame {
 
         jLabel1.setText("Qtd.");
 
+        jtfValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         jtfValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfValorActionPerformed(evt);
