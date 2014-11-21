@@ -19,7 +19,8 @@ public enum Mensagens {
     PROMOCAO_CADASTRO_OBJETO_NULO("Não foi selecionado nenhum produto!"),
     PROMOCAO_CADASTRO_MES_INVALIDO("Somente é possível cadastrar promoções deste mês!"),
     PROMOCAO_CADASTRO_DIA_INVALIDO("A data de fim da promoção não pode ser menor que a data de inicio da promoção!"),
-    
+    REMOVER_LINHA_NAO_SELECIONADA("Selecionar linha para remoção!"),
+    EDITAR_LINHA_NAO_SELECIONADA("Selecionar linha para edição!"),
     WARNING("Aviso!");
     
     String descricao;
