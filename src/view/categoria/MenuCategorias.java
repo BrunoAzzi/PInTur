@@ -7,8 +7,9 @@ package view.categoria;
 import control.CategoriaControl;
 import java.util.ArrayList;
 import model.Categoria;
-import utilidades.Imagem;
 import utilidades.Tela;
+import view.buychart.CarrinhoDeCompras;
+import view.login.LoginAdmin;
 
 /**
  *
@@ -26,6 +27,7 @@ public class MenuCategorias extends javax.swing.JPanel {
      */
     public MenuCategorias() {
         initComponents();
+        jLabelQuantidadeDeItensNoCarrinho.setText(CarrinhoDeCompras.getQuantidadeDeProdutosNoCarrinho().toString());
     }
 
     /**
@@ -39,7 +41,7 @@ public class MenuCategorias extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabelBasket = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelQuantidadeDeItensNoCarrinho = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
@@ -52,12 +54,19 @@ public class MenuCategorias extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Terminal de Vendas - PInTur");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
-        jLabelBasket.setPreferredSize(new java.awt.Dimension(50, 50));
+        jLabelBasket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Shopping-Cart-01-Black 30x30.png"))); // NOI18N
+        jLabelBasket.setPreferredSize(new java.awt.Dimension(30, 30));
+        jLabelBasket.setRequestFocusEnabled(false);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("<qtd>");
+        jLabelQuantidadeDeItensNoCarrinho.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelQuantidadeDeItensNoCarrinho.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelQuantidadeDeItensNoCarrinho.setText("<qtd>");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -90,12 +99,12 @@ public class MenuCategorias extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelBasket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
+                        .addComponent(jLabelBasket, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelQuantidadeDeItensNoCarrinho)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -107,20 +116,26 @@ public class MenuCategorias extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelBasket, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)))))
+                                .addComponent(jLabelQuantidadeDeItensNoCarrinho)
+                                .addComponent(jLabel4))
+                            .addComponent(jLabelBasket, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        LoginAdmin loginAdmin = new LoginAdmin();
+        loginAdmin.setVisible(true);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelBasket;
+    private javax.swing.JLabel jLabelQuantidadeDeItensNoCarrinho;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

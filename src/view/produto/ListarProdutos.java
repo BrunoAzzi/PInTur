@@ -42,6 +42,11 @@ public class ListarProdutos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 204));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 204));
 
@@ -150,6 +155,10 @@ public class ListarProdutos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, Mensagens.REMOVER_LINHA_NAO_SELECIONADA.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        listaProdutosTableModel.update();
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments

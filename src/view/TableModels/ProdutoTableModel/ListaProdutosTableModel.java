@@ -84,4 +84,9 @@ public class ListaProdutosTableModel extends AbstractTableModel {
         if(rowIndex < 0 || rowIndex >= produtos.size()) throw new IndexOutOfBoundsException();
         return produtos.get(rowIndex);
     }
+    
+    public void update(){
+        produtos = ProdutoControl.listaProdutos();
+        fireTableDataChanged();
+    }
 }

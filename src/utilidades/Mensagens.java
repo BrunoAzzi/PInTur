@@ -15,14 +15,17 @@ public enum Mensagens {
     PRODUTO_CADASTRO_CAMPOS_INVALIDOS("Campo inválido no cadastro de produtos"),
     CATEGORIA_ADICIONAR_CONFIRMACAO("Deseja salvar esta(s) categoria(s)?"),
     CATEGORIA_CADASTRO_CAMPOS_INVALIDOS("Campo inválido no cadastro de categorias!"),
+    CAMPOS_INVALIDOS("Campos inválidos no formulário!"),
     PROMOCAO_CADASTRO_CAMPOS_INVALIDOS("Campo inválido no cadastro de promoções!"),
     PROMOCAO_CADASTRO_OBJETO_NULO("Não foi selecionado nenhum produto!"),
     PROMOCAO_CADASTRO_MES_INVALIDO("Somente é possível cadastrar promoções deste mês!"),
     PROMOCAO_CADASTRO_DIA_INVALIDO("A data de fim da promoção não pode ser menor que a data de inicio da promoção!"),
     REMOVER_LINHA_NAO_SELECIONADA("Selecionar linha para remoção!"),
     EDITAR_LINHA_NAO_SELECIONADA("Selecionar linha para edição!"),
+    WARNING_SALVAR_SEM_NENHUM_CADASTRO("Nenhum cadastro encontrado! \nNão foi possível salvar."),
     WARNING("Aviso!"),
-    CONFIRM("Confirme!");
+    CONFIRM("Confirme!"), 
+    ADICIONAR_CONFIRMACAO("Deseja mesmo salvar estes registros no banco?");
     
     String descricao;
 

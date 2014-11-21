@@ -5,7 +5,8 @@
 package view.categoria;
 
 import control.CategoriaControl;
-import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import utilidades.Mensagens;
 import view.TableModels.CategoriaTableModel.ListarCategoriaTableModel;
 
 /**
@@ -14,7 +15,7 @@ import view.TableModels.CategoriaTableModel.ListarCategoriaTableModel;
  */
 public class ListarCategoria extends javax.swing.JFrame {
 
-    ListarCategoriaTableModel listarCateforiasTableModel = new ListarCategoriaTableModel(1, false);
+    ListarCategoriaTableModel listarCategoriasTableModel = new ListarCategoriaTableModel(1, false);
 
     /**
      * Creates new form ListarCategoria
@@ -47,7 +48,7 @@ public class ListarCategoria extends javax.swing.JFrame {
             }
         });
 
-        jTable2.setModel(listarCateforiasTableModel);
+        jTable2.setModel(listarCategoriasTableModel);
         jScrollPane2.setViewportView(jTable2);
 
         jButton4.setText("Remover");
@@ -127,22 +128,32 @@ public class ListarCategoria extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         EditarCategoria editarCategoria = new EditarCategoria();
-        editarCategoria.setCategoria(listarCateforiasTableModel.getCategoriaAt(jTable2.getSelectedRow()));
+        try{
+        editarCategoria.setCategoria(listarCategoriasTableModel.getCategoriaAt(jTable2.getSelectedRow()));
         editarCategoria.setVisible(true);
+        }catch(IndexOutOfBoundsException indexOutOfBoundsException){
+            JOptionPane.showMessageDialog(this, 
+                    Mensagens.EDITAR_LINHA_NAO_SELECIONADA.getDescricao(), 
+                    Mensagens.WARNING.getDescricao(), 
+                    JOptionPane.WARNING_MESSAGE);
+            // There is no nedd of sout(ex.getMessage)
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
-        CategoriaControl.delete(listarCateforiasTableModel.getCategoriaAt(jTable2.getSelectedRow()));
         try{
-            listarCateforiasTableModel.deleteRow(jTable2.getSelectedRow());
-        }catch(Exception sqlEx){
-            sqlEx.printStackTrace();
-        }
+            CategoriaControl.delete(listarCategoriasTableModel.getCategoriaAt(jTable2.getSelectedRow()));
+            listarCategoriasTableModel.deleteRow(jTable2.getSelectedRow());
+        }catch(IndexOutOfBoundsException indexOutOfBoundsException){
+            JOptionPane.showMessageDialog(this, 
+                    Mensagens.REMOVER_LINHA_NAO_SELECIONADA.getDescricao(),
+                    Mensagens.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
+        }/* catch*(SQLException problemascomexclusao) */
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void UpdateLista(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_UpdateLista
-        listarCateforiasTableModel.update();
+        listarCategoriasTableModel.update();
     }//GEN-LAST:event_UpdateLista
 
     /**
