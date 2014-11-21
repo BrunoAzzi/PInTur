@@ -189,7 +189,7 @@ public class CadastroCategorias extends javax.swing.JFrame {
         if (camposValidados()) {
             categoriaTableModel.add(getCategoriaPopulada());
         } else {
-            JOptionPane.showMessageDialog(rootPane, Mensagens.CATEGORIA_CADASTRO_CAMPOs_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, Mensagens.CATEGORIA_CADASTRO_CAMPOS_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
         }
         limpaCampos();
     }//GEN-LAST:event_jButtonNovaCategoriaActionPerformed

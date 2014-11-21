@@ -12,16 +12,17 @@ package utilidades;
 public enum Mensagens {
     
     PRODUTO_ADICIONAR_CONFIRMACAO("Deseja adicionar novo produto?"),
-    PRODUTO_CADASTRO_CAMPOs_INVALIDOS("Campo inválido no cadastro de produtos"),
+    PRODUTO_CADASTRO_CAMPOS_INVALIDOS("Campo inválido no cadastro de produtos"),
     CATEGORIA_ADICIONAR_CONFIRMACAO("Deseja adicionar nova categoria?"),
-    CATEGORIA_CADASTRO_CAMPOs_INVALIDOS("Campo inválido no cadastro de categorias!"),
-    PROMOCAO_CADASTRO_CAMPOs_INVALIDOS("Campo inválido no cadastro de promoções!"),
+    CATEGORIA_CADASTRO_CAMPOS_INVALIDOS("Campo inválido no cadastro de categorias!"),
+    PROMOCAO_CADASTRO_CAMPOS_INVALIDOS("Campo inválido no cadastro de promoções!"),
     PROMOCAO_CADASTRO_OBJETO_NULO("Não foi selecionado nenhum produto!"),
     PROMOCAO_CADASTRO_MES_INVALIDO("Somente é possível cadastrar promoções deste mês!"),
     PROMOCAO_CADASTRO_DIA_INVALIDO("A data de fim da promoção não pode ser menor que a data de inicio da promoção!"),
     REMOVER_LINHA_NAO_SELECIONADA("Selecionar linha para remoção!"),
     EDITAR_LINHA_NAO_SELECIONADA("Selecionar linha para edição!"),
-    WARNING("Aviso!");
+    WARNING("Aviso!"),
+    CONFIRM("Confirme!");
     
     String descricao;
 

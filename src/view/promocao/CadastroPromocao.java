@@ -228,7 +228,7 @@ DefaultListModel defaultListModel = new DefaultListModel();
             calendarioInicio.get(Calendar.MONTH);
            
             if(valorDouble <= 0||valorDouble >= produto.getValor()){
-                JOptionPane.showMessageDialog(null, Mensagens.PROMOCAO_CADASTRO_CAMPOs_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, Mensagens.PROMOCAO_CADASTRO_CAMPOS_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
 
             }
             else if(calendarioInicio.get(Calendar.MONTH) != calendarioComputador.get(Calendar.MONTH)
@@ -254,7 +254,7 @@ DefaultListModel defaultListModel = new DefaultListModel();
             JOptionPane.showMessageDialog(null, Mensagens.PROMOCAO_CADASTRO_OBJETO_NULO.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
 
         } catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, Mensagens.PROMOCAO_CADASTRO_CAMPOs_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, Mensagens.PROMOCAO_CADASTRO_CAMPOS_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
         }
         
 

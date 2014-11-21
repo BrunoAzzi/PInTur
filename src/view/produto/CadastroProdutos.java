@@ -271,7 +271,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
         if (isCamposValidados()) {
             produtoTableModel.add(getProdutoPopulado());
         } else {
-            JOptionPane.showMessageDialog(rootPane, Mensagens.PRODUTO_CADASTRO_CAMPOs_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, Mensagens.PRODUTO_CADASTRO_CAMPOS_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
         }
         limpaCampos();
     }//GEN-LAST:event_jbNovoActionPerformed
