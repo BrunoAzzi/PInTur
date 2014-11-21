@@ -82,6 +82,12 @@ public class CadastroProdutos extends javax.swing.JFrame {
 
         jLabel1.setText("Nome");
 
+        jtfQuantidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfQuantidadeActionPerformed(evt);
+            }
+        });
+
         jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jcbCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -289,6 +295,10 @@ public class CadastroProdutos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbCategoriaActionPerformed
 
+    private void jtfQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfQuantidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfQuantidadeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -382,8 +392,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
     private Produto getProdutoPopulado() {
         Produto novoProduto = new Produto();
         Categoria categoriaProduto;
-        categoriaProduto = (Categoria) jcbCategoria.getSelectedItem();
-        
+        categoriaProduto = (Categoria) jcbCategoria.getSelectedItem();        
         Fotoproduto fotoproduto = new Fotoproduto();        
         fotoproduto.setDescricao(jtfNome.getText()+".jpg");
         fotoproduto.setFoto(imageChooser.getFoto());
