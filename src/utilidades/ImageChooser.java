@@ -43,8 +43,8 @@ public class ImageChooser extends FileDialog {
         return image;
     }
             
-    public File getSingleImageFile(){
-        if(getFiles().length <= 0) return null;
+    public File getSingleImageFile() throws NullPointerException {
+        if(getFiles().length <= 0) throw new NullPointerException();
         return getFiles()[0];
     }
     

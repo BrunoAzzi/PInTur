@@ -4,6 +4,8 @@
  */
 package view.categoria;
 
+import control.CategoriaControl;
+import java.sql.SQLException;
 import view.TableModels.CategoriaTableModel.ListarCategoriaTableModel;
 
 /**
@@ -11,8 +13,8 @@ import view.TableModels.CategoriaTableModel.ListarCategoriaTableModel;
  * @author bruno_azzi
  */
 public class ListarCategoria extends javax.swing.JFrame {
-    
-    ListarCategoriaTableModel listarCateforiasTableModel = new ListarCategoriaTableModel(1,false);
+
+    ListarCategoriaTableModel listarCateforiasTableModel = new ListarCategoriaTableModel(1, false);
 
     /**
      * Creates new form ListarCategoria
@@ -73,17 +75,17 @@ public class ListarCategoria extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton6)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5)
+                        .addComponent(jButton4)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4)))
+                        .addComponent(jButton5)))
                 .addContainerGap())
         );
 
@@ -97,8 +99,8 @@ public class ListarCategoria extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
+                    .addComponent(jButton6)
+                    .addComponent(jButton5))
                 .addContainerGap())
         );
 
@@ -130,8 +132,12 @@ public class ListarCategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if(preRequisitosParaRemocaoIsOk()){
+        
+        CategoriaControl.delete(listarCateforiasTableModel.getCategoriaAt(jTable2.getSelectedRow()));
+        try{
             listarCateforiasTableModel.deleteRow(jTable2.getSelectedRow());
+        }catch(Exception sqlEx){
+            sqlEx.printStackTrace();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -181,4 +187,8 @@ public class ListarCategoria extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
+
+    private boolean preRequisitosParaRemocaoIsOk() {
+        return true;
+    }
 }

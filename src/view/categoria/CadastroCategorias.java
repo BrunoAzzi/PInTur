@@ -121,25 +121,27 @@ public class CadastroCategorias extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButtonNovaCategoria)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
-                .addComponent(jButton4)
-                .addGap(43, 43, 43))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButtonNovaCategoria)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField1)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16)
+                        .addComponent(jButton4)
+                        .addGap(43, 43, 43))))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton2, jButton3, jButtonNovaCategoria});
@@ -160,8 +162,8 @@ public class CadastroCategorias extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonNovaCategoria)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -184,38 +186,44 @@ public class CadastroCategorias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonNovaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaCategoriaActionPerformed
-        
-        if(camposValidados()) {
+        if (camposValidados()) {
             categoriaTableModel.add(getCategoriaPopulada());
-        }else{
+        } else {
             JOptionPane.showMessageDialog(rootPane, Mensagens.CATEGORIA_CADASTRO_CAMPOs_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
         }
-        
         limpaCampos();
-        
     }//GEN-LAST:event_jButtonNovaCategoriaActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
-        if(jTable1.getSelectedRow() >= 0) categoriaTableModel.deleteRow(jTable1.getSelectedRow());
-        
+
+        if (jTable1.getSelectedRow() >= 0) {
+            categoriaTableModel.deleteRow(jTable1.getSelectedRow());
+        }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         imageChooser.setVisible(true);
-        jLabelCategoriaImage.setIcon(Imagem.resizeImage(100, 100, imageChooser.getSingleImageFile()));       
+        try{
+            jLabelCategoriaImage.setIcon(Imagem.resizeImage(100, 100, imageChooser.getSingleImageFile()));
+        }catch(NullPointerException ex){
+            System.out.println("No File Selected");
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        for (Categoria categoria : categoriaTableModel.getAllCategorias()) {
-            FotoControl.add(categoria.getFotoCategoria().getFoto());
-            
-            FotoCategoriaControl.add(categoria.getFotoCategoria());
-            
-            CategoriaControl.add(categoria);
+        if (JOptionPane.showConfirmDialog(this, Mensagens.CATEGORIA_ADICIONAR_CONFIRMACAO.getDescricao(), Mensagens.CONFIRM.getDescricao(), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+            for (Categoria categoria : categoriaTableModel.getAllCategorias()) {
+                FotoControl.add(categoria.getFotoCategoria().getFoto());
+
+                FotoCategoriaControl.add(categoria.getFotoCategoria());
+
+                CategoriaControl.add(categoria);
+            }
+            categoriaTableModel.clear();
         }
-        
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -267,30 +275,30 @@ public class CadastroCategorias extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void limpaCampos() {
-        
+
         jTextField1.setText("");
         jLabelCategoriaImage.setIcon(null);
         imageChooser = new ImageChooser(this);
-        
+
     }
 
     private boolean camposValidados() {
-        
-        return !(jTextField1.getText().equals("")) && imageChooser.getSingleImageFile() != null;
-    
+
+        return !(jTextField1.getText().equals("")) && jLabel1.getIcon() != null;
+
     }
 
     private Categoria getCategoriaPopulada() {
-        
+
         Fotocategoria fotocategoria = new Fotocategoria();
         Categoria categoria = new Categoria();
 
-        fotocategoria.setDescricao(imageChooser.getSingleImageFile().getName());
+        fotocategoria.setDescricao(jTextField1.getText()+".jpg");
         fotocategoria.setFoto(imageChooser.getFoto());
 
         categoria.setNome(jTextField1.getText());
         categoria.setFotoCategoria(fotocategoria);
         return categoria;
-        
+
     }
 }

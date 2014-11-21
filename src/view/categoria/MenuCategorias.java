@@ -4,6 +4,9 @@
  */
 package view.categoria;
 
+import control.CategoriaControl;
+import java.util.ArrayList;
+import model.Categoria;
 import utilidades.Imagem;
 import utilidades.Tela;
 
@@ -13,13 +16,16 @@ import utilidades.Tela;
  */
 public class MenuCategorias extends javax.swing.JPanel {
 
+    int x = 0;
+    int y = 0;
+    ArrayList<Categoria> categorias = CategoriaControl.listaCategorias();
+     //initCategorias();
+    
     /**
      * Creates new form MenuCategorias
      */
     public MenuCategorias() {
         initComponents();
-        
-        
     }
 
     /**
@@ -47,7 +53,6 @@ public class MenuCategorias extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Terminal de Vendas - PInTur");
 
-        jLabelBasket.setIcon(Imagem.resizeImage(30, 30, getClass().getResource("Imagens/Shopping-Basket-Add-White")));
         jLabelBasket.setPreferredSize(new java.awt.Dimension(50, 50));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -90,7 +95,7 @@ public class MenuCategorias extends javax.swing.JPanel {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -102,7 +107,7 @@ public class MenuCategorias extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelBasket, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -119,4 +124,23 @@ public class MenuCategorias extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void initCategorias() {
+
+        jPanel1.removeAll();
+        for (Categoria categoria : categorias) {
+            ItemMenuCategoria itemMenuCategoria = new ItemMenuCategoria();
+            itemMenuCategoria.setCategoria(categoria);
+            preparaItemMenu(itemMenuCategoria);
+            jPanel1.add(itemMenuCategoria);
+        }
+        
+        x = 0;
+    }
+
+    private void preparaItemMenu(ItemMenuCategoria itemMenuCategoria) {
+
+        itemMenuCategoria.setBounds(x ,y , 150, 150);
+        x += 160;
+    }
 }

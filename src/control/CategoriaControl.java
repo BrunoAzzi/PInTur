@@ -33,4 +33,8 @@ public class CategoriaControl {
 //        }
     }
     
+    public static void delete(Categoria categoria){
+        Conexao.remove(categoria);
+    }
+    
 }

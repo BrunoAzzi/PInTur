@@ -13,9 +13,10 @@ public enum Mensagens {
     
     PRODUTO_ADICIONAR_CONFIRMACAO("Deseja adicionar novo produto?"),
     PRODUTO_CADASTRO_CAMPOs_INVALIDOS("Campo inválido no cadastro de produtos"),
-    CATEGORIA_ADICIONAR_CONFIRMACAO("Deseja adicionar nova categoria?"),
+    CATEGORIA_ADICIONAR_CONFIRMACAO("Deseja adicionar nova(s) categoria(s)?"),
     CATEGORIA_CADASTRO_CAMPOs_INVALIDOS("Campo inválido no cadastro de categorias!"),
-    WARNING("Aviso!");
+    WARNING("Aviso!"),
+    CONFIRM("Confirme");
     
     String descricao;
 

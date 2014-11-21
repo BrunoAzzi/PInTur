@@ -5,6 +5,7 @@
 package view;
 
 import utilidades.Tela;
+import view.categoria.MenuCategorias;
 import view.produto.ListaProdutos;
 
 /**
@@ -18,10 +19,8 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
      */
     public TesteMenuPrincipal() {
         initComponents();    
-        ListaProdutos listaProdutos = new ListaProdutos();
-        listaProdutos.setVisible(true); 
-        listaProdutos.setSize(Tela.menuDescricaoProduto());
-        this.add(listaProdutos);
+        initDescricaoProdutos();
+        initMenuCategorias();
     }
     
     /**
@@ -34,6 +33,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(Tela.screenSizeTratado());
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,4 +85,18 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
+    private void initDescricaoProdutos() {
+        ListaProdutos listaProdutos = new ListaProdutos();
+        listaProdutos.setVisible(true); 
+        listaProdutos.setBounds(Tela.menuDescricaoProduto());
+        this.add(listaProdutos);
+    }
+
+    private void initMenuCategorias() {
+        MenuCategorias menuCategorias = new MenuCategorias();
+        menuCategorias.setVisible(true);
+        menuCategorias.setBounds(Tela.menuCategoriaBounds());
+        this.add(menuCategorias);
+    }
 }

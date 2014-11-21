@@ -4,7 +4,6 @@
  */
 package view.TableModels.CategoriaTableModel;
 
-import control.CategoriaControl;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 import model.Categoria;
@@ -23,7 +22,6 @@ public class CategoriaTableModel extends AbstractTableModel{
     public CategoriaTableModel(int quantidadeDeColunas, boolean isEditable) {
         this.quantidadeDeColunas = quantidadeDeColunas;
         this.isEditable = isEditable;
-        categorias.addAll(CategoriaControl.listaCategorias());
     }
 
     @Override
@@ -75,4 +73,8 @@ public class CategoriaTableModel extends AbstractTableModel{
         fireTableDataChanged();
     }
     
+    public void clear(){
+        categorias.clear();
+        fireTableDataChanged();
+    }
 }

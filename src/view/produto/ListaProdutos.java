@@ -7,6 +7,7 @@ package view.produto;
 import control.ProdutoControl;
 import java.util.ArrayList;
 import model.Produto;
+import utilidades.Tela;
 
 /**
  *
@@ -38,7 +39,10 @@ public class ListaProdutos extends java.awt.Panel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
 
-        setBackground(java.awt.Color.blue);
+        setBackground(new java.awt.Color(51, 102, 255));
+        setMaximumSize(Tela.menuProdutos());
+        setMinimumSize(Tela.menuProdutos());
+        setPreferredSize(Tela.menuProdutos());
         addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
                 formComponentAdded(evt);
