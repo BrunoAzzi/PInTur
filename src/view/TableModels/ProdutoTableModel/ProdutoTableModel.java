@@ -22,8 +22,7 @@ public class ProdutoTableModel extends AbstractTableModel {
 
     public ProdutoTableModel(int quantidadeDeColunas, boolean isEditable) {
         this.quantidadeDeColunas = quantidadeDeColunas;
-        this.isEditable = isEditable;
-        produtos.addAll(ProdutoControl.listaProdutos());       
+        this.isEditable = isEditable;             
     }
     
     @Override
@@ -78,5 +77,10 @@ public class ProdutoTableModel extends AbstractTableModel {
     
     public ArrayList<Produto> getAllProdutos(){       
         return new ArrayList(produtos);        
+    }
+    
+    public void clear(){
+        produtos.clear();
+        fireTableDataChanged();
     }
 }

@@ -13,16 +13,16 @@ import utilidades.Tela;
  *
  * @author gustavo_yuri
  */
-public class ListaProdutos extends java.awt.Panel {
+public class MenuProdutos extends java.awt.Panel {
 
     ProdutoControl produtoControle = new ProdutoControl();
     ItemListaProduto itemListaProduto = new ItemListaProduto();
     ArrayList<ItemListaProduto> itemListaProdutos = new ArrayList();
 
     /**
-     * Creates new form ListaProdutos
+     * Creates new form MenuProdutos
      */
-    public ListaProdutos() {
+    public MenuProdutos() {
         initComponents();
         guardaVolumes();
     }
@@ -40,9 +40,6 @@ public class ListaProdutos extends java.awt.Panel {
         jPanel1 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(51, 102, 255));
-        setMaximumSize(Tela.menuProdutos());
-        setMinimumSize(Tela.menuProdutos());
-        setPreferredSize(Tela.menuProdutos());
         addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
                 formComponentAdded(evt);

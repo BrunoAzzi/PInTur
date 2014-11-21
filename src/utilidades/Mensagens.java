@@ -11,9 +11,9 @@ package utilidades;
  */
 public enum Mensagens {
     
-    PRODUTO_ADICIONAR_CONFIRMACAO("Deseja adicionar novo produto?"),
+    PRODUTO_ADICIONAR_CONFIRMACAO("Deseja salvar este(s) produto(s)?"),
     PRODUTO_CADASTRO_CAMPOS_INVALIDOS("Campo inválido no cadastro de produtos"),
-    CATEGORIA_ADICIONAR_CONFIRMACAO("Deseja adicionar nova categoria?"),
+    CATEGORIA_ADICIONAR_CONFIRMACAO("Deseja salvar esta(s) categoria(s)?"),
     CATEGORIA_CADASTRO_CAMPOS_INVALIDOS("Campo inválido no cadastro de categorias!"),
     PROMOCAO_CADASTRO_CAMPOS_INVALIDOS("Campo inválido no cadastro de promoções!"),
     PROMOCAO_CADASTRO_OBJETO_NULO("Não foi selecionado nenhum produto!"),

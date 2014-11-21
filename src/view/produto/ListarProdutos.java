@@ -4,7 +4,6 @@
  */
 package view.produto;
 
-import control.Conexao;
 import control.ProdutoControl;
 import javax.swing.JOptionPane;
 import utilidades.Mensagens;
@@ -12,7 +11,7 @@ import view.TableModels.ProdutoTableModel.ListaProdutosTableModel;
 
 /**
  *
- * @author bruno_azzi
+ * @author gustavo_yuri
  */
 public class ListarProdutos extends javax.swing.JFrame {
     ProdutoControl produtoControl = new ProdutoControl();
@@ -44,9 +43,12 @@ public class ListarProdutos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 204));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 204));
+
         jTable2.setModel(listaProdutosTableModel);
         jScrollPane2.setViewportView(jTable2);
 
+        jButton4.setBackground(new java.awt.Color(51, 102, 255));
         jButton4.setText("Remover");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,6 +56,7 @@ public class ListarProdutos extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setBackground(new java.awt.Color(51, 102, 255));
         jButton5.setText("Editar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +64,7 @@ public class ListarProdutos extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setBackground(new java.awt.Color(51, 102, 255));
         jButton6.setText("Novo");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,15 +79,14 @@ public class ListarProdutos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton6)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5)
+                        .addComponent(jButton4)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4)))
-                .addContainerGap())
+                        .addComponent(jButton5))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton4, jButton5, jButton6});
@@ -107,7 +110,9 @@ public class ListarProdutos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,11 +122,13 @@ public class ListarProdutos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Botão que chama tela de cadastro de novos produtos
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         CadastroProdutos cadastroProdutos = new CadastroProdutos();
         cadastroProdutos.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
-
+    
+    //Botão que chama tela de edição de produtos
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         EditarProduto editarProduto = new EditarProduto();
         try {
@@ -132,7 +139,8 @@ public class ListarProdutos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, Mensagens.EDITAR_LINHA_NAO_SELECIONADA.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
-
+    
+    //Botão que deleta do banco e da tabela inferior o produto selecionado
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try {
         produtoControl.delete(listaProdutosTableModel.getProdutoAt(jTable2.getSelectedRow()));

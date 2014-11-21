@@ -6,7 +6,7 @@ package view;
 
 import utilidades.Tela;
 import view.categoria.MenuCategorias;
-import view.produto.ListaProdutos;
+import view.produto.MenuProdutos;
 
 /**
  *
@@ -87,7 +87,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void initDescricaoProdutos() {
-        ListaProdutos listaProdutos = new ListaProdutos();
+        MenuProdutos listaProdutos = new MenuProdutos();
         listaProdutos.setVisible(true); 
         listaProdutos.setBounds(Tela.menuDescricaoProduto());
         this.add(listaProdutos);

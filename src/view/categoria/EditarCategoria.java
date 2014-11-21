@@ -55,6 +55,12 @@ public class EditarCategoria extends javax.swing.JFrame {
 
         jLabel1.setText("Nome:");
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Foto"));
         jPanel1.setPreferredSize(new java.awt.Dimension(117, 127));
@@ -71,7 +77,7 @@ public class EditarCategoria extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+            .addComponent(jLabelFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
         );
 
         jButton1.setBackground(new java.awt.Color(51, 102, 255));
@@ -175,6 +181,10 @@ public class EditarCategoria extends javax.swing.JFrame {
         imageChooser.setVisible(true);
         jLabelFoto.setIcon(Imagem.resizeImage(100, 100, imageChooser.getSingleImageFile()));       
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
