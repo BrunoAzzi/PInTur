@@ -19,7 +19,9 @@ public class PromocaoControl {
     public static ArrayList<Promocao> selectAll(){
         return new ArrayList(Conexao.namedQuery("Promocao.findAll"));
     }
-
+    public static ArrayList<Promocao> listaPromocoes(){
+        return new ArrayList(Conexao.namedQuery("Promocao.findAll"));
+    }
     public static Promocao findByCodigo(Integer codigo) throws NullPointerException {
         if (codigo == null) {
             throw new NullPointerException("O Código está vazio");
@@ -41,6 +43,14 @@ public class PromocaoControl {
             throw new NullPointerException("O Código está vazio");
         }
         Conexao.remove(codigo);
-    }     
+    } 
+    
+    public static void delete(Promocao promocao){
+        try{
+            Conexao.remove(promocao);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
     
 }

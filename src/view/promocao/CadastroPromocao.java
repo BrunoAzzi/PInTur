@@ -7,10 +7,13 @@ package view.promocao;
 import control.ProdutoControl;
 import control.PromocaoControl;
 import java.awt.Color;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import model.Produto;
 import model.Promocao;
-import view.TableModels.ProdutoTableModel.ProdutoTableModel;
+import utilidades.Mensagens;
 import view.TableModels.PromocaoTableModel.PromocaoTableModel;
 
 /**
@@ -114,7 +117,11 @@ DefaultListModel defaultListModel = new DefaultListModel();
 
         jLabel4.setText("Novo Valor do Produto");
 
-        jFormattedTextFieldValorPromocional.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        jFormattedTextFieldValorPromocional.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldValorPromocionalActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(51, 102, 255));
         jButton4.setText("Salvar");
@@ -205,15 +212,54 @@ DefaultListModel defaultListModel = new DefaultListModel();
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // Produto retirado da lista no qual a promocao sera inserida;
-        Produto produto = (Produto) jList1.getSelectedValue();
-        // Nova promocao
-        Promocao novaPromocao = new Promocao();
-        // Popular a promocao
-        populaPromocao(novaPromocao);
-        //Colocando o a promocao em produto;
-        produto.setPromocao(novaPromocao);
-        //Adicionar Produto na tabela
-        promocaoTableModel.add(produto);
+
+        try {
+            
+            Produto produto = (Produto) jList1.getSelectedValue();
+            String promocaoValorTratado = jFormattedTextFieldValorPromocional.getText().replace(',', '.').trim();
+            Double valorDouble = (new Double(promocaoValorTratado));            
+            Date dataInicio =  jDateChooserDateInicial.getDate();
+            Date dataFim =  jDateChooserDataFinal.getDate();
+            Calendar calendarioInicio = Calendar.getInstance();
+            calendarioInicio.setTime(dataInicio);
+            Calendar calendarioFim = Calendar.getInstance();
+            Calendar calendarioComputador = Calendar.getInstance();
+            calendarioFim.setTime(dataFim);
+            calendarioInicio.get(Calendar.MONTH);
+           
+            if(valorDouble <= 0||valorDouble >= produto.getValor()){
+                JOptionPane.showMessageDialog(null, Mensagens.PROMOCAO_CADASTRO_CAMPOs_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+
+            }
+            else if(calendarioInicio.get(Calendar.MONTH) != calendarioComputador.get(Calendar.MONTH)
+                    || calendarioFim.get(Calendar.MONTH) != calendarioComputador.get(Calendar.MONTH)){
+                JOptionPane.showMessageDialog(null, Mensagens.PROMOCAO_CADASTRO_MES_INVALIDO.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+            }
+            else if(calendarioInicio.get(Calendar.DAY_OF_MONTH) > calendarioFim.get(Calendar.DAY_OF_MONTH)){
+                JOptionPane.showMessageDialog(null, Mensagens.PROMOCAO_CADASTRO_DIA_INVALIDO.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                // Nova promocao
+                Promocao novaPromocao = new Promocao();
+                // Popular a promocao
+                populaPromocao(novaPromocao);
+                //Colocando o a promocao em produto;
+                produto.setPromocao(novaPromocao);
+                //Adicionar Produto na tabela
+                promocaoTableModel.add(produto);  
+            }
+            
+        } catch (NullPointerException e) {
+            
+            JOptionPane.showMessageDialog(null, Mensagens.PROMOCAO_CADASTRO_OBJETO_NULO.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+
+        } catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, Mensagens.PROMOCAO_CADASTRO_CAMPOs_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+        }
+        
+
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -229,6 +275,10 @@ DefaultListModel defaultListModel = new DefaultListModel();
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         promocaoTableModel.deleteRow(jTable1.getSelectedRow());
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jFormattedTextFieldValorPromocionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldValorPromocionalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldValorPromocionalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,6 +337,7 @@ DefaultListModel defaultListModel = new DefaultListModel();
     private void populaPromocao(Promocao novaPromocao) {
         novaPromocao.setDataInicio(jDateChooserDateInicial.getDate());
         novaPromocao.setDataFinal(jDateChooserDataFinal.getDate());
-        novaPromocao.setValorPromocional(new Double(jFormattedTextFieldValorPromocional.getText()));
+        String promocaoValorTratado = jFormattedTextFieldValorPromocional.getText().replace(',', '.').trim();
+        novaPromocao.setValorPromocional(new Double(promocaoValorTratado));
     }
 }
