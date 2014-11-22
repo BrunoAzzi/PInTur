@@ -14,6 +14,9 @@ import view.produto.MenuProdutos;
  */
 public class TesteMenuPrincipal extends javax.swing.JFrame {
     
+    MenuProdutos menuProdutos = new MenuProdutos();
+     MenuCategorias menuCategorias = new MenuCategorias();
+    
     /**
      * Creates new form TesteMenuPrincipal
      */
@@ -21,6 +24,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
         initComponents();    
         initDescricaoProdutos();
         initMenuCategorias();
+        menuCategorias.setMenuProdutos(menuProdutos);
     }
     
     /**
@@ -34,6 +38,11 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(Tela.screenSizeTratado());
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                updateListas(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -48,6 +57,10 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void updateListas(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_updateListas
+        menuCategorias.updateCategorias();
+    }//GEN-LAST:event_updateListas
 
     /**
      * @param args the command line arguments
@@ -87,14 +100,12 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void initDescricaoProdutos() {
-        MenuProdutos listaProdutos = new MenuProdutos();
-        listaProdutos.setVisible(true); 
-        listaProdutos.setBounds(Tela.menuDescricaoProduto());
-        this.add(listaProdutos);
+        menuProdutos.setVisible(true); 
+        menuProdutos.setBounds(Tela.menuDescricaoProduto());
+        this.add(menuProdutos);
     }
 
     private void initMenuCategorias() {
-        MenuCategorias menuCategorias = new MenuCategorias();
         menuCategorias.setVisible(true);
         menuCategorias.setBounds(Tela.menuCategoriaBounds());
         this.add(menuCategorias);

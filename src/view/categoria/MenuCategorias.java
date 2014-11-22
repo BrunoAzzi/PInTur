@@ -5,28 +5,31 @@
 package view.categoria;
 
 import control.CategoriaControl;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import model.Categoria;
 import utilidades.Tela;
 import view.buychart.CarrinhoDeCompras;
 import view.login.LoginAdmin;
+import view.produto.MenuProdutos;
 
 /**
  *
  * @author bruno_azzi
  */
 public class MenuCategorias extends javax.swing.JPanel {
+    MenuProdutos menuProdutos;
 
     int x = 0;
     int y = 0;
     ArrayList<Categoria> categorias = CategoriaControl.listaCategorias();
-     //initCategorias();
     
     /**
      * Creates new form MenuCategorias
      */
     public MenuCategorias() {
         initComponents();
+        updateCategorias();
         jLabelQuantidadeDeItensNoCarrinho.setText(CarrinhoDeCompras.getQuantidadeDeProdutosNoCarrinho().toString());
     }
 
@@ -61,7 +64,6 @@ public class MenuCategorias extends javax.swing.JPanel {
         });
 
         jLabelBasket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Shopping-Cart-01-Black 30x30.png"))); // NOI18N
-        jLabelBasket.setPreferredSize(new java.awt.Dimension(30, 30));
         jLabelBasket.setRequestFocusEnabled(false);
 
         jLabelQuantidadeDeItensNoCarrinho.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -73,6 +75,7 @@ public class MenuCategorias extends javax.swing.JPanel {
         jLabel4.setText("itens no carrinho");
 
         jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
@@ -81,7 +84,7 @@ public class MenuCategorias extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 336, Short.MAX_VALUE)
+            .addGap(0, 742, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,8 +107,8 @@ public class MenuCategorias extends javax.swing.JPanel {
                         .addComponent(jLabelQuantidadeDeItensNoCarrinho)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(185, 185, 185)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -113,10 +116,10 @@ public class MenuCategorias extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabelQuantidadeDeItensNoCarrinho)
@@ -140,22 +143,31 @@ public class MenuCategorias extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    private void initCategorias() {
-
+    public void updateCategorias() {
         jPanel1.removeAll();
+        categorias = CategoriaControl.listaCategorias();
+        
         for (Categoria categoria : categorias) {
             ItemMenuCategoria itemMenuCategoria = new ItemMenuCategoria();
             itemMenuCategoria.setCategoria(categoria);
+            
             preparaItemMenu(itemMenuCategoria);
+            
             jPanel1.add(itemMenuCategoria);
+            itemMenuCategoria.setVisible(true);
         }
         
         x = 0;
+        jPanel1.setPreferredSize(new Dimension(5000,5000));
     }
 
     private void preparaItemMenu(ItemMenuCategoria itemMenuCategoria) {
-
-        itemMenuCategoria.setBounds(x ,y , 150, 150);
-        x += 160;
+        itemMenuCategoria.setBounds(x ,y , 140, 140);
+        x += 150;
     }
+
+    public void setMenuProdutos(MenuProdutos menuProdutos) {
+        this.menuProdutos = menuProdutos;
+    }
+    
 }

@@ -166,10 +166,15 @@ public class EditarCategoria extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (camposIsOK()) {
             if (areUSure()) {
+                try{
                 FotoControl.add(categoria.getFotoCategoria().getFoto());
                 FotoCategoriaControl.add(categoria.getFotoCategoria());
                 CategoriaControl.add(categoria);
                 this.dispose();
+                }catch(NullPointerException nullPointerException){
+                    CategoriaControl.add(categoria);
+                    this.dispose();
+                }
             }
         }else{
             JOptionPane.showMessageDialog(this, 
@@ -240,8 +245,12 @@ public class EditarCategoria extends javax.swing.JFrame {
 
     boolean areUSure() {
         if (JOptionPane.showConfirmDialog(this, ConfirmMessages.CERTEZA_DE_EDICAO.getDescricao(), "Confirm Diaolog", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
-            categoria.getFotoCategoria().setFoto(imageChooser.getFoto());
-            categoria.getFotoCategoria().setDescricao(imageChooser.getSingleImageFile().getName());
+            try{
+                categoria.getFotoCategoria().setFoto(imageChooser.getFoto());
+                categoria.getFotoCategoria().setDescricao(imageChooser.getSingleImageFile().getName());
+            }catch(NullPointerException exception){
+                System.out.println("NULLPOINTER");
+            }       
             categoria.setNome(jTextField1.getText());
             return true;
         }

@@ -32,17 +32,18 @@ public class ItemMenuCategoria extends javax.swing.JPanel {
         jLabelFoto = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(153, 204, 255));
-        setMaximumSize(new java.awt.Dimension(150, 150));
-        setMinimumSize(new java.awt.Dimension(150, 150));
+        setMaximumSize(new java.awt.Dimension(140, 140));
+        setMinimumSize(new java.awt.Dimension(140, 140));
         setName(""); // NOI18N
-        setPreferredSize(new java.awt.Dimension(150, 150));
+        setPreferredSize(new java.awt.Dimension(140, 140));
 
         jLabel1.setText("<Description>");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabelFoto.setEnabled(false);
-        jLabelFoto.setMaximumSize(new java.awt.Dimension(60, 60));
-        jLabelFoto.setMinimumSize(new java.awt.Dimension(60, 60));
-        jLabelFoto.setPreferredSize(new java.awt.Dimension(60, 60));
+        jLabelFoto.setMaximumSize(new java.awt.Dimension(50, 50));
+        jLabelFoto.setMinimumSize(new java.awt.Dimension(50, 50));
+        jLabelFoto.setPreferredSize(new java.awt.Dimension(50, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -51,7 +52,7 @@ public class ItemMenuCategoria extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                     .addComponent(jLabelFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -59,9 +60,9 @@ public class ItemMenuCategoria extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
+                .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
