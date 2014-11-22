@@ -2,25 +2,27 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.produto;
+package view.promocao;
 
+import view.produto.*;
 import control.ProdutoControl;
 import java.util.ArrayList;
 import model.Produto;
 
 /**
  *
- * @author gustavo_yuri
+ * @author evertonm
  */
-public class MenuProdutos extends java.awt.Panel {
+public class MenuPromocao extends java.awt.Panel {
 
     ProdutoControl produtoControle = new ProdutoControl();
-    ArrayList<ItemListaProduto> itemListaProdutos = new ArrayList();
+    ItemListaPromocao itemListaPromcao = new ItemListaPromocao();
+    ArrayList<ItemListaPromocao> itemListaPromocoes = new ArrayList();
 
     /**
-     * Creates new form MenuProdutos
+     * Creates new form MenuPromocao
      */
-    public MenuProdutos() {
+    public MenuPromocao() {
         initComponents();
         guardaVolumes();
     }
@@ -93,12 +95,13 @@ public class MenuProdutos extends java.awt.Panel {
     private void guardaVolumes() {
         int valueX = 0;
         int valueY = 0;
-        for (Produto produto : produtoControle.listaProdutos()) {
-            ItemListaProduto itemListaProduto = new ItemListaProduto();
-            itemListaProduto.populaItemListaProduto(produto); 
-            
+        for (Produto produto : produtoControle.listaProdutosPromocionais()) {
+            ItemListaPromocao itemListaPromocao = new ItemListaPromocao();
+            itemListaPromocao.populaItemListaPromocao(produto);
+            //itemListaProdutos.add(itemListaProduto);
+//            jPanel1.repaint();
+//            jPanel1.revalidate();
             itemListaProduto.setVisible(true);
-            
             itemListaProduto.setBounds(valueX, valueY, 142, 222);            
             if (valueX < 293) {
                 valueX += 152;
