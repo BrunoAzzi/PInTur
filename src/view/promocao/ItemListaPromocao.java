@@ -7,7 +7,7 @@ import model.Produto;
 
 /**
  *
- * @author gustavo_yuri
+ * @author everton_m
  */
 public class ItemListaPromocao extends java.awt.Panel {
     

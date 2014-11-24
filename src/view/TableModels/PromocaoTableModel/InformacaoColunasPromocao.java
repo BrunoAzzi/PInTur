@@ -8,7 +8,7 @@ package view.TableModels.PromocaoTableModel;
 
 /**
  *
- * @author gustavo_yuri
+ * @author everton_m
  */
 public enum InformacaoColunasPromocao {
     

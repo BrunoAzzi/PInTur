@@ -6,7 +6,6 @@ package view.TableModels.PromocaoTableModel;
 
 
 import control.ProdutoControl;
-import control.PromocaoControl;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.table.AbstractTableModel;
@@ -15,7 +14,7 @@ import model.Promocao;
 
 /**
  *
- * @author evertonm
+ * @author everton_m
  */
 public class ListarPromocaoTableModel extends AbstractTableModel{
 

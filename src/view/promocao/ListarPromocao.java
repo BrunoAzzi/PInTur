@@ -11,7 +11,7 @@ import view.TableModels.PromocaoTableModel.ListarPromocaoTableModel;
 
 /**
  *
- * @author bruno_azzi
+ * @author everton_m
  */
 public class ListarPromocao extends javax.swing.JFrame {
 

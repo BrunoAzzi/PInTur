@@ -26,7 +26,7 @@ public class PromocaoTableModel extends AbstractTableModel {
         this.quantidadeDeColunas = quantidadeDeColunas;
         this.isEditable = isEditable;
         //TODO criar retorno de produto que tenham promocao
-        produtos.addAll(ProdutoControl.listaProdutosPromocionais());       
+     //   produtos.addAll(ProdutoControl.listaProdutosPromocionais());       
     }
     
     @Override
@@ -84,5 +84,9 @@ public class PromocaoTableModel extends AbstractTableModel {
     
     public ArrayList<Produto> getAllProdutos(){       
         return new ArrayList(produtos);        
+    }
+    public void clear(){
+        produtos.clear();
+        fireTableDataChanged();
     }
 }

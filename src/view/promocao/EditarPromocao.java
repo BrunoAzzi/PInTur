@@ -5,14 +5,13 @@
 package view.promocao;
 
 
-import control.ProdutoControl;
 import control.PromocaoControl;
 import model.Produto;
 import model.Promocao;
 
 /**
  *
- * @author evertonm
+ * @author everton_m
  */
 public class EditarPromocao extends javax.swing.JFrame {
     

@@ -31,7 +31,6 @@ DefaultListModel defaultListModel = new DefaultListModel();
         
         initComponents();
         this.setBackground( new Color(255, 255, 192) );
-        
         ProdutoControl produtoControl = new ProdutoControl();
         for (Produto produto : produtoControl.listaProdutos()) {
             defaultListModel.addElement(produto);
@@ -263,17 +262,27 @@ DefaultListModel defaultListModel = new DefaultListModel();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        ProdutoControl produtoControl = new ProdutoControl();
-        PromocaoControl promocaoControl = new PromocaoControl();
-        
-        for(Produto produto : promocaoTableModel.getAllProdutos()){
-            promocaoControl.add(produto.getPromocao());
-            produtoControl.add(produto);
+        if(promocaoTableModel.getAllProdutos().size() > 0){
+            if (JOptionPane.showConfirmDialog(this, Mensagens.PROMOCAO_ADICIONAR_CONFIRMACAO.getDescricao(), Mensagens.CONFIRM.getDescricao(), JOptionPane.YES_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION){  
+                ProdutoControl produtoControl = new ProdutoControl();
+                PromocaoControl promocaoControl = new PromocaoControl();
+                for(Produto produto : promocaoTableModel.getAllProdutos()){
+                    promocaoControl.add(produto.getPromocao());
+                    produtoControl.add(produto);
+                }
+                promocaoTableModel.clear();
+            }
+        }
+        else{
+           JOptionPane.showMessageDialog(this, Mensagens.WARNING_SALVAR_SEM_NENHUM_CADASTRO.getDescricao(),
+                    Mensagens.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE); 
         }
     }//GEN-LAST:event_jButton4ActionPerformed
-
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        promocaoTableModel.deleteRow(jTable1.getSelectedRow());
+        if(jTable1.getSelectedRow() >= 0){
+            promocaoTableModel.deleteRow(jTable1.getSelectedRow());}
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jFormattedTextFieldValorPromocionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldValorPromocionalActionPerformed

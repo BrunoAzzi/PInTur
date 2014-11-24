@@ -4,14 +4,13 @@
  */
 package view.promocao;
 
-import view.produto.*;
 import control.ProdutoControl;
 import java.util.ArrayList;
 import model.Produto;
 
 /**
  *
- * @author evertonm
+ * @author everton_m
  */
 public class MenuPromocao extends java.awt.Panel {
 
