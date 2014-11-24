@@ -40,7 +40,9 @@ public class Tela {
     public static Rectangle menuProdutosBounds(){
         return new Rectangle(0 , (int) (screenHeight*0.4),(int) (screenWidth*0.6), (int) (screenHeight*0.4));
     }
-    
+     public static Rectangle menuPromocoesBounds(){
+        return new Rectangle(0 , (int) (screenHeight*0.1),(int) (screenWidth*0.6), (int) (screenHeight*0.4));
+    }   
     public static Dimension menuProdutos(){
         return new Dimension((int) (screenWidth*0.4), (int) (screenHeight*0.6));
     }

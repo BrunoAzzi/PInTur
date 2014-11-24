@@ -16,15 +16,17 @@ import model.Produto;
 public class MenuPromocao extends java.awt.Panel {
 
     ProdutoControl produtoControle = new ProdutoControl();
-    ItemListaPromocao itemListaPromcao = new ItemListaPromocao();
+    
     ArrayList<ItemListaPromocao> itemListaPromocoes = new ArrayList();
 
     /**
      * Creates new form MenuPromocao
      */
     public MenuPromocao() {
+        
         initComponents();
         guardaVolumes();
+        
     }
 
     /**
@@ -46,13 +48,14 @@ public class MenuPromocao extends java.awt.Panel {
             }
         });
 
+        JLabelProdutos.setBackground(new java.awt.Color(255, 255, 192));
         JLabelProdutos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        JLabelProdutos.setForeground(new java.awt.Color(255, 255, 255));
-        JLabelProdutos.setText("Produtos");
+        JLabelProdutos.setForeground(new java.awt.Color(255, 255, 192));
+        JLabelProdutos.setText("Promoções");
 
         jScrollPane1.setBorder(null);
 
-        jPanel1.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 192));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -98,11 +101,8 @@ public class MenuPromocao extends java.awt.Panel {
         for (Produto produto : produtoControle.listaProdutosPromocionais()) {
             ItemListaPromocao itemListaPromocao = new ItemListaPromocao();
             itemListaPromocao.populaItemListaPromocao(produto);
-            //itemListaProdutos.add(itemListaProduto);
-//            jPanel1.repaint();
-//            jPanel1.revalidate();
-            itemListaProduto.setVisible(true);
-            itemListaProduto.setBounds(valueX, valueY, 142, 222);            
+            itemListaPromocao.setVisible(true);
+            itemListaPromocao.setBounds(valueX, valueY, 142, 222);            
             if (valueX < 293) {
                 valueX += 152;
             } else {
@@ -113,7 +113,7 @@ public class MenuPromocao extends java.awt.Panel {
             }else{
                 valueY += 232;
             }
-            jPanel1.add(itemListaProduto);
+            jPanel1.add(itemListaPromocao);
         }
     }
 }

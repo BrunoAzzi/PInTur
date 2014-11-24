@@ -7,6 +7,7 @@ package view;
 import utilidades.Tela;
 import view.categoria.MenuCategorias;
 import view.produto.MenuProdutos;
+import view.promocao.MenuPromocao;
 
 /**
  *
@@ -16,6 +17,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     
     MenuProdutos menuProdutos = new MenuProdutos();
      MenuCategorias menuCategorias = new MenuCategorias();
+    MenuPromocao menuPromocoes = new MenuPromocao();
     
     /**
      * Creates new form TesteMenuPrincipal
@@ -24,6 +26,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
         initComponents();    
         initDescricaoProdutos();
         initMenuCategorias();
+        initMenuPromocoes();
         menuCategorias.setMenuProdutos(menuProdutos);
     }
     
@@ -109,5 +112,10 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
         menuCategorias.setVisible(true);
         menuCategorias.setBounds(Tela.menuCategoriaBounds());
         this.add(menuCategorias);
+    }
+    private void initMenuPromocoes(){
+        menuPromocoes.setVisible(true);
+        menuPromocoes.setBounds(Tela.menuPromocoesBounds());
+        this.add(menuPromocoes);
     }
 }
