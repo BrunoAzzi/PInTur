@@ -4,11 +4,9 @@
  */
 package view.usuarios;
 
-import control.CategoriaControl;
-import control.FotoCategoriaControl;
-import control.FotoControl;
+import control.PerfilControl;
+import control.UsuarioControl;
 import javax.swing.JOptionPane;
-import model.Categoria;
 import model.Usuario;
 import utilidades.Mensagens;
 import view.TableModels.UsuarioTableModel.UsuarioTableModel;
@@ -40,7 +38,7 @@ public class CadastroUsuarios extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextFieldLogin = new javax.swing.JTextField();
-        jButtonNovaCategoria = new javax.swing.JButton();
+        jButtonNovoUsuario = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -57,11 +55,11 @@ public class CadastroUsuarios extends javax.swing.JFrame {
 
         jLabel1.setText("Login");
 
-        jButtonNovaCategoria.setBackground(new java.awt.Color(51, 102, 255));
-        jButtonNovaCategoria.setText("Novo");
-        jButtonNovaCategoria.addActionListener(new java.awt.event.ActionListener() {
+        jButtonNovoUsuario.setBackground(new java.awt.Color(51, 102, 255));
+        jButtonNovoUsuario.setText("Novo");
+        jButtonNovoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNovaCategoriaActionPerformed(evt);
+                jButtonNovoUsuarioActionPerformed(evt);
             }
         });
 
@@ -107,18 +105,17 @@ public class CadastroUsuarios extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPasswordFieldSenha))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jButtonNovaCategoria)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton3)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton2)
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jComboBoxPerfil, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButtonNovoUsuario)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBoxPerfil, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -141,7 +138,7 @@ public class CadastroUsuarios extends javax.swing.JFrame {
                     .addComponent(jComboBoxPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonNovaCategoria)
+                    .addComponent(jButtonNovoUsuario)
                     .addComponent(jButton3)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -163,14 +160,14 @@ public class CadastroUsuarios extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonNovaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaCategoriaActionPerformed
+    private void jButtonNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoUsuarioActionPerformed
         if (camposValidados()) {
             usuarioTableModel.add(getUsuarioPopulado());
         } else {
             JOptionPane.showMessageDialog(rootPane, Mensagens.CAMPOS_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
         }
         limpaCampos();
-    }//GEN-LAST:event_jButtonNovaCategoriaActionPerformed
+    }//GEN-LAST:event_jButtonNovoUsuarioActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
@@ -192,9 +189,7 @@ public class CadastroUsuarios extends javax.swing.JFrame {
                 JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
 
             for (Usuario usuario : usuarioTableModel.getAllUsuarios()) {
-                //TODO SALVAR NO BANCO
-                
-                CategoriaControl.add(usuario);
+                UsuarioControl.add(usuario);
             }
             usuarioTableModel.clear();
             this.dispose();
@@ -244,13 +239,11 @@ public class CadastroUsuarios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButtonNovaCategoria;
+    private javax.swing.JButton jButtonNovoUsuario;
     private javax.swing.JComboBox jComboBoxPerfil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabelCategoriaImage;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JScrollPane jScrollPane1;
@@ -267,8 +260,14 @@ public class CadastroUsuarios extends javax.swing.JFrame {
     private Usuario getUsuarioPopulado() {
         Usuario usuario = new Usuario();
         usuario.setLogin(jTextFieldLogin.getText());
-        //TODO
-        usuario.setPerfil(null);
+        
+        //TODO usuario.setSenha(jPasswordFieldSenha.getPassword());
+        
+        if(jComboBoxPerfil.getSelectedIndex() == 0) usuario.setPerfil(PerfilControl.getAdmnistrador());
+        if(jComboBoxPerfil.getSelectedIndex() == 1) usuario.setPerfil(PerfilControl.getGerente());
+        if(jComboBoxPerfil.getSelectedIndex() == 2) usuario.setPerfil(PerfilControl.getFuncionario());
+        
+        return usuario;
     }
 
     private void limpaCampos() {

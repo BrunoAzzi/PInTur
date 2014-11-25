@@ -23,14 +23,6 @@ public class CategoriaControl {
     
     public static Categoria findByNome(String nome){
         return (Categoria) Conexao.singleResultNamedQuery("Categoria.findByNome", nome, "nome");
-    } 
-    
-    public static void deleteById(Integer id){        
-//        try {            
-            Conexao.remove(findByCodigo(id));
-//        } catch (NullPointerException e) {
-//            
-//        }
     }
     
     public static void delete(Categoria categoria){
