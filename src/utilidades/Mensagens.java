@@ -26,7 +26,7 @@ public enum Mensagens {
     WARNING_SALVAR_SEM_NENHUM_CADASTRO("Nenhum cadastro encontrado! \nNão foi possível salvar."),
     WARNING("Aviso!"),
     CONFIRM("Confirme!"), 
-    ADICIONAR_CONFIRMACAO("Deseja mesmo salvar estes registros no banco?");
+    ADICIONAR_CONFIRMACAO("Deseja mesmo salvar este(s) registro(s) no banco?");
     
     String descricao;
 
