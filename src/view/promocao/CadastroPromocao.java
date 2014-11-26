@@ -7,6 +7,7 @@ package view.promocao;
 import control.ProdutoControl;
 import control.PromocaoControl;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.DefaultListModel;
@@ -242,10 +243,10 @@ DefaultListModel defaultListModel = new DefaultListModel();
                 Promocao novaPromocao = new Promocao();
                 // Popular a promocao
                 populaPromocao(novaPromocao);
-                //Colocando o a promocao em produto;
-                produto.setPromocao(novaPromocao);
-                //Adicionar Produto na tabela
-                promocaoTableModel.add(produto);  
+                //Adiciona Promocao e Produto na tabela
+                promocaoTableModel.add(produto, novaPromocao);
+                
+                limparCampos();
             }
             
         } catch (NullPointerException e) {
@@ -263,13 +264,22 @@ DefaultListModel defaultListModel = new DefaultListModel();
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if(promocaoTableModel.getAllProdutos().size() > 0){
-            if (JOptionPane.showConfirmDialog(this, Mensagens.PROMOCAO_ADICIONAR_CONFIRMACAO.getDescricao(), Mensagens.CONFIRM.getDescricao(), JOptionPane.YES_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION){  
-                ProdutoControl produtoControl = new ProdutoControl();
-                PromocaoControl promocaoControl = new PromocaoControl();
-                for(Produto produto : promocaoTableModel.getAllProdutos()){
-                    promocaoControl.add(produto.getPromocao());
-                    produtoControl.add(produto);
+            if (JOptionPane.showConfirmDialog(this,
+                    Mensagens.PROMOCAO_ADICIONAR_CONFIRMACAO.getDescricao(),
+                    Mensagens.CONFIRM.getDescricao(), JOptionPane.YES_OPTION,
+                    JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION){
+
+                ArrayList<Promocao> arrayListPromocao = promocaoTableModel.getAllPromocoes();
+                ArrayList<Produto> arrayListProduto = promocaoTableModel.getAllProdutos();
+                
+                
+                for (int i = 0; i < arrayListPromocao.size(); i++) {
+                    PromocaoControl.add(arrayListPromocao.get(i));
+                    arrayListProduto.get(i).setPromocao(
+                            arrayListPromocao.get(i));
+                    ProdutoControl.add(arrayListProduto.get(i));
                 }
+                                
                 promocaoTableModel.clear();
             }
         }
@@ -348,5 +358,10 @@ DefaultListModel defaultListModel = new DefaultListModel();
         novaPromocao.setDataFinal(jDateChooserDataFinal.getDate());
         String promocaoValorTratado = jFormattedTextFieldValorPromocional.getText().replace(',', '.').trim();
         novaPromocao.setValorPromocional(new Double(promocaoValorTratado));
+    }
+    private void limparCampos(){
+        jDateChooserDateInicial.setDate(null);
+        jDateChooserDataFinal.setDate(null);
+        jFormattedTextFieldValorPromocional.setText("");
     }
 }
