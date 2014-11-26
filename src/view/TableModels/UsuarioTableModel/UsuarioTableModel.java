@@ -36,7 +36,7 @@ public class UsuarioTableModel extends AbstractTableModel{
 
     @Override
     public String getColumnName(int columnIndex) {
-        if(columnIndex > 0 || columnIndex >= quantidadeDeColunas) throw new IndexOutOfBoundsException();
+        if(columnIndex < 0 || columnIndex >= quantidadeDeColunas) throw new IndexOutOfBoundsException();
         if(columnIndex == InformacaoColunasUsuario.LOGIN.getValue()) return InformacaoColunasUsuario.LOGIN.getDescricao();
         if(columnIndex == InformacaoColunasUsuario.PERFIL.getValue()) return InformacaoColunasUsuario.PERFIL.getDescricao();
         return null;

@@ -7,7 +7,9 @@ package view.usuarios;
 import control.PerfilControl;
 import control.UsuarioControl;
 import javax.swing.JOptionPane;
+import model.Perfil;
 import model.Usuario;
+import utilidades.Formatador;
 import utilidades.Mensagens;
 import view.TableModels.UsuarioTableModel.UsuarioTableModel;
 
@@ -16,7 +18,7 @@ import view.TableModels.UsuarioTableModel.UsuarioTableModel;
  * @author bruno_azzi
  */
 public class CadastroUsuarios extends javax.swing.JFrame {
-    
+
     UsuarioTableModel usuarioTableModel = new UsuarioTableModel(2, false);
 
     /**
@@ -24,6 +26,9 @@ public class CadastroUsuarios extends javax.swing.JFrame {
      */
     public CadastroUsuarios() {
         initComponents();
+        for (Perfil perfil : PerfilControl.listaPerfis()) {
+            jComboBoxPerfil.addItem(perfil);
+        }
     }
 
     /**
@@ -48,7 +53,7 @@ public class CadastroUsuarios extends javax.swing.JFrame {
         jComboBoxPerfil = new javax.swing.JComboBox();
         jPasswordFieldSenha = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 204));
@@ -85,9 +90,6 @@ public class CadastroUsuarios extends javax.swing.JFrame {
         jLabel2.setText("Senha");
 
         jLabel3.setText("Perfil");
-
-        jComboBoxPerfil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Admnistrador", "Gerente", "Funcionário" }));
-        jComboBoxPerfil.setSelectedIndex(2);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -174,31 +176,31 @@ public class CadastroUsuarios extends javax.swing.JFrame {
             usuarioTableModel.deleteRow(jTable1.getSelectedRow());
         } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
             JOptionPane.showMessageDialog(this,
-                Mensagens.REMOVER_LINHA_NAO_SELECIONADA.getDescricao(),
-                Mensagens.WARNING.getDescricao(),
-                JOptionPane.WARNING_MESSAGE);
+                    Mensagens.REMOVER_LINHA_NAO_SELECIONADA.getDescricao(),
+                    Mensagens.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (usuarioTableModel.getAllUsuarios().size() > 0) {
             if (JOptionPane.showConfirmDialog(this,
-                Mensagens.ADICIONAR_CONFIRMACAO.getDescricao(),
-                Mensagens.CONFIRM.getDescricao(),
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+                    Mensagens.ADICIONAR_CONFIRMACAO.getDescricao(),
+                    Mensagens.CONFIRM.getDescricao(),
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
 
-            for (Usuario usuario : usuarioTableModel.getAllUsuarios()) {
-                UsuarioControl.add(usuario);
+                for (Usuario usuario : usuarioTableModel.getAllUsuarios()) {
+                    UsuarioControl.add(usuario);
+                }
+                usuarioTableModel.clear();
+                this.dispose();
             }
-            usuarioTableModel.clear();
-            this.dispose();
-        }
         } else {
             JOptionPane.showMessageDialog(this,
-                Mensagens.WARNING_SALVAR_SEM_NENHUM_CADASTRO.getDescricao(),
-                Mensagens.WARNING.getDescricao(),
-                JOptionPane.WARNING_MESSAGE);
+                    Mensagens.WARNING_SALVAR_SEM_NENHUM_CADASTRO.getDescricao(),
+                    Mensagens.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -252,27 +254,30 @@ public class CadastroUsuarios extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private boolean camposValidados() {
-        if(jTextFieldLogin.getText().equals("")) return false;
-        if(jPasswordFieldSenha.getPassword().length <= 0) return false;
+        if (jTextFieldLogin.getText().equals("")) {
+            return false;
+        }
+        if (jPasswordFieldSenha.getPassword().length <= 0) {
+            return false;
+        }
         return true;
     }
 
     private Usuario getUsuarioPopulado() {
         Usuario usuario = new Usuario();
         usuario.setLogin(jTextFieldLogin.getText());
-        
-        //TODO usuario.setSenha(jPasswordFieldSenha.getPassword());
-        
-        if(jComboBoxPerfil.getSelectedIndex() == 0) usuario.setPerfil(PerfilControl.getAdmnistrador());
-        if(jComboBoxPerfil.getSelectedIndex() == 1) usuario.setPerfil(PerfilControl.getGerente());
-        if(jComboBoxPerfil.getSelectedIndex() == 2) usuario.setPerfil(PerfilControl.getFuncionario());
-        
+
+        //TODO REVISAR
+        usuario.setSenha(Formatador.charArrayToString(jPasswordFieldSenha.getPassword()));
+
+        usuario.setPerfil((Perfil) jComboBoxPerfil.getSelectedItem());
+
         return usuario;
     }
 
     private void limpaCampos() {
         jTextFieldLogin.setText("");
-        jComboBoxPerfil.setSelectedIndex(3);
+        jComboBoxPerfil.setSelectedIndex(0);
         jPasswordFieldSenha.setText("");
     }
 }

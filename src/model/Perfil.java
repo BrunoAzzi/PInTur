@@ -79,7 +79,7 @@ public class Perfil implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Perfil[ codigo=" + codigo + " ]";
+        return getDescricao();
     }
     
 }

@@ -41,6 +41,11 @@ public class ListarUsuarios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jTable1.setModel(usuariosTableModel);
         jScrollPane1.setViewportView(jTable1);
@@ -134,6 +139,10 @@ public class ListarUsuarios extends javax.swing.JFrame {
             // There is no nedd of sout(ex.getMessage)
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        usuariosTableModel.update();
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments

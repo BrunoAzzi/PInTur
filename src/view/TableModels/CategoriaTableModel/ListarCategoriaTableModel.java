@@ -35,7 +35,7 @@ public class ListarCategoriaTableModel extends AbstractTableModel{
 
     @Override
     public String getColumnName(int columnIndex) {
-        if(columnIndex > 0 || columnIndex >= quantidadeDeColunas) throw new IndexOutOfBoundsException();
+        if(columnIndex < 0 || columnIndex >= quantidadeDeColunas) throw new IndexOutOfBoundsException();
         if(columnIndex == InformacaoColunasCategoria.NOME.getValue()) return InformacaoColunasCategoria.NOME.getDescricao();
         return null;
     }
