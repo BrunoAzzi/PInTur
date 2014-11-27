@@ -5,11 +5,11 @@
 package view.TableModels.PromocaoTableModel;
 
 
-import control.ProdutoControl;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.table.AbstractTableModel;
 import model.Produto;
+import model.Promocao;
 
 /**
  *
@@ -17,10 +17,11 @@ import model.Produto;
  */
 public class PromocaoTableModel extends AbstractTableModel {
 
-    public ArrayList<Produto> produtos = new ArrayList();
+    private ArrayList<Produto> produtos = new ArrayList();
+    private ArrayList<Promocao> promocoes = new ArrayList();
     
-    public int quantidadeDeColunas;
-    public boolean isEditable;
+    private int quantidadeDeColunas;
+    private boolean isEditable;
 
     public PromocaoTableModel(int quantidadeDeColunas, boolean isEditable) {
         this.quantidadeDeColunas = quantidadeDeColunas;
@@ -52,13 +53,15 @@ public class PromocaoTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Produto produto;        
+        Promocao promocao;
         if(rowIndex < 0 || rowIndex >= produtos.size()) throw new IndexOutOfBoundsException();
         produto = (Produto) produtos.get(rowIndex);
+        promocao = (Promocao) promocoes.get(rowIndex);
         if(columnIndex < 0 || columnIndex >= quantidadeDeColunas) throw new IndexOutOfBoundsException();
         if(columnIndex == InformacaoColunasPromocao.NOME.getValue()) return produto.getNome();
-        if(columnIndex == InformacaoColunasPromocao.DATA_INICIAL.getValue()) return produto.getPromocao().getDataInicio();
-        if(columnIndex == InformacaoColunasPromocao.DATA_FINAL.getValue()) return produto.getPromocao().getDataFinal();
-        if(columnIndex == InformacaoColunasPromocao.VALOR_PROMOCIONAl.getValue()) return produto.getPromocao().getValorPromocional();
+        if(columnIndex == InformacaoColunasPromocao.DATA_INICIAL.getValue()) return promocao.getDataInicio();
+        if(columnIndex == InformacaoColunasPromocao.DATA_FINAL.getValue()) return promocao.getDataFinal();
+        if(columnIndex == InformacaoColunasPromocao.VALOR_PROMOCIONAl.getValue()) return promocao.getValorPromocional();
         return "";
     }
 
@@ -73,19 +76,35 @@ public class PromocaoTableModel extends AbstractTableModel {
     }    
 
     public void deleteRow(int rowIndex) {
+        promocoes.remove(rowIndex);
         produtos.remove(rowIndex);
         fireTableDataChanged();
     }
-
-    public void add(Produto value) {
-        produtos.add(value);
+    
+    public void add(Produto produto, Promocao promocao){
+        addProduto(produto);
+        addPromocao(promocao);
         fireTableDataChanged();
+    }
+
+    private void addProduto(Produto value) {
+        produtos.add(value);
+    }
+    
+    private void addPromocao(Promocao value) {
+        promocoes.add(value);
     }
     
     public ArrayList<Produto> getAllProdutos(){       
         return new ArrayList(produtos);        
     }
+    
+     public ArrayList<Promocao> getAllPromocoes(){       
+        return new ArrayList(promocoes);        
+    }
+     
     public void clear(){
+        promocoes.clear();
         produtos.clear();
         fireTableDataChanged();
     }
