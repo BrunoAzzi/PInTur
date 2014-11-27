@@ -5,13 +5,12 @@
 package view;
 
 import control.ProdutoControl;
-import control.PromocaoControl;
 import java.util.Calendar;
 import model.Produto;
-import model.Promocao;
 import utilidades.Tela;
 import view.categoria.MenuCategorias;
 import view.produto.MenuProdutos;
+import view.produto.MenuProdutosSelecionados;
 import view.promocao.MenuPromocao;
 
 /**
@@ -19,26 +18,29 @@ import view.promocao.MenuPromocao;
  * @author bruno_azzi
  */
 public class TesteMenuPrincipal extends javax.swing.JFrame {
-    
+
     MenuProdutos menuProdutos = new MenuProdutos();
-     MenuCategorias menuCategorias = new MenuCategorias();
+    MenuCategorias menuCategorias = new MenuCategorias();
     MenuPromocao menuPromocoes = new MenuPromocao();
-    
+    MenuProdutosSelecionados menuProdutosSelecionados = new MenuProdutosSelecionados();
+
     /**
      * Creates new form TesteMenuPrincipal
      */
     public TesteMenuPrincipal() {
-     //   verificarPromocoes();
-        initComponents();    
-        initDescricaoProdutos();
+        //   verificarPromocoes();
+        initComponents();
+        initMenuProdutos();
         initMenuCategorias();
-        
         initMenuPromocoes();
-        
-        
+        initMenuProdutosSelecionados();
+
+        //DEIXANDO A DESCRICAO PRODUTO SER MANIPULADA PELO MENU PRODUTOS
+        menuProdutos.setTelaDescricaoProduto(menuProdutosSelecionados);
+        //DEIXANDO OS PRODUTOS SEREM MANIPULADOS PELO MENU CATEGORIA
         menuCategorias.setMenuProdutos(menuProdutos);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -111,9 +113,9 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 
-    private void initDescricaoProdutos() {
-        menuProdutos.setVisible(true); 
-        menuProdutos.setBounds(Tela.menuDescricaoProduto());
+    private void initMenuProdutos() {
+        menuProdutos.setVisible(true);
+        menuProdutos.setBounds(Tela.menuProdutosBounds());
         this.add(menuProdutos);
     }
 
@@ -122,22 +124,30 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
         menuCategorias.setBounds(Tela.menuCategoriaBounds());
         this.add(menuCategorias);
     }
-    private void initMenuPromocoes(){
+
+    private void initMenuPromocoes() {
         menuPromocoes.setVisible(true);
         menuPromocoes.setBounds(Tela.menuPromocoesBounds());
         this.add(menuPromocoes);
     }
-    private void verificarPromocoes(){
+
+    private void initMenuProdutosSelecionados() {
+        menuProdutosSelecionados.setVisible(true);
+        menuProdutosSelecionados.setBounds(Tela.menuProdutosSelecionadosBounds());
+        this.add(menuProdutosSelecionados);
+    }
+
+    private void verificarPromocoes() {
         Calendar dataAtual = Calendar.getInstance();
         Calendar dataFinalPromocao = null;
-        
+
         for (Produto produto : ProdutoControl.listaProdutosPromocionais()) {
-            dataFinalPromocao.setTime(produto.getPromocao().getDataFinal()); 
-            
-            if(dataFinalPromocao.before(dataAtual)){
+            dataFinalPromocao.setTime(produto.getPromocao().getDataFinal());
+
+            if (dataFinalPromocao.before(dataAtual)) {
                 produto.setPromocao(null);
                 ProdutoControl.add(produto);
-                
+
             }
         }
     }

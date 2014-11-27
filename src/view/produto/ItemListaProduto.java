@@ -5,6 +5,7 @@
 package view.produto;
 
 import model.Produto;
+import view.buychart.CarrinhoDeCompras;
 
 /**
  *
@@ -13,6 +14,7 @@ import model.Produto;
 public class ItemListaProduto extends java.awt.Panel {
     
     private Produto produto = new Produto();
+    private MenuProdutosSelecionados menuProdutosSelecionados;
     /**
      * Creates new form ItemListaProduto
      */
@@ -35,6 +37,11 @@ public class ItemListaProduto extends java.awt.Panel {
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 102, 255));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SetInMenuProdutosSelecionados(evt);
+            }
+        });
 
         jlNomeProduto.setForeground(new java.awt.Color(255, 255, 255));
         jlNomeProduto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -96,8 +103,13 @@ public class ItemListaProduto extends java.awt.Panel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        CarrinhoDeCompras.addProdutoNoCarrinho(this.produto);
+        System.out.println("adicionado no carrinho!");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void SetInMenuProdutosSelecionados(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SetInMenuProdutosSelecionados
+        menuProdutosSelecionados.setProduto(produto);
+    }//GEN-LAST:event_SetInMenuProdutosSelecionados
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -118,5 +130,9 @@ public class ItemListaProduto extends java.awt.Panel {
 
     public Produto getProduto() {
         return produto;
+    }
+
+    void setTelaDescricaoProduto(MenuProdutosSelecionados menuProdutosSelecionados) {
+        this.menuProdutosSelecionados = menuProdutosSelecionados;
     }
 }

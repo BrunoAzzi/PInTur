@@ -14,15 +14,15 @@ import model.Produto;
  */
 public class MenuProdutos extends java.awt.Panel {
 
-    ProdutoControl produtoControle = new ProdutoControl();
     ArrayList<ItemListaProduto> itemListaProdutos = new ArrayList();
+    private MenuProdutosSelecionados menuProdutosSelecionados;
 
     /**
      * Creates new form MenuProdutos
      */
     public MenuProdutos() {
         initComponents();
-        guardaVolumes();
+        initListaDeProdutos();
     }
 
     /**
@@ -90,10 +90,10 @@ public class MenuProdutos extends java.awt.Panel {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    private void guardaVolumes() {
+    private void initListaDeProdutos() {
         int valueX = 0;
         int valueY = 0;
-        for (Produto produto : produtoControle.listaProdutos()) {
+        for (Produto produto : ProdutoControl.listaProdutos()) {
             ItemListaProduto itemListaProduto = new ItemListaProduto();
             itemListaProduto.populaItemListaProduto(produto); 
             
@@ -111,6 +111,13 @@ public class MenuProdutos extends java.awt.Panel {
                 valueY += 232;
             }
             jPanel1.add(itemListaProduto);
+        }
+    }
+
+    public void setTelaDescricaoProduto(MenuProdutosSelecionados menuProdutosSelecionados) {
+        this.menuProdutosSelecionados = menuProdutosSelecionados;
+        for (ItemListaProduto itemListaProduto : itemListaProdutos) {
+            itemListaProduto.setTelaDescricaoProduto(menuProdutosSelecionados);
         }
     }
 }
