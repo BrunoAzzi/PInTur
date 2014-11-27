@@ -12,12 +12,8 @@ import model.Produto;
  *
  * @author everton_m
  */
-public class MenuPromocao extends java.awt.Panel {
-
-    ProdutoControl produtoControle = new ProdutoControl();
-    
+public class MenuPromocao extends java.awt.Panel {    
     ArrayList<ItemListaPromocao> itemListaPromocoes = new ArrayList();
-
     /**
      * Creates new form MenuPromocao
      */
@@ -36,52 +32,52 @@ public class MenuPromocao extends java.awt.Panel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JLabelProdutos = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+        JLabelProdutos = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(51, 102, 255));
+        setBackground(new java.awt.Color(255, 255, 204));
         addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
                 formComponentAdded(evt);
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 192));
+
         JLabelProdutos.setBackground(new java.awt.Color(255, 255, 192));
         JLabelProdutos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        JLabelProdutos.setForeground(new java.awt.Color(255, 255, 192));
         JLabelProdutos.setText("Promoções");
-
-        jScrollPane1.setBorder(null);
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 192));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(JLabelProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(JLabelProdutos)
+                .addContainerGap(375, Short.MAX_VALUE))
         );
-
-        jScrollPane1.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addComponent(JLabelProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(JLabelProdutos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -91,13 +87,12 @@ public class MenuPromocao extends java.awt.Panel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLabelProdutos;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
     private void guardaVolumes() {
         int valueX = 0;
         int valueY = 0;
-        for (Produto produto : produtoControle.listaProdutosPromocionais()) {
+        for (Produto produto : ProdutoControl.listaProdutosPromocionais()) {
             ItemListaPromocao itemListaPromocao = new ItemListaPromocao();
             itemListaPromocao.populaItemListaPromocao(produto);
             itemListaPromocao.setVisible(true);

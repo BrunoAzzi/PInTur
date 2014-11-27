@@ -7,6 +7,7 @@ package view.promocao;
 import control.ProdutoControl;
 import control.PromocaoControl;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.DefaultListModel;
@@ -210,10 +211,11 @@ DefaultListModel defaultListModel = new DefaultListModel();
                             .addComponent(jLabel4)
                             .addComponent(jFormattedTextFieldValorPromocional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                 .addContainerGap())
@@ -274,6 +276,13 @@ DefaultListModel defaultListModel = new DefaultListModel();
                         Mensagens.WARNING.getDescricao(), 
                         JOptionPane.WARNING_MESSAGE);
             }
+            else if(calendarioInicio.get(Calendar.DAY_OF_MONTH) < calendarioComputador.get(Calendar.DAY_OF_MONTH)
+                    || calendarioFim.get(Calendar.DAY_OF_MONTH) < calendarioComputador.get(Calendar.DAY_OF_MONTH)){
+                JOptionPane.showMessageDialog(null, Mensagens.PROMOCAO_CADASTRO_DIA_MENOR_QUE_DIA_ATUAL.getDescricao(),
+                        Mensagens.WARNING.getDescricao(), 
+                        JOptionPane.WARNING_MESSAGE);
+            }
+                
             else if(calendarioInicio.get(Calendar.DAY_OF_MONTH) > calendarioFim.get(Calendar.DAY_OF_MONTH)){
                 JOptionPane.showMessageDialog(null, 
                         Mensagens.PROMOCAO_CADASTRO_DIA_INVALIDO.getDescricao(), 
@@ -285,10 +294,10 @@ DefaultListModel defaultListModel = new DefaultListModel();
                 Promocao novaPromocao = new Promocao();
                 // Popular a promocao
                 populaPromocao(novaPromocao);
-                //Colocando a promocao em produto;
-                produto.setPromocao(novaPromocao);
-                //Adicionar Produto na tabela
-                promocaoTableModel.add(produto);  
+                //Adiciona Promocao e Produto na tabela
+                promocaoTableModel.add(produto, novaPromocao);
+                
+                limparCampos();
             }
             
         } catch (NullPointerException e) {
@@ -312,18 +321,22 @@ DefaultListModel defaultListModel = new DefaultListModel();
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if(promocaoTableModel.getAllProdutos().size() > 0){
-            if (JOptionPane.showConfirmDialog(this, 
+            if (JOptionPane.showConfirmDialog(this,
                     Mensagens.PROMOCAO_ADICIONAR_CONFIRMACAO.getDescricao(),
-                    Mensagens.CONFIRM.getDescricao(), 
-                    JOptionPane.YES_OPTION, 
-                    JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION){  
+                    Mensagens.CONFIRM.getDescricao(), JOptionPane.YES_OPTION,
+                    JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION){
+
+                ArrayList<Promocao> arrayListPromocao = promocaoTableModel.getAllPromocoes();
+                ArrayList<Produto> arrayListProduto = promocaoTableModel.getAllProdutos();
                 
                 
-                for(Produto produto : promocaoTableModel.getAllProdutos()){
-                    Promocao promocao  = produto.getPromocao(); 
-                    PromocaoControl.add(promocao);
-                    //ProdutoControl.add(produto);
+                for (int i = 0; i < arrayListPromocao.size(); i++) {
+                    PromocaoControl.add(arrayListPromocao.get(i));
+                    arrayListProduto.get(i).setPromocao(
+                            arrayListPromocao.get(i));
+                    ProdutoControl.add(arrayListProduto.get(i));
                 }
+                                
                 promocaoTableModel.clear();
             }
         }
@@ -402,5 +415,10 @@ DefaultListModel defaultListModel = new DefaultListModel();
         novaPromocao.setDataFinal(jDateChooserDataFinal.getDate());
         String promocaoValorTratado = jFormattedTextFieldValorPromocional.getText().replace(',', '.').trim();
         novaPromocao.setValorPromocional(new Double(promocaoValorTratado));
+    }
+    private void limparCampos(){
+        jDateChooserDateInicial.setDate(null);
+        jDateChooserDataFinal.setDate(null);
+        jFormattedTextFieldValorPromocional.setText("");
     }
 }
