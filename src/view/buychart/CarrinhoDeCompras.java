@@ -33,4 +33,8 @@ public class CarrinhoDeCompras {
         }
         return quantidade;
     }
+
+    static ArrayList<Produto> getProdutosNoCarrinho() {
+        return produtos;
+    }
 }

@@ -85,18 +85,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
 
         jLabel1.setText("Nome");
 
-        jtfQuantidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfQuantidadeActionPerformed(evt);
-            }
-        });
-
         jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jcbCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbCategoriaActionPerformed(evt);
-            }
-        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Foto"));
@@ -285,6 +274,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
                 ProdutoControl.add(produto);
             }
             produtoTableModel.clear();
+            this.dispose();
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
@@ -306,14 +296,6 @@ public class CadastroProdutos extends javax.swing.JFrame {
             System.out.println("No file Selected");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jcbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbCategoriaActionPerformed
-
-    private void jtfQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfQuantidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfQuantidadeActionPerformed
 
     /**
      * @param args the command line arguments

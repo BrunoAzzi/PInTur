@@ -95,11 +95,6 @@ public class EditarProduto extends javax.swing.JFrame {
         });
 
         jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jcbCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbCategoriaActionPerformed(evt);
-            }
-        });
 
         jButton1.setBackground(new java.awt.Color(51, 102, 255));
         jButton1.setText("...");
@@ -125,12 +120,6 @@ public class EditarProduto extends javax.swing.JFrame {
         jLabel4.setText("Qtd.");
 
         jLabel3.setText("Valor");
-
-        jtfNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfNomeActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Descricao");
 
@@ -223,7 +212,6 @@ public class EditarProduto extends javax.swing.JFrame {
                 FotoControl.add(produto.getFotoProduto().getFoto());
                 FotoProdutoControl.add(produto.getFotoProduto());
                 ProdutoControl.add(produto);
-                //TODO Verificar método para atualizar jtable2 de "ListarProdutos" após confirmar edição. (Está fazendo isto, porém tem um delay estranho)
             }
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
@@ -236,14 +224,6 @@ public class EditarProduto extends javax.swing.JFrame {
             System.out.println("No file Selected");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jcbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbCategoriaActionPerformed
-
-    private void jtfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfNomeActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        this.dispose();

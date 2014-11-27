@@ -73,7 +73,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateListas(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_updateListas
-        menuCategorias.updateCategorias();
+        menuCategorias.initCategorias();
     }//GEN-LAST:event_updateListas
 
     /**
