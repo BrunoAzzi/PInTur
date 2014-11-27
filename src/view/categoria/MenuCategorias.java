@@ -29,7 +29,7 @@ public class MenuCategorias extends javax.swing.JPanel {
      */
     public MenuCategorias() {
         initComponents();
-        updateCategorias();
+        initCategorias();
         jLabelQuantidadeDeItensNoCarrinho.setText(CarrinhoDeCompras.getQuantidadeDeProdutosNoCarrinho().toString());
     }
 
@@ -143,7 +143,7 @@ public class MenuCategorias extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    public void updateCategorias() {
+    public void initCategorias() {
         jPanel1.removeAll();
         categorias = CategoriaControl.listaCategorias();
         

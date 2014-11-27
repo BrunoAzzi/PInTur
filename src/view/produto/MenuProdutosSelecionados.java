@@ -32,7 +32,7 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jpImagemProduto = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        jlImagemProduto = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -41,25 +41,29 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jlNomeProduto = new javax.swing.JLabel();
         jlDescricaoProduto = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jlValorProduto = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jpImagemProduto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jpImagemProduto.setMaximumSize(new java.awt.Dimension(195, 178));
-        jpImagemProduto.setMinimumSize(new java.awt.Dimension(195, 178));
+        jpImagemProduto.setMaximumSize(new java.awt.Dimension(199, 182));
+        jpImagemProduto.setMinimumSize(new java.awt.Dimension(199, 182));
+
+        jlImagemProduto.setMaximumSize(new java.awt.Dimension(199, 182));
+        jlImagemProduto.setMinimumSize(new java.awt.Dimension(199, 182));
+        jlImagemProduto.setPreferredSize(new java.awt.Dimension(199, 182));
 
         javax.swing.GroupLayout jpImagemProdutoLayout = new javax.swing.GroupLayout(jpImagemProduto);
         jpImagemProduto.setLayout(jpImagemProdutoLayout);
         jpImagemProdutoLayout.setHorizontalGroup(
             jpImagemProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+            .addComponent(jlImagemProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jpImagemProdutoLayout.setVerticalGroup(
             jpImagemProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+            .addComponent(jlImagemProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -84,7 +88,7 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
 
         jlDescricaoProduto.setText("<Descrição Produto>");
 
-        jLabel7.setText("<Preço Produto>");
+        jlValorProduto.setText("<Preço Produto>");
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Shopping-Cart-01-Black 30x30.png"))); // NOI18N
@@ -129,7 +133,7 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel7))))
+                                        .addComponent(jlValorProduto))))
                             .addComponent(jLabel1))
                         .addGap(0, 225, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -156,7 +160,7 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
-                                    .addComponent(jLabel7))))
+                                    .addComponent(jlValorProduto))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -186,20 +190,19 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel jlDescricaoProduto;
+    private javax.swing.JLabel jlImagemProduto;
     private javax.swing.JLabel jlNomeProduto;
+    private javax.swing.JLabel jlValorProduto;
     private javax.swing.JPanel jpImagemProduto;
     // End of variables declaration//GEN-END:variables
 
@@ -207,9 +210,13 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
         return produto;
     }
 
-    public static void setProduto(Produto produto) {
+    public void setProduto(Produto produto) {
         MenuProdutosSelecionados.produto = produto;
         //TODO ADICIONAR AS INFORMACAOES AOS CAMPOS
+        jlNomeProduto.setText(produto.getNome());
+        jlDescricaoProduto.setText(produto.getDescricao());
+        jlValorProduto.setText(String.valueOf(produto.getValor()));
+        jlImagemProduto.setIcon(produto.getFotoProduto().getFoto().getIcon());        
         System.out.println("Setando em Menu descricao Produtos");
     }
     

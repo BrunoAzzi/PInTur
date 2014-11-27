@@ -285,6 +285,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
                 ProdutoControl.add(produto);
             }
             produtoTableModel.clear();
+            this.dispose();
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
 

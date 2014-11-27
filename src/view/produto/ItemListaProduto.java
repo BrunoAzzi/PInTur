@@ -108,7 +108,7 @@ public class ItemListaProduto extends java.awt.Panel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void SetInMenuProdutosSelecionados(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SetInMenuProdutosSelecionados
-        menuProdutosSelecionados.setProduto(produto);
+        menuProdutosSelecionados.setProduto(produto);        
     }//GEN-LAST:event_SetInMenuProdutosSelecionados
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -120,7 +120,6 @@ public class ItemListaProduto extends java.awt.Panel {
     // End of variables declaration//GEN-END:variables
 
 
-    //TODO Fazer método que coloque a alma dentro do corpo
     public void populaItemListaProduto(Produto produto){
         this.produto = produto;
         jlImagemItemProduto.setIcon(produto.getFotoProduto().getFoto().getIcon());        

@@ -18,6 +18,8 @@ import view.promocao.MenuPromocao;
  * @author bruno_azzi
  */
 public class TesteMenuPrincipal extends javax.swing.JFrame {
+    
+    boolean gambiarra = false;
 
     MenuProdutos menuProdutos = new MenuProdutos();
     MenuCategorias menuCategorias = new MenuCategorias();
@@ -33,10 +35,10 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
         initMenuProdutos();
         initMenuCategorias();
         initMenuPromocoes();
-        initMenuProdutosSelecionados();
+        initMenuProdutosSelecionados();     
 
         //DEIXANDO A DESCRICAO PRODUTO SER MANIPULADA PELO MENU PRODUTOS
-        menuProdutos.setTelaDescricaoProduto(menuProdutosSelecionados);
+        menuProdutos.setMenuProdutosSelecionados(menuProdutosSelecionados);
         //DEIXANDO OS PRODUTOS SEREM MANIPULADOS PELO MENU CATEGORIA
         menuCategorias.setMenuProdutos(menuProdutos);
     }
@@ -73,7 +75,9 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateListas(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_updateListas
-        menuCategorias.updateCategorias();
+        menuCategorias.initCategorias();
+        //if(gambiarra) menuProdutos.initListaDeProdutos();
+        //gambiarra = true;
     }//GEN-LAST:event_updateListas
 
     /**

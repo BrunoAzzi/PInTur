@@ -14,7 +14,10 @@ import model.Produto;
  */
 public class MenuProdutos extends java.awt.Panel {
 
+    ArrayList<Produto> produtos = ProdutoControl.listaProdutos();
+    
     ArrayList<ItemListaProduto> itemListaProdutos = new ArrayList();
+    
     private MenuProdutosSelecionados menuProdutosSelecionados;
 
     /**
@@ -90,13 +93,18 @@ public class MenuProdutos extends java.awt.Panel {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    private void initListaDeProdutos() {
+    public void initListaDeProdutos() {
+        jPanel1.removeAll();
+        itemListaProdutos.clear();
+        produtos = ProdutoControl.listaProdutos();
+        
         int valueX = 0;
         int valueY = 0;
-        for (Produto produto : ProdutoControl.listaProdutos()) {
+        for (Produto produto : produtos) {
+            System.out.println(produto.getNome());
             ItemListaProduto itemListaProduto = new ItemListaProduto();
             itemListaProduto.populaItemListaProduto(produto); 
-            
+            itemListaProdutos.add(itemListaProduto);
             itemListaProduto.setVisible(true);
             
             itemListaProduto.setBounds(valueX, valueY, 142, 222);            
@@ -114,7 +122,7 @@ public class MenuProdutos extends java.awt.Panel {
         }
     }
 
-    public void setTelaDescricaoProduto(MenuProdutosSelecionados menuProdutosSelecionados) {
+    public void setMenuProdutosSelecionados(MenuProdutosSelecionados menuProdutosSelecionados) {
         this.menuProdutosSelecionados = menuProdutosSelecionados;
         for (ItemListaProduto itemListaProduto : itemListaProdutos) {
             itemListaProduto.setTelaDescricaoProduto(menuProdutosSelecionados);
