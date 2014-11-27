@@ -91,6 +91,9 @@ DefaultListModel defaultListModel = new DefaultListModel();
         jButton2.setBackground(new java.awt.Color(51, 102, 255));
         jButton2.setText("Novo");
         jButton2.setBorder(null);
+        jButton2.setMaximumSize(new java.awt.Dimension(77, 23));
+        jButton2.setMinimumSize(new java.awt.Dimension(77, 23));
+        jButton2.setPreferredSize(new java.awt.Dimension(77, 23));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -101,6 +104,9 @@ DefaultListModel defaultListModel = new DefaultListModel();
         jButton3.setText("Remover");
         jButton3.setBorder(null);
         jButton3.setBorderPainted(false);
+        jButton3.setMaximumSize(new java.awt.Dimension(77, 23));
+        jButton3.setMinimumSize(new java.awt.Dimension(77, 23));
+        jButton3.setPreferredSize(new java.awt.Dimension(77, 23));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -111,11 +117,18 @@ DefaultListModel defaultListModel = new DefaultListModel();
         jTable1.setGridColor(new java.awt.Color(255, 255, 255));
         jScrollPane2.setViewportView(jTable1);
 
+        jDateChooserDateInicial.setMaximumSize(new java.awt.Dimension(89, 20));
+        jDateChooserDateInicial.setMinimumSize(new java.awt.Dimension(89, 20));
+
+        jDateChooserDataFinal.setMaximumSize(new java.awt.Dimension(89, 20));
+        jDateChooserDataFinal.setMinSelectableDate(new java.util.Date(-62135755137000L));
+        jDateChooserDataFinal.setMinimumSize(new java.awt.Dimension(89, 20));
+
         jLabel2.setText("Data Inicial");
 
         jLabel3.setText("Data Final");
 
-        jLabel4.setText("Novo Valor do Produto");
+        jLabel4.setText("Valor Promocional");
 
         jFormattedTextFieldValorPromocional.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +140,9 @@ DefaultListModel defaultListModel = new DefaultListModel();
         jButton4.setText("Salvar");
         jButton4.setBorder(null);
         jButton4.setBorderPainted(false);
+        jButton4.setMaximumSize(new java.awt.Dimension(77, 23));
+        jButton4.setMinimumSize(new java.awt.Dimension(77, 23));
+        jButton4.setPreferredSize(new java.awt.Dimension(77, 23));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -142,59 +158,71 @@ DefaultListModel defaultListModel = new DefaultListModel();
                 .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(ProdutosLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFormattedTextFieldValorPromocional, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jDateChooserDataFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDateChooserDateInicial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(ProdutosLayout.createSequentialGroup()
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(44, 44, 44)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(ProdutosLayout.createSequentialGroup()
                                 .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(ProdutosLayout.createSequentialGroup()
-                        .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(ProdutosLayout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                    .addComponent(jLabel1)
+                                    .addGroup(ProdutosLayout.createSequentialGroup()
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(ProdutosLayout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jDateChooserDataFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(ProdutosLayout.createSequentialGroup()
+                                                .addComponent(jLabel4)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jFormattedTextFieldValorPromocional))
+                                            .addGroup(ProdutosLayout.createSequentialGroup()
+                                                .addComponent(jLabel2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jDateChooserDateInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 10, Short.MAX_VALUE))))
         );
+
+        ProdutosLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel2, jLabel3});
+
         ProdutosLayout.setVerticalGroup(
             ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ProdutosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(12, 12, 12)
-                .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ProdutosLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jDateChooserDateInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooserDateInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
+                        .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDateChooserDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooserDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jFormattedTextFieldValorPromocional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jFormattedTextFieldValorPromocional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        ProdutosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jDateChooserDateInicial, jLabel2});
+
+        ProdutosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jDateChooserDataFinal, jLabel3});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -216,27 +244,42 @@ DefaultListModel defaultListModel = new DefaultListModel();
         try {
             
             Produto produto = (Produto) jList1.getSelectedValue();
+            
             String promocaoValorTratado = jFormattedTextFieldValorPromocional.getText().replace(',', '.').trim();
-            Double valorDouble = (new Double(promocaoValorTratado));            
+            
+            Double valorDouble = (new Double(promocaoValorTratado));
+            
             Date dataInicio =  jDateChooserDateInicial.getDate();
             Date dataFim =  jDateChooserDataFinal.getDate();
+            
             Calendar calendarioInicio = Calendar.getInstance();
             calendarioInicio.setTime(dataInicio);
+            
             Calendar calendarioFim = Calendar.getInstance();
             Calendar calendarioComputador = Calendar.getInstance();
+            
             calendarioFim.setTime(dataFim);
             calendarioInicio.get(Calendar.MONTH);
            
-            if(valorDouble <= 0||valorDouble >= produto.getValor()){
-                JOptionPane.showMessageDialog(null, Mensagens.PROMOCAO_CADASTRO_CAMPOS_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+            if(valorDouble <= 0 || valorDouble >= produto.getValor()){
+                JOptionPane.showMessageDialog(null, 
+                        Mensagens.PROMOCAO_CADASTRO_CAMPOS_INVALIDOS.getDescricao(),
+                        Mensagens.WARNING.getDescricao(), 
+                        JOptionPane.WARNING_MESSAGE);
 
             }
             else if(calendarioInicio.get(Calendar.MONTH) != calendarioComputador.get(Calendar.MONTH)
                     || calendarioFim.get(Calendar.MONTH) != calendarioComputador.get(Calendar.MONTH)){
-                JOptionPane.showMessageDialog(null, Mensagens.PROMOCAO_CADASTRO_MES_INVALIDO.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, 
+                        Mensagens.PROMOCAO_CADASTRO_MES_INVALIDO.getDescricao(),
+                        Mensagens.WARNING.getDescricao(), 
+                        JOptionPane.WARNING_MESSAGE);
             }
             else if(calendarioInicio.get(Calendar.DAY_OF_MONTH) > calendarioFim.get(Calendar.DAY_OF_MONTH)){
-                JOptionPane.showMessageDialog(null, Mensagens.PROMOCAO_CADASTRO_DIA_INVALIDO.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, 
+                        Mensagens.PROMOCAO_CADASTRO_DIA_INVALIDO.getDescricao(), 
+                        Mensagens.WARNING.getDescricao(), 
+                        JOptionPane.WARNING_MESSAGE);
             }
             else{
                 // Nova promocao
@@ -251,10 +294,16 @@ DefaultListModel defaultListModel = new DefaultListModel();
             
         } catch (NullPointerException e) {
             
-            JOptionPane.showMessageDialog(null, Mensagens.PROMOCAO_CADASTRO_OBJETO_NULO.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,
+                    Mensagens.PROMOCAO_CADASTRO_OBJETO_NULO.getDescricao(), 
+                    Mensagens.WARNING.getDescricao(), 
+                    JOptionPane.WARNING_MESSAGE);
 
         } catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, Mensagens.PROMOCAO_CADASTRO_CAMPOS_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, 
+                    Mensagens.PROMOCAO_CADASTRO_CAMPOS_INVALIDOS.getDescricao(), 
+                    Mensagens.WARNING.getDescricao(), 
+                    JOptionPane.WARNING_MESSAGE);
         }
         
 

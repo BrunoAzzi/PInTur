@@ -69,6 +69,9 @@ public class CadastroProdutos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 204));
+        setMaximumSize(new java.awt.Dimension(287, 400));
+        setMinimumSize(new java.awt.Dimension(287, 400));
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 204));
 
@@ -120,6 +123,10 @@ public class CadastroProdutos extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(51, 102, 255));
         jButton1.setText("...");
+        jButton1.setBorder(null);
+        jButton1.setMaximumSize(new java.awt.Dimension(77, 23));
+        jButton1.setMinimumSize(new java.awt.Dimension(77, 23));
+        jButton1.setPreferredSize(new java.awt.Dimension(77, 23));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -128,6 +135,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
 
         jbRemover.setBackground(new java.awt.Color(51, 102, 255));
         jbRemover.setText("Remover");
+        jbRemover.setBorder(null);
         jbRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbRemoverActionPerformed(evt);
@@ -136,6 +144,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
 
         jbSalvar.setBackground(new java.awt.Color(51, 102, 255));
         jbSalvar.setText("Salvar");
+        jbSalvar.setBorder(null);
         jbSalvar.setMaximumSize(new java.awt.Dimension(77, 23));
         jbSalvar.setMinimumSize(new java.awt.Dimension(77, 23));
         jbSalvar.setPreferredSize(new java.awt.Dimension(77, 23));
@@ -147,6 +156,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
 
         jbNovo.setBackground(new java.awt.Color(51, 102, 255));
         jbNovo.setText("Novo");
+        jbNovo.setBorder(null);
         jbNovo.setMaximumSize(new java.awt.Dimension(77, 23));
         jbNovo.setMinimumSize(new java.awt.Dimension(77, 23));
         jbNovo.setPreferredSize(new java.awt.Dimension(77, 23));
@@ -189,9 +199,10 @@ public class CadastroProdutos extends javax.swing.JFrame {
                         .addGap(81, 81, 81)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -229,7 +240,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
