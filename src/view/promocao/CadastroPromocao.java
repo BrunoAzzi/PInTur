@@ -211,10 +211,11 @@ DefaultListModel defaultListModel = new DefaultListModel();
                             .addComponent(jLabel4)
                             .addComponent(jFormattedTextFieldValorPromocional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                 .addContainerGap())
@@ -275,6 +276,13 @@ DefaultListModel defaultListModel = new DefaultListModel();
                         Mensagens.WARNING.getDescricao(), 
                         JOptionPane.WARNING_MESSAGE);
             }
+            else if(calendarioInicio.get(Calendar.DAY_OF_MONTH) < calendarioComputador.get(Calendar.DAY_OF_MONTH)
+                    || calendarioFim.get(Calendar.DAY_OF_MONTH) < calendarioComputador.get(Calendar.DAY_OF_MONTH)){
+                JOptionPane.showMessageDialog(null, Mensagens.PROMOCAO_CADASTRO_DIA_MENOR_QUE_DIA_ATUAL.getDescricao(),
+                        Mensagens.WARNING.getDescricao(), 
+                        JOptionPane.WARNING_MESSAGE);
+            }
+                
             else if(calendarioInicio.get(Calendar.DAY_OF_MONTH) > calendarioFim.get(Calendar.DAY_OF_MONTH)){
                 JOptionPane.showMessageDialog(null, 
                         Mensagens.PROMOCAO_CADASTRO_DIA_INVALIDO.getDescricao(), 
