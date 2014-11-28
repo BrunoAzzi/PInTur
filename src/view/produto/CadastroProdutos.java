@@ -28,7 +28,6 @@ public class CadastroProdutos extends javax.swing.JFrame {
     DefaultComboBoxModel<Categoria> defaultComboBoxModel = new DefaultComboBoxModel();
     ImageChooser imageChooser = new ImageChooser(this);
     ProdutoTableModel produtoTableModel = new ProdutoTableModel(3, false);
-    private Component rootPane;
 
     /**
      * Creates new form CadastroProdutos
@@ -68,6 +67,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Produtos");
         setBackground(new java.awt.Color(255, 255, 204));
         setMaximumSize(new java.awt.Dimension(287, 400));
         setMinimumSize(new java.awt.Dimension(287, 400));
@@ -283,7 +283,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
         if (isCamposValidados()) {
             produtoTableModel.add(getProdutoPopulado());
         } else {
-            JOptionPane.showMessageDialog(rootPane, Mensagens.PRODUTO_CADASTRO_CAMPOS_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, Mensagens.PRODUTO_CADASTRO_CAMPOS_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
         }
         limpaCampos();
     }//GEN-LAST:event_jbNovoActionPerformed
@@ -363,6 +363,8 @@ public class CadastroProdutos extends javax.swing.JFrame {
     }
 
     private boolean isCamposValidados() {
+        int quantidade = 0;
+        
         if (jtfQuantidade.getText().equals("")) {
             return false;
         }
@@ -375,9 +377,21 @@ public class CadastroProdutos extends javax.swing.JFrame {
         if (jtfDescricao.getText().equals("")) {
             return false;
         }
+        
+        if(jlProdutoImage.getIcon().equals(null)){
+            return false;
+        }
+        
         String produtoValorTratado = jtfValor.getText().replace(',', '.').trim();
+        
         Double valorDouble = (new Double(produtoValorTratado));
-        int quantidade = new Integer(jtfQuantidade.getText());
+        
+        try {
+            quantidade = new Integer(jtfQuantidade.getText());
+        } catch (NumberFormatException numberFormatException) {
+            return false;
+        }
+        
         if (valorDouble < 0) {
             return false;
         }

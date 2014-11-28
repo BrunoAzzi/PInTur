@@ -45,6 +45,7 @@ public class LoginAdmin extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Login");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(102, 153, 255));

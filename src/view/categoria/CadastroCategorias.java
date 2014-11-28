@@ -53,7 +53,7 @@ public class CadastroCategorias extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastrar Categoria");
+        setTitle("Cadastro De Categorias");
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 204));
