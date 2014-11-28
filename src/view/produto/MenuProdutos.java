@@ -14,10 +14,11 @@ import model.Produto;
  */
 public class MenuProdutos extends java.awt.Panel {
 
+    int incrementadorX = 0;
+    int x = 30;
+    int y = 10;
     ArrayList<Produto> produtos = ProdutoControl.listaProdutos();
-    
     ArrayList<ItemListaProduto> itemListaProdutos = new ArrayList();
-    
     private MenuProdutosSelecionados menuProdutosSelecionados;
 
     /**
@@ -78,7 +79,6 @@ public class MenuProdutos extends java.awt.Panel {
                 .addComponent(jScrollPane1))
         );
     }// </editor-fold>//GEN-END:initComponents
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLabelProdutos;
     private javax.swing.JPanel jPanel1;
@@ -89,27 +89,16 @@ public class MenuProdutos extends java.awt.Panel {
         jPanel1.removeAll();
         itemListaProdutos.clear();
         produtos = ProdutoControl.listaProdutos();
-        
-        int valueX = 0;
-        int valueY = 0;
+
         for (Produto produto : produtos) {
             System.out.println(produto.getNome());
             ItemListaProduto itemListaProduto = new ItemListaProduto();
-            itemListaProduto.populaItemListaProduto(produto); 
+            itemListaProduto.populaItemListaProduto(produto);
             itemListaProdutos.add(itemListaProduto);
+
+            preparaItemMenu(itemListaProduto);
+
             itemListaProduto.setVisible(true);
-            
-            itemListaProduto.setBounds(valueX, valueY, 142, 222);            
-            if (valueX < 293) {
-                valueX += 152;
-            } else {
-                valueX = 0;
-            }
-            if (valueX == 152) {
-                valueY = 0;
-            }else{
-                valueY += 232;
-            }
             jPanel1.add(itemListaProduto);
         }
     }
@@ -118,6 +107,19 @@ public class MenuProdutos extends java.awt.Panel {
         this.menuProdutosSelecionados = menuProdutosSelecionados;
         for (ItemListaProduto itemListaProduto : itemListaProdutos) {
             itemListaProduto.setTelaDescricaoProduto(menuProdutosSelecionados);
+        }
+    }
+
+    private void preparaItemMenu(ItemListaProduto itemListaProduto) {
+        itemListaProduto.setBounds(x, y, 142, 222);
+
+        if (incrementadorX < 3) {
+            x += 172;
+            incrementadorX += 1;
+        } else {
+            x = 30;
+            y += 242;
+            incrementadorX = 0;
         }
     }
 }
