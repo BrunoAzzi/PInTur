@@ -36,7 +36,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
         initMenuProdutosSelecionados();
 
         //DEIXANDO A DESCRICAO PRODUTO SER MANIPULADA PELO MENU PRODUTOS
-        menuProdutos.setTelaDescricaoProduto(menuProdutosSelecionados);
+        menuProdutos.setMenuProdutosSelecionados(menuProdutosSelecionados);
         //DEIXANDO OS PRODUTOS SEREM MANIPULADOS PELO MENU CATEGORIA
         menuCategorias.setMenuProdutos(menuProdutos);
     }
@@ -73,7 +73,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateListas(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_updateListas
-        menuCategorias.updateCategorias();
+        menuCategorias.initCategorias();
     }//GEN-LAST:event_updateListas
 
     /**
