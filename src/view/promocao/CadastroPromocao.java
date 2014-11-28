@@ -130,12 +130,6 @@ DefaultListModel defaultListModel = new DefaultListModel();
 
         jLabel4.setText("Valor Promocional");
 
-        jFormattedTextFieldValorPromocional.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldValorPromocionalActionPerformed(evt);
-            }
-        });
-
         jButton4.setBackground(new java.awt.Color(51, 102, 255));
         jButton4.setText("Salvar");
         jButton4.setBorder(null);
@@ -351,10 +345,6 @@ DefaultListModel defaultListModel = new DefaultListModel();
         if(jTable1.getSelectedRow() >= 0){
             promocaoTableModel.deleteRow(jTable1.getSelectedRow());}
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jFormattedTextFieldValorPromocionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldValorPromocionalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldValorPromocionalActionPerformed
 
     /**
      * @param args the command line arguments

@@ -185,9 +185,6 @@
         <Component class="javax.swing.JFormattedTextField" name="jtfValor">
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="jtfQuantidade">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfQuantidadeActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="jcbCategoria">
           <Properties>
@@ -200,9 +197,6 @@
               </StringArray>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbCategoriaActionPerformed"/>
-          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel1">
           <Properties>

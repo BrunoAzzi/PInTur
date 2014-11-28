@@ -19,7 +19,7 @@ public class ItemListaProduto extends java.awt.Panel {
      * Creates new form ItemListaProduto
      */
     public ItemListaProduto() {
-        initComponents();        
+        initComponents();    
     }
 
     /**
@@ -36,7 +36,7 @@ public class ItemListaProduto extends java.awt.Panel {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(51, 102, 255));
+        setBackground(new java.awt.Color(96, 136, 255));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SetInMenuProdutosSelecionados(evt);
@@ -53,6 +53,10 @@ public class ItemListaProduto extends java.awt.Panel {
         jlValorProduto.setText("<Valor>");
 
         jlImagemItemProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Product-Blacl.png"))); // NOI18N
+        jlImagemItemProduto.setMaximumSize(new java.awt.Dimension(60, 60));
+        jlImagemItemProduto.setMinimumSize(new java.awt.Dimension(60, 60));
+        jlImagemItemProduto.setPreferredSize(new java.awt.Dimension(60, 60));
+        jlImagemItemProduto.setVerifyInputWhenFocusTarget(false);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Shopping-Cart-01-Black 30x30.png"))); // NOI18N
@@ -77,7 +81,7 @@ public class ItemListaProduto extends java.awt.Panel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1))
                     .addComponent(jlValorProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -108,7 +112,7 @@ public class ItemListaProduto extends java.awt.Panel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void SetInMenuProdutosSelecionados(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SetInMenuProdutosSelecionados
-        menuProdutosSelecionados.setProduto(produto);
+        menuProdutosSelecionados.setProduto(produto);        
     }//GEN-LAST:event_SetInMenuProdutosSelecionados
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -120,7 +124,6 @@ public class ItemListaProduto extends java.awt.Panel {
     // End of variables declaration//GEN-END:variables
 
 
-    //TODO Fazer método que coloque a alma dentro do corpo
     public void populaItemListaProduto(Produto produto){
         this.produto = produto;
         jlImagemItemProduto.setIcon(produto.getFotoProduto().getFoto().getIcon());        

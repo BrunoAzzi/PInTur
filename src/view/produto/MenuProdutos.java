@@ -14,7 +14,10 @@ import model.Produto;
  */
 public class MenuProdutos extends java.awt.Panel {
 
+    ArrayList<Produto> produtos = ProdutoControl.listaProdutos();
+    
     ArrayList<ItemListaProduto> itemListaProdutos = new ArrayList();
+    
     private MenuProdutosSelecionados menuProdutosSelecionados;
 
     /**
@@ -38,11 +41,6 @@ public class MenuProdutos extends java.awt.Panel {
         jPanel1 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(51, 102, 255));
-        addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                formComponentAdded(evt);
-            }
-        });
 
         JLabelProdutos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         JLabelProdutos.setForeground(new java.awt.Color(255, 255, 255));
@@ -81,22 +79,24 @@ public class MenuProdutos extends java.awt.Panel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_formComponentAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formComponentAdded
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLabelProdutos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    private void initListaDeProdutos() {
+    public void initListaDeProdutos() {
+        jPanel1.removeAll();
+        itemListaProdutos.clear();
+        produtos = ProdutoControl.listaProdutos();
+        
         int valueX = 0;
         int valueY = 0;
-        for (Produto produto : ProdutoControl.listaProdutos()) {
+        for (Produto produto : produtos) {
+            System.out.println(produto.getNome());
             ItemListaProduto itemListaProduto = new ItemListaProduto();
             itemListaProduto.populaItemListaProduto(produto); 
-            
+            itemListaProdutos.add(itemListaProduto);
             itemListaProduto.setVisible(true);
             
             itemListaProduto.setBounds(valueX, valueY, 142, 222);            
@@ -114,7 +114,7 @@ public class MenuProdutos extends java.awt.Panel {
         }
     }
 
-    public void setTelaDescricaoProduto(MenuProdutosSelecionados menuProdutosSelecionados) {
+    public void setMenuProdutosSelecionados(MenuProdutosSelecionados menuProdutosSelecionados) {
         this.menuProdutosSelecionados = menuProdutosSelecionados;
         for (ItemListaProduto itemListaProduto : itemListaProdutos) {
             itemListaProduto.setTelaDescricaoProduto(menuProdutosSelecionados);
