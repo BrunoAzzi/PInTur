@@ -5,6 +5,7 @@
 package view;
 
 import control.ProdutoControl;
+import control.PromocaoControl;
 import java.util.Calendar;
 import model.Produto;
 import utilidades.Tela;
@@ -28,7 +29,6 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
      * Creates new form TesteMenuPrincipal
      */
     public TesteMenuPrincipal() {
-        //   verificarPromocoes();
         initComponents();
         initMenuProdutos();
         initMenuCategorias();
@@ -126,6 +126,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     }
 
     private void initMenuPromocoes() {
+        PromocaoControl.verificarPromocoes();
         menuPromocoes.setVisible(true);
         menuPromocoes.setBounds(Tela.menuPromocoesBounds());
         this.add(menuPromocoes);
@@ -135,20 +136,5 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
         menuProdutosSelecionados.setVisible(true);
         menuProdutosSelecionados.setBounds(Tela.menuProdutosSelecionadosBounds());
         this.add(menuProdutosSelecionados);
-    }
-
-    private void verificarPromocoes() {
-        Calendar dataAtual = Calendar.getInstance();
-        Calendar dataFinalPromocao = null;
-
-        for (Produto produto : ProdutoControl.listaProdutosPromocionais()) {
-            dataFinalPromocao.setTime(produto.getPromocao().getDataFinal());
-
-            if (dataFinalPromocao.before(dataAtual)) {
-                produto.setPromocao(null);
-                ProdutoControl.add(produto);
-
-            }
-        }
     }
 }
