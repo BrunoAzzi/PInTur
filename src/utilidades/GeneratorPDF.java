@@ -8,6 +8,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.LineSeparator;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,10 +32,12 @@ public class GeneratorPDF {
                 document.add(new Paragraph("Descricao: " + produto.getDescricao()));
                 document.add(new Paragraph("Quantidade: " + Integer.toString(produto.getQuantidade())));
                 document.add(new Paragraph("Valor: " + Double.toString(produto.getValor())));
+                document.add(new LineSeparator());
                 
                 
                 if (produto.getPromocao() != null) {
                     document.add(new Paragraph("ValorPromocional: " + Double.toString(produto.getPromocao().getValorPromocional()) + "\n"));
+                    document.add(new LineSeparator());
                 }
             }
         } catch (DocumentException | IOException de) {

@@ -5,6 +5,7 @@
 package view;
 
 import control.ProdutoControl;
+import control.PromocaoControl;
 import java.util.Calendar;
 import model.Produto;
 import utilidades.Tela;
@@ -18,8 +19,6 @@ import view.promocao.MenuPromocao;
  * @author bruno_azzi
  */
 public class TesteMenuPrincipal extends javax.swing.JFrame {
-    
-    boolean gambiarra = false;
 
     MenuProdutos menuProdutos = new MenuProdutos();
     MenuCategorias menuCategorias = new MenuCategorias();
@@ -30,15 +29,14 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
      * Creates new form TesteMenuPrincipal
      */
     public TesteMenuPrincipal() {
-        //   verificarPromocoes();
         initComponents();
         initMenuProdutos();
         initMenuCategorias();
         initMenuPromocoes();
-        initMenuProdutosSelecionados();     
+        initMenuProdutosSelecionados();
 
         //DEIXANDO A DESCRICAO PRODUTO SER MANIPULADA PELO MENU PRODUTOS
-        menuProdutos.setMenuProdutosSelecionados(menuProdutosSelecionados);
+        menuProdutos.setTelaDescricaoProduto(menuProdutosSelecionados);
         //DEIXANDO OS PRODUTOS SEREM MANIPULADOS PELO MENU CATEGORIA
         menuCategorias.setMenuProdutos(menuProdutos);
     }
@@ -75,9 +73,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateListas(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_updateListas
-        menuCategorias.initCategorias();
-        //if(gambiarra) menuProdutos.initListaDeProdutos();
-        //gambiarra = true;
+        menuCategorias.updateCategorias();
     }//GEN-LAST:event_updateListas
 
     /**
@@ -130,6 +126,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     }
 
     private void initMenuPromocoes() {
+        PromocaoControl.verificarPromocoes();
         menuPromocoes.setVisible(true);
         menuPromocoes.setBounds(Tela.menuPromocoesBounds());
         this.add(menuPromocoes);
@@ -139,20 +136,5 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
         menuProdutosSelecionados.setVisible(true);
         menuProdutosSelecionados.setBounds(Tela.menuProdutosSelecionadosBounds());
         this.add(menuProdutosSelecionados);
-    }
-
-    private void verificarPromocoes() {
-        Calendar dataAtual = Calendar.getInstance();
-        Calendar dataFinalPromocao = null;
-
-        for (Produto produto : ProdutoControl.listaProdutosPromocionais()) {
-            dataFinalPromocao.setTime(produto.getPromocao().getDataFinal());
-
-            if (dataFinalPromocao.before(dataAtual)) {
-                produto.setPromocao(null);
-                ProdutoControl.add(produto);
-
-            }
-        }
     }
 }
