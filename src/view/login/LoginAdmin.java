@@ -4,17 +4,27 @@
  */
 package view.login;
 
+import control.UsuarioControl;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import model.Usuario;
+import utilidades.Formatador;
+import utilidades.Mensagens;
+
 /**
  *
  * @author bruno_azzi
  */
 public class LoginAdmin extends javax.swing.JFrame {
 
+    ArrayList<Usuario> usuarios = UsuarioControl.listaUsuarios();
+
     /**
      * Creates new form LoginAdmin
      */
     public LoginAdmin() {
         initComponents();
+
     }
 
     /**
@@ -124,14 +134,25 @@ public class LoginAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(isCamposOK()){
-            MenuCadastros menuCadastros = new MenuCadastros();
-            menuCadastros.setVisible(true);
-            this.dispose();
-        }else{
-            //TODO MENSAGEM DE ERRO DE LOGIN
-            System.out.println("ERRO DE CAMPO!");
+        if (isCamposValidos()) {
+            if (hasUserPermission()) {
+                MenuCadastros menuCadastros = new MenuCadastros();
+                menuCadastros.setVisible(true);
+                //TODO Versão 2.0 - implementar controle de logs por usuario
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        Mensagens.NAO_TEM_PERMISSAO.getDescricao(),
+                        Mensagens.WARNING.getDescricao(),
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    Mensagens.CAMPOS_INVALIDOS.getDescricao(),
+                    Mensagens.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
         }
+        limpaCampos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -178,20 +199,33 @@ public class LoginAdmin extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
-    private boolean isCamposOK() {
-        if(!isCamposValidos()) return false;
-        if(!hasUserPermission()) return false;
-        return true;
-    }
-
     private boolean isCamposValidos() {
-        if(jTextField1.getText().equals("")) return false;
-        if(jPasswordField1.getPassword().length <= 0) return false;
+        if (jTextField1.getText().equals("")) {
+            return false;
+        }
+        if (jPasswordField1.getPassword().length <= 0) {
+            return false;
+        }
         return true;
     }
 
     private boolean hasUserPermission() {
-        //TODO USER PERMISSION CHECK IN THE DATABASE
-        return true;
+        boolean userOk = false;
+        boolean passwordOk = false;
+        for (Usuario usuario : usuarios) {
+            if (usuario.getLogin().equals(jTextField1.getText())) {
+                if (usuario.getSenha().equals(
+                        Formatador.charArrayToString(
+                        jPasswordField1.getPassword()))) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private void limpaCampos() {
+        jTextField1.setText("");
+        jPasswordField1.setText("");
     }
 }

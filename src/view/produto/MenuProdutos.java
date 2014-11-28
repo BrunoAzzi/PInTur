@@ -41,11 +41,6 @@ public class MenuProdutos extends java.awt.Panel {
         jPanel1 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(51, 102, 255));
-        addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                formComponentAdded(evt);
-            }
-        });
 
         JLabelProdutos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         JLabelProdutos.setForeground(new java.awt.Color(255, 255, 255));
@@ -84,9 +79,6 @@ public class MenuProdutos extends java.awt.Panel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_formComponentAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formComponentAdded
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLabelProdutos;
     private javax.swing.JPanel jPanel1;

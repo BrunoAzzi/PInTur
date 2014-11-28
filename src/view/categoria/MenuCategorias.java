@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import model.Categoria;
 import utilidades.Tela;
 import view.buychart.CarrinhoDeCompras;
+import view.buychart.TelaCarrinhoDeCompras;
 import view.login.LoginAdmin;
 import view.produto.MenuProdutos;
 
@@ -65,6 +66,11 @@ public class MenuCategorias extends javax.swing.JPanel {
 
         jLabelBasket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Shopping-Cart-01-Black 30x30.png"))); // NOI18N
         jLabelBasket.setRequestFocusEnabled(false);
+        jLabelBasket.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AbreCarrinhoDeCompras(evt);
+            }
+        });
 
         jLabelQuantidadeDeItensNoCarrinho.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelQuantidadeDeItensNoCarrinho.setForeground(new java.awt.Color(255, 255, 255));
@@ -108,7 +114,7 @@ public class MenuCategorias extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)))
                 .addGap(185, 185, 185)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -116,10 +122,10 @@ public class MenuCategorias extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabelQuantidadeDeItensNoCarrinho)
@@ -133,6 +139,11 @@ public class MenuCategorias extends javax.swing.JPanel {
         LoginAdmin loginAdmin = new LoginAdmin();
         loginAdmin.setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void AbreCarrinhoDeCompras(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AbreCarrinhoDeCompras
+        TelaCarrinhoDeCompras telaCarrinhoDeCompras = new TelaCarrinhoDeCompras();
+        telaCarrinhoDeCompras.setVisible(true);
+    }//GEN-LAST:event_AbreCarrinhoDeCompras
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
