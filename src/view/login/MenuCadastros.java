@@ -38,6 +38,7 @@ public class MenuCadastros extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Menu");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

@@ -78,7 +78,8 @@ DefaultListModel defaultListModel = new DefaultListModel();
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Promoções");
         setBackground(new java.awt.Color(255, 255, 192));
         setResizable(false);
 

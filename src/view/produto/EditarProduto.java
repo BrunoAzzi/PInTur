@@ -60,6 +60,7 @@ public class EditarProduto extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Edição de Produtos");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 204));
 
