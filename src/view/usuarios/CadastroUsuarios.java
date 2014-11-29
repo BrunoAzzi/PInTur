@@ -54,6 +54,7 @@ public class CadastroUsuarios extends javax.swing.JFrame {
         jPasswordFieldSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Usuários");
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 204));

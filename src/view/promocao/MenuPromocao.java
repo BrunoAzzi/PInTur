@@ -43,6 +43,9 @@ public class MenuPromocao extends java.awt.Panel {
         jLabel6 = new javax.swing.JLabel();
         jButtonVoltarPromocao = new javax.swing.JButton();
         jButtonProximaPromocao = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jlValorProdutoPromocional = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 192));
         setPreferredSize(new java.awt.Dimension(651, 100));
@@ -96,6 +99,13 @@ public class MenuPromocao extends java.awt.Panel {
             }
         });
 
+        jLabel7.setText("De:");
+
+        jLabel8.setText("Por:");
+
+        jlValorProdutoPromocional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlValorProdutoPromocional.setText("<Preço>");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,24 +123,37 @@ public class MenuPromocao extends java.awt.Panel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(20, 20, 20)
-                                .addComponent(jlValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jLabel8))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                                        .addComponent(jLabel7)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(35, 35, 35)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jlValorProdutoPromocional, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(3, 3, 3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel6))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jlNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(110, 110, 110)
                         .addComponent(jButtonProximaPromocao)
                         .addGap(10, 10, 10)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonAddCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonProximaPromocao, jButtonVoltarPromocao});
@@ -148,7 +171,6 @@ public class MenuPromocao extends java.awt.Panel {
                                 .addGap(28, 28, 28)
                                 .addComponent(jButtonVoltarPromocao, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(11, 11, 11)))
                         .addGroup(layout.createSequentialGroup()
@@ -160,17 +182,26 @@ public class MenuPromocao extends java.awt.Panel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel5)
                                 .addComponent(jLabel6))
-                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jlValorProduto)
+                                        .addComponent(jLabel7)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(27, 27, 27)
+                                    .addComponent(jLabel4)))
+                            .addGap(13, 13, 13)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jlValorProduto)
-                                .addComponent(jLabel4)))
+                                .addComponent(jlValorProdutoPromocional)
+                                .addComponent(jLabel8)))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGap(23, 23, 23)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jButtonProximaPromocao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jButtonAddCarrinho, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jlImagemItemProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonProximaPromocao, jButtonVoltarPromocao});
@@ -217,9 +248,12 @@ public class MenuPromocao extends java.awt.Panel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jlImagemItemProduto;
     private javax.swing.JLabel jlNomeProduto;
     private javax.swing.JLabel jlValorProduto;
+    private javax.swing.JLabel jlValorProdutoPromocional;
     // End of variables declaration//GEN-END:variables
 
     public void initProdutos(){
@@ -230,7 +264,8 @@ public class MenuPromocao extends java.awt.Panel {
             jlImagemItemProduto.setIcon(produtosPromocionais.get(produtoIndex).getFotoProduto().getFoto().getIcon());        
             jlNomeProduto.setText(produtosPromocionais.get(produtoIndex).getNome());
             jLabel6.setText(produtosPromocionais.get(produtoIndex).getDescricao());
-            jlValorProduto.setText(Double.toString(produtosPromocionais.get(produtoIndex).getPromocao().getValorPromocional()));        
+            jlValorProduto.setText(Double.toString(produtosPromocionais.get(produtoIndex).getValor()));        
+            jlValorProdutoPromocional.setText(Double.toString(produtosPromocionais.get(produtoIndex).getPromocao().getValorPromocional()));
         } 
     }
     public boolean existePromocoes(){
