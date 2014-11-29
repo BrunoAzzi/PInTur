@@ -378,7 +378,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
             return false;
         }
         
-        if(jlProdutoImage.getIcon().equals(null)){
+        if(jlProdutoImage.getIcon() == null){
             return false;
         }
         

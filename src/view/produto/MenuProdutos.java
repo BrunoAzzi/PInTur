@@ -5,8 +5,8 @@
 package view.produto;
 
 import control.ProdutoControl;
-import java.awt.Dimension;
 import java.util.ArrayList;
+import model.Categoria;
 import model.Produto;
 import utilidades.Tela;
 
@@ -28,7 +28,7 @@ public class MenuProdutos extends java.awt.Panel {
      */
     public MenuProdutos() {
         initComponents();
-        initListaDeProdutos();
+        initListaDeProdutos(new Categoria());
     }
 
     /**
@@ -75,7 +75,7 @@ public class MenuProdutos extends java.awt.Panel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JLabelProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+            .addComponent(JLabelProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -86,7 +86,7 @@ public class MenuProdutos extends java.awt.Panel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(JLabelProdutos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -96,10 +96,10 @@ public class MenuProdutos extends java.awt.Panel {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    public void initListaDeProdutos() {
+    public void initListaDeProdutos(Categoria categoria) {
         jPanel1.removeAll();
         itemListaProdutos.clear();
-        produtos = ProdutoControl.listaProdutos();
+        produtos = ProdutoControl.listaProdutosByCategoria(categoria);
 
         for (Produto produto : produtos) {
             System.out.println(produto.getNome());
@@ -124,14 +124,14 @@ public class MenuProdutos extends java.awt.Panel {
     private void preparaItemMenu(ItemListaProduto itemListaProduto) {
         itemListaProduto.setBounds(x, y, 142, 222);
 
-        if (incrementadorX < 3) {
+        if (incrementadorX < 2) {
             x += 172;
             incrementadorX += 1;
         } else {
             x = 30;
             y += 242;
             incrementadorX = 0;
-            jScrollPane1.setPreferredSize(new Dimension((172*4),(y*500)));
+            //jScrollPane1.setPreferredSize(new Dimension((172*4),(y*500)));
             
         }
     }

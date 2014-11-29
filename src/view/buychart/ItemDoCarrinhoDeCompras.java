@@ -40,6 +40,11 @@ public class ItemDoCarrinhoDeCompras extends javax.swing.JPanel {
         jLabelDescricao = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atualizaValorTotal(evt);
+            }
+        });
 
         jLabelFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Product-Blacl.png"))); // NOI18N
 
@@ -51,16 +56,15 @@ public class ItemDoCarrinhoDeCompras extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(51, 102, 255));
         jButton1.setText("Remover");
         jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabelValorTotal.setText("<Valor Total>");
 
         jLabelQuantidade.setText("Quantidade");
-
-        jSpinnerQuantidade.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                updateQuantidadeDoProduto(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -110,11 +114,14 @@ public class ItemDoCarrinhoDeCompras extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void updateQuantidadeDoProduto(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_updateQuantidadeDoProduto
-        //TODO improve event
-        //produto.setQuantidade(jSpinnerQuantidade.getComponentCount());
-        //jLabelValorTotal.setText(Double.toString(jSpinnerQuantidade.getComponentCount()*produto.getQuantidade()));
-    }//GEN-LAST:event_updateQuantidadeDoProduto
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CarrinhoDeCompras.removeProduto(produto);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void atualizaValorTotal(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaValorTotal
+        System.out.println(jSpinnerQuantidade.getValue());
+        System.out.println("Teste");
+    }//GEN-LAST:event_atualizaValorTotal
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
