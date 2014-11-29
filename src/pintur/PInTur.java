@@ -19,10 +19,9 @@ public class PInTur {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ArrayList<Produto> produtos = ProdutoControl.listaProdutos();
+        ArrayList<Produto> produtos = ProdutoControl.listaProdutos();        
         
-        GeneratorPDF.gerarPdf(produtos);
-
-
+//        GeneratorPDF.gerarPdf(produtos);
+        GeneratorPDF.gerarCupomFiscalPDF(produtos);
     }
 }
