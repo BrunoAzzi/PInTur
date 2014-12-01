@@ -11,6 +11,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import model.Produto;
 import model.Vendaefetuada;
 import view.buychart.CarrinhoDeCompras;
@@ -76,6 +77,11 @@ public class GeneratorPDF {
                 document.add(paragraph);
                 document.add(new Paragraph(" "));
                 document.add(new LineSeparator());
+                paragraph = new Paragraph("Data de venda: " + new Date());
+                paragraph.setAlignment(Element.ALIGN_LEFT);
+                paragraph.add(paragraph);
+                //TODO Forma de pagamento
+//                paragraph = new Paragraph("Forma de pagamento: " + )
                 if (produto.getPromocao() != null) {
                     paragraph = new Paragraph("Valor promocional: " + produto.getPromocao().getValorPromocional());
                     paragraph.setAlignment(Element.ALIGN_LEFT);
