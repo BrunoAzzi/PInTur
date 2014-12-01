@@ -25,14 +25,13 @@ import javax.swing.ImageIcon;
  * @author bruno_azzi
  */
 @Entity
-@Table(name = "foto", catalog = "PInTur", schema = "")
 @NamedQueries({
     @NamedQuery(name = "Foto.findAll", query = "SELECT f FROM Foto f"),
     @NamedQuery(name = "Foto.findByCodigo", query = "SELECT f FROM Foto f WHERE f.codigo = :codigo")})
 public class Foto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Basic(optional = false)
     @Column(name = "codigo", nullable = false)
     private Integer codigo;

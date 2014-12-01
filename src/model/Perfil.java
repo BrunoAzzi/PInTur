@@ -23,7 +23,6 @@ import javax.persistence.Table;
  * @author bruno_azzi
  */
 @Entity
-@Table(name = "perfil", catalog = "PInTur", schema = "")
 @NamedQueries({
     @NamedQuery(name = "Perfil.findAll", query = "SELECT p FROM Perfil p"),
     @NamedQuery(name = "Perfil.findByCodigo", query = "SELECT p FROM Perfil p WHERE p.codigo = :codigo"),
@@ -31,7 +30,7 @@ import javax.persistence.Table;
 public class Perfil implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Basic(optional = false)
     @Column(name = "codigo", nullable = false)
     private Integer codigo;

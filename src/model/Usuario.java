@@ -23,8 +23,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author bruno_azzi
  */
 @Entity
-@Table(name = "usuario", catalog = "PInTur", schema = "")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
     @NamedQuery(name = "Usuario.findByCodigo", query = "SELECT u FROM Usuario u WHERE u.codigo = :codigo"),
@@ -33,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Basic(optional = false)
     @Column(name = "codigo", nullable = false)
     private Integer codigo;
