@@ -7,8 +7,10 @@ package model;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -21,45 +23,44 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Vendaefetuada.findAll", query = "SELECT v FROM Vendaefetuada v"),
-    @NamedQuery(name = "Vendaefetuada.findByVenda", query = "SELECT v FROM Vendaefetuada v WHERE v.vendaefetuadaPK.venda = :venda"),
-    @NamedQuery(name = "Vendaefetuada.findByProduto", query = "SELECT v FROM Vendaefetuada v WHERE v.vendaefetuadaPK.produto = :produto"),
+    @NamedQuery(name = "Vendaefetuada.findByCodigo", query = "SELECT v FROM Vendaefetuada v WHERE v.codigo = :codigo"),
+    @NamedQuery(name = "Vendaefetuada.orderByQuantidadeVendida", query= "SELECT v FROM Vendaefetuada v ORDER BY v.quantidadeVendida DESC"),
     @NamedQuery(name = "Vendaefetuada.findByQuantidadeVendida", query = "SELECT v FROM Vendaefetuada v WHERE v.quantidadeVendida = :quantidadeVendida")})
 public class Vendaefetuada implements Serializable {
-
-    @EmbeddedId
-    protected VendaefetuadaPK vendaefetuadaPK;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "quantidadeVendida", nullable = false)
+    @Column(name = "codigo")
+    private Integer codigo;
+    @Basic(optional = false)
+    @Column(name = "quantidadeVendida")
     private int quantidadeVendida;
-    @JoinColumn(name = "Produto", referencedColumnName = "codigo", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "Produto", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
-    private Produto produto1;
-    @JoinColumn(name = "Venda", referencedColumnName = "codigo", nullable = false, insertable = false, updatable = false)
+    private Produto produto;
+    @JoinColumn(name = "Venda", referencedColumnName = "codigo")
     @ManyToOne(optional = false)
-    private Venda venda1;
+    private Venda venda;
 
     public Vendaefetuada() {
     }
 
-    public Vendaefetuada(VendaefetuadaPK vendaefetuadaPK) {
-        this.vendaefetuadaPK = vendaefetuadaPK;
+    public Vendaefetuada(Integer codigo) {
+        this.codigo = codigo;
     }
 
-    public Vendaefetuada(VendaefetuadaPK vendaefetuadaPK, int quantidadeVendida) {
-        this.vendaefetuadaPK = vendaefetuadaPK;
+    public Vendaefetuada(Integer codigo, int quantidadeVendida) {
+        this.codigo = codigo;
         this.quantidadeVendida = quantidadeVendida;
     }
 
-    public Vendaefetuada(int venda, int produto) {
-        this.vendaefetuadaPK = new VendaefetuadaPK(venda, produto);
+    public Integer getCodigo() {
+        return codigo;
     }
 
-    public VendaefetuadaPK getVendaefetuadaPK() {
-        return vendaefetuadaPK;
-    }
-
-    public void setVendaefetuadaPK(VendaefetuadaPK vendaefetuadaPK) {
-        this.vendaefetuadaPK = vendaefetuadaPK;
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
     }
 
     public int getQuantidadeVendida() {
@@ -70,24 +71,45 @@ public class Vendaefetuada implements Serializable {
         this.quantidadeVendida = quantidadeVendida;
     }
 
-    public Produto getProduto1() {
-        return produto1;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setProduto1(Produto produto1) {
-        this.produto1 = produto1;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
-    public Venda getVenda1() {
-        return venda1;
+    public Venda getVenda() {
+        return venda;
     }
 
-    public void setVenda1(Venda venda1) {
-        this.venda1 = venda1;
+    public void setVenda(Venda venda) {
+        this.venda = venda;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (codigo != null ? codigo.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Vendaefetuada)) {
+            return false;
+        }
+        Vendaefetuada other = (Vendaefetuada) object;
+        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
-        return "model.Vendaefetuada[ vendaefetuadaPK=" + vendaefetuadaPK + " ]";
+        return "javaapplication1.Vendaefetuada[ codigo=" + codigo + " ]";
     }
     
 }
