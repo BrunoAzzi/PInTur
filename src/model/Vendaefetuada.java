@@ -21,8 +21,6 @@ import javax.persistence.NamedQuery;
  * @author bruno_azzi
  */
 @Entity
-@Table(name = "vendaefetuada")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Vendaefetuada.findAll", query = "SELECT v FROM Vendaefetuada v"),
     @NamedQuery(name = "Vendaefetuada.findByCodigo", query = "SELECT v FROM Vendaefetuada v WHERE v.codigo = :codigo"),
