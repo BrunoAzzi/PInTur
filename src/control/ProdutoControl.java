@@ -41,7 +41,7 @@ public class ProdutoControl {
     
     public static ArrayList<Produto> listaProdutosPromocionais(){
         return new ArrayList(Conexao.namedQuery("Produto.findByPromocao"));
-    }
+    }    
 
     public static Produto findByCodigo(Integer codigo) throws NullPointerException {
         if (codigo == null) {
