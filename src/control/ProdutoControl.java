@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.persistence.NoResultException;
 import javax.swing.JOptionPane;
 import messages.Warnings;
+import model.Categoria;
 import model.Produto;
 
 /**
@@ -19,6 +20,25 @@ public class ProdutoControl {
     public static ArrayList<Produto> listaProdutos() {
         return new ArrayList(Conexao.namedQuery("Produto.findAll"));
     }
+    
+    public static ArrayList<Produto> listaProdutosByCategoria(Categoria categoria){
+        ArrayList<Produto> produtos = listaProdutos();
+        ArrayList<Produto> novosProdutos = new ArrayList();
+        
+        if(categoria.getCodigo() == null) return produtos;
+        
+        for (Produto produto : produtos) {
+            if(produto.getCategoria().getCodigo() == categoria.getCodigo() ){
+                novosProdutos.add(produto);
+                System.out.println(produto.getNome());
+            }else{
+                System.out.println("NUM DEU");
+            }
+        }
+        
+        return produtos;
+    }
+    
     public static ArrayList<Produto> listaProdutosPromocionais(){
         return new ArrayList(Conexao.namedQuery("Produto.findByPromocao"));
     }    

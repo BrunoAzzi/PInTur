@@ -5,6 +5,7 @@
 package view.categoria;
 
 import model.Categoria;
+import view.produto.MenuProdutos;
 
 /**
  *
@@ -12,6 +13,7 @@ import model.Categoria;
  */
 public class ItemMenuCategoria extends javax.swing.JPanel {
     Categoria categoria = new Categoria();
+    private MenuProdutos menuProdutos;
     /**
      * Creates new form ItemMenuCategoria
      */
@@ -36,6 +38,11 @@ public class ItemMenuCategoria extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(140, 140));
         setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(140, 140));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                setProdutosNoMenuByCategoria(evt);
+            }
+        });
 
         jLabel1.setText("<Description>");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -66,6 +73,11 @@ public class ItemMenuCategoria extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void setProdutosNoMenuByCategoria(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_setProdutosNoMenuByCategoria
+        menuProdutos.initListaDeProdutos(categoria);
+    }//GEN-LAST:event_setProdutosNoMenuByCategoria
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelFoto;
@@ -75,5 +87,9 @@ public class ItemMenuCategoria extends javax.swing.JPanel {
         this.categoria = categoria;
         jLabelFoto.setIcon(categoria.getFotoCategoria().getFoto().getIcon());
         jLabel1.setText(categoria.getNome());
+    }
+
+    void setMenuProdutos(MenuProdutos menuProdutos) {
+        this.menuProdutos = menuProdutos;
     }
 }

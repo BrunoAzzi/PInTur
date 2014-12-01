@@ -107,8 +107,9 @@ public class ItemListaProduto extends java.awt.Panel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        CarrinhoDeCompras.addProdutoNoCarrinho(this.produto);
-        System.out.println("adicionado no carrinho!");
+        Produto novoProdutoDoCarrinho =  produto;
+        novoProdutoDoCarrinho.setQuantidade(1);
+        CarrinhoDeCompras.addProdutoNoCarrinho(novoProdutoDoCarrinho);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void SetInMenuProdutosSelecionados(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SetInMenuProdutosSelecionados

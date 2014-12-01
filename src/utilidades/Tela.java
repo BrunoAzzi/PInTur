@@ -43,11 +43,11 @@ public class Tela {
 
     //PRODUTOS
     public static Rectangle menuProdutosBounds() {
-        return new Rectangle(0, (int) (screenHeight * 0.4), (int) (screenWidth * 0.4), (int) (screenHeight * 0.6));
+        return new Rectangle(0, (int) (screenHeight * 0.4), (int) (screenWidth * 0.4), (int) (screenHeight * 0.6) - 20);
     }
 
     public static Dimension menuProdutosDimension() {
-        return new Dimension((int) (screenWidth * 0.4), (int) (screenHeight * 0.6));
+        return new Dimension((int) (screenWidth * 0.4), (int) (screenHeight * 0.5));
     }
 
     //DESCRICAO PRODUTO

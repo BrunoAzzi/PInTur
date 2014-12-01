@@ -117,7 +117,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     private void initMenuProdutos() {
         menuProdutos.setVisible(true);
         menuProdutos.setBounds(Tela.menuProdutosBounds());
-        menuProdutos.setPreferredSize(Tela.menuProdutosDimension());
+        //menuProdutos.setPreferredSize(Tela.menuProdutosDimension());
         this.add(menuProdutos);
     }
 
