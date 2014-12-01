@@ -52,7 +52,11 @@ public class CarrinhoDeCompras {
     public static Double getValorTotalDaCompra(){
         double valorTotal = 0;
             for (Produto produto : produtos) {
-                valorTotal += produto.getQuantidade()*produto.getValor();
+                if(produto.getCategoria() == null){
+                    valorTotal += produto.getQuantidade()*produto.getValor();}
+                else{
+                    valorTotal += produto.getQuantidade()*produto.getPromocao().getValorPromocional();
+                }
             }
             return valorTotal;
     }
