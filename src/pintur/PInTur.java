@@ -5,8 +5,10 @@
 package pintur;
 
 import control.ProdutoControl;
+import control.VendaEfetuadaControl;
 import java.util.ArrayList;
 import model.Produto;
+import model.Vendaefetuada;
 import utilidades.GeneratorPDF;
 
 /**
@@ -23,5 +25,7 @@ public class PInTur {
         
 //        GeneratorPDF.gerarPdf(produtos);
         GeneratorPDF.gerarCupomFiscalPDF(produtos);
+        System.out.println(VendaEfetuadaControl.listaVendasEfetuadas());
+        
     }
 }

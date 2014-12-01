@@ -38,7 +38,6 @@ public class GeneratorPDF {
             Paragraph paragraph = new Paragraph("PInTur - Cupom Fiscal");
             paragraph.setAlignment(Element.ALIGN_CENTER);
             document.add(paragraph);
-
             for (Produto produto : produtos) {
                 paragraph = new Paragraph("Nome: " + produto.getNome());
                 paragraph.setAlignment(Element.ALIGN_LEFT);
