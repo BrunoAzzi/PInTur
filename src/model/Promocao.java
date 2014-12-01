@@ -28,8 +28,6 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author bruno_azzi
  */
 @Entity
-@Table(name = "promocao", catalog = "PInTur", schema = "")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Promocao.findAll", query = "SELECT p FROM Promocao p"),
     @NamedQuery(name = "Promocao.findByCodigo", query = "SELECT p FROM Promocao p WHERE p.codigo = :codigo"),
@@ -40,7 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Promocao implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Basic(optional = false)
     @Column(name = "codigo", nullable = false)
     private Integer codigo;

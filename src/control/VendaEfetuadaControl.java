@@ -14,7 +14,7 @@ import model.Vendaefetuada;
 public class VendaEfetuadaControl {   
    
     public static ArrayList<Vendaefetuada> retornaListaOrdenadaDeProdutosMaisVendidos(){
-        return new ArrayList(Conexao.namedQuery(Vendaefetuada.orderByQuantidadeVendida));
+        return new ArrayList(Conexao.namedQuery("Vendaefetuada.orderByQuantidadeVendida"));
     }
     
 }

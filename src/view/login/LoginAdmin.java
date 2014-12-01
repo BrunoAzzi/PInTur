@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import model.Usuario;
 import utilidades.Formatador;
 import utilidades.Mensagens;
+import utilidades.Tela;
 
 /**
  *
@@ -49,6 +50,8 @@ public class LoginAdmin extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(102, 153, 255));
+        jPanel1.setAlignmentX(Tela.screenWidth/2);
+        jPanel1.setAlignmentY(Tela.screenHeight/2);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Login");

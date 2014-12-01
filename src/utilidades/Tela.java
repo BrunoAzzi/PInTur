@@ -59,4 +59,13 @@ public class Tela {
     public static Dimension screenSizeTratado() {
         return new Dimension((int) (screenWidth), (int) (screenHeight));
     }
+    
+    //METADE DA TELA
+    public static int metadeHeight(){
+        return screenHeight/2;
+    }
+    
+    public static int metadeWidth(){
+        return screenWidth/2;
+    }
 }
