@@ -9,9 +9,11 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.LineSeparator;
+import control.VendaEfetuadaControl;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import model.Produto;
+import model.Vendaefetuada;
 import view.buychart.CarrinhoDeCompras;
 
 /**
@@ -27,7 +29,23 @@ public class GeneratorPDF {
     //Este método gera um cupom fiscal a partir do carrinho de compras
 
     public static void gerarRelatorioDeProdutosMaisVendidos(Produto produto) {
-        
+        try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(PRODUTOS_MAIS_VENDIDOS));
+            document.open();
+            Paragraph paragraph = new Paragraph("PInTur - Relatório de itens mais vendidos");
+            paragraph.setAlignment(Element.ALIGN_CENTER);
+            document.add(paragraph);
+            for (Vendaefetuada vendaefetuada1 : VendaEfetuadaControl.retornaListaOrdenadaDeProdutosMaisVendidos()) {
+                paragraph = new Paragraph("Nome: " + vendaefetuada1.getProduto().getNome());
+                paragraph.setAlignment(Element.ALIGN_LEFT);
+                document.add(paragraph);
+                document.add(new Paragraph(" "));
+                document.add(new LineSeparator());
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public static void gerarCupomFiscalPDF(ArrayList<Produto> produtos) {

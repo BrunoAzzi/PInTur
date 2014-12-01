@@ -11,10 +11,10 @@ import model.Vendaefetuada;
  *
  * @author gustavo_yuri
  */
-public class VendaEfetuadaControl {
-    
-    public static ArrayList<Vendaefetuada> listaVendasEfetuadas(){
-        return new ArrayList(Conexao.namedQuery("Vendaefetuada.findByQuantidadeVendida"));
+public class VendaEfetuadaControl {   
+   
+    public static ArrayList<Vendaefetuada> retornaListaOrdenadaDeProdutosMaisVendidos(){
+        return new ArrayList(Conexao.namedQuery(Vendaefetuada.orderByQuantidadeVendida));
     }
     
 }

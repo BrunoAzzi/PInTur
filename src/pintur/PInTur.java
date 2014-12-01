@@ -24,8 +24,6 @@ public class PInTur {
         ArrayList<Produto> produtos = ProdutoControl.listaProdutos();        
         
 //        GeneratorPDF.gerarPdf(produtos);
-        GeneratorPDF.gerarCupomFiscalPDF(produtos);
-        System.out.println(VendaEfetuadaControl.listaVendasEfetuadas());
-        
+//        GeneratorPDF.gerarCupomFiscalPDF(produtos);
     }
 }
