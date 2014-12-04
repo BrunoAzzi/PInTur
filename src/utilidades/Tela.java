@@ -16,7 +16,7 @@ import java.awt.Toolkit;
 public class Tela {
 
     public static final Dimension SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
-    public static final int screenHeight = (SCREEN_SIZE.height - 60);
+    public static final int screenHeight = (SCREEN_SIZE.height - 45);
     public static final int screenWidth = SCREEN_SIZE.width;
 
     //CATEGORIA
@@ -33,21 +33,21 @@ public class Tela {
     }
 
     //PROMOCAO
-    public static Dimension promocoesDimension() {
+    public static Dimension menuPromocoesDimension() {
         return new Dimension(screenWidth, (int) (screenHeight * 0.2));
     }
-
-    //PRODUTOS
-    public static Rectangle menuProdutosBounds() {
-        return new Rectangle(0, (int) (screenHeight * 0.4), (int) (screenWidth * 0.4), (int) (screenHeight * 0.6));
-    }
-
+    
     public static Rectangle menuPromocoesBounds() {
         return new Rectangle(0, (int) (screenHeight * 0.1), screenWidth, (int) (screenHeight * 0.3));
     }
 
-    public static Dimension menuProdutos() {
-        return new Dimension((int) (screenWidth * 0.4), (int) (screenHeight * 0.6));
+    //PRODUTOS
+    public static Rectangle menuProdutosBounds() {
+        return new Rectangle(0, (int) (screenHeight * 0.4), (int) (screenWidth * 0.4), (int) (screenHeight * 0.6) - 20);
+    }
+
+    public static Dimension menuProdutosDimension() {
+        return new Dimension((int) (screenWidth * 0.4), (int) (screenHeight * 0.5));
     }
 
     //DESCRICAO PRODUTO

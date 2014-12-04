@@ -5,9 +5,11 @@
 package control;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.persistence.NoResultException;
 import javax.swing.JOptionPane;
 import messages.Warnings;
+import model.Produto;
 import model.Promocao;
 
 /**
@@ -52,5 +54,21 @@ public class PromocaoControl {
             ex.printStackTrace();
         }
     }
+    public static void verificarPromocoes() {
+        Calendar dataAtual = Calendar.getInstance();
+        Calendar dataFinalPromocao = Calendar.getInstance();
+
+        for (Produto produto : ProdutoControl.listaProdutosPromocionais()) {
+            System.out.println(produto.getNome());
+            System.out.println(produto.getPromocao().getDataFinal());
+            dataFinalPromocao.setTime(produto.getPromocao().getDataFinal());
+
+            if (dataFinalPromocao.before(dataAtual)) {
+                produto.setPromocao(null);
+                ProdutoControl.add(produto);
+
+            }
+        }
+    }    
     
 }

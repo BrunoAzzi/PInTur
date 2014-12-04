@@ -4,9 +4,7 @@
  */
 package view;
 
-import control.ProdutoControl;
-import java.util.Calendar;
-import model.Produto;
+import control.PromocaoControl;
 import utilidades.Tela;
 import view.categoria.MenuCategorias;
 import view.produto.MenuProdutos;
@@ -28,7 +26,6 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
      * Creates new form TesteMenuPrincipal
      */
     public TesteMenuPrincipal() {
-        //   verificarPromocoes();
         initComponents();
         initMenuProdutos();
         initMenuCategorias();
@@ -36,7 +33,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
         initMenuProdutosSelecionados();
 
         //DEIXANDO A DESCRICAO PRODUTO SER MANIPULADA PELO MENU PRODUTOS
-        menuProdutos.setTelaDescricaoProduto(menuProdutosSelecionados);
+        menuProdutos.setMenuProdutosSelecionados(menuProdutosSelecionados);
         //DEIXANDO OS PRODUTOS SEREM MANIPULADOS PELO MENU CATEGORIA
         menuCategorias.setMenuProdutos(menuProdutos);
     }
@@ -51,7 +48,11 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("PInTur - Terminal de Vendas");
+        setMaximumSize(Tela.screenSizeTratado());
+        setMinimumSize(Tela.screenSizeTratado());
         setPreferredSize(Tela.screenSizeTratado());
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 updateListas(evt);
@@ -73,7 +74,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateListas(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_updateListas
-        menuCategorias.updateCategorias();
+        menuCategorias.initCategorias();
     }//GEN-LAST:event_updateListas
 
     /**
@@ -116,6 +117,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     private void initMenuProdutos() {
         menuProdutos.setVisible(true);
         menuProdutos.setBounds(Tela.menuProdutosBounds());
+        //menuProdutos.setPreferredSize(Tela.menuProdutosDimension());
         this.add(menuProdutos);
     }
 
@@ -126,6 +128,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     }
 
     private void initMenuPromocoes() {
+        PromocaoControl.verificarPromocoes();
         menuPromocoes.setVisible(true);
         menuPromocoes.setBounds(Tela.menuPromocoesBounds());
         this.add(menuPromocoes);
@@ -135,20 +138,5 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
         menuProdutosSelecionados.setVisible(true);
         menuProdutosSelecionados.setBounds(Tela.menuProdutosSelecionadosBounds());
         this.add(menuProdutosSelecionados);
-    }
-
-    private void verificarPromocoes() {
-        Calendar dataAtual = Calendar.getInstance();
-        Calendar dataFinalPromocao = null;
-
-        for (Produto produto : ProdutoControl.listaProdutosPromocionais()) {
-            dataFinalPromocao.setTime(produto.getPromocao().getDataFinal());
-
-            if (dataFinalPromocao.before(dataAtual)) {
-                produto.setPromocao(null);
-                ProdutoControl.add(produto);
-
-            }
-        }
     }
 }

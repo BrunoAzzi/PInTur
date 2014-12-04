@@ -57,7 +57,8 @@ public class EditarPromocao extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Edição de Promoções");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 192));
 

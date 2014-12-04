@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 package view.promocao;
-
 import control.ProdutoControl;
 import java.util.ArrayList;
 import model.Produto;
@@ -12,16 +11,16 @@ import model.Produto;
  *
  * @author everton_m
  */
-public class MenuPromocao extends java.awt.Panel {    
-    ArrayList<ItemListaPromocao> itemListaPromocoes = new ArrayList();
+public class MenuPromocao extends java.awt.Panel {
+    
+    private ArrayList<Produto> produtosPromocionais = new ArrayList();
+    private int produtoIndex;
     /**
-     * Creates new form MenuPromocao
+     * Creates new form ItemListaPromocao
      */
     public MenuPromocao() {
-        
-        initComponents();
-        guardaVolumes();
-        
+        initComponents(); 
+        initProdutos();
     }
 
     /**
@@ -32,82 +31,248 @@ public class MenuPromocao extends java.awt.Panel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        JLabelProdutos = new javax.swing.JLabel();
+        jlNomeProduto = new javax.swing.JLabel();
+        jlValorProduto = new javax.swing.JLabel();
+        jlImagemItemProduto = new javax.swing.JLabel();
+        jButtonAddCarrinho = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jButtonVoltarPromocao = new javax.swing.JButton();
+        jButtonProximaPromocao = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jlValorProdutoPromocional = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 204));
-        addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                formComponentAdded(evt);
+        setBackground(new java.awt.Color(255, 255, 192));
+        setPreferredSize(new java.awt.Dimension(651, 100));
+
+        jlNomeProduto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlNomeProduto.setText("<Nome>");
+        jlNomeProduto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jlValorProduto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlValorProduto.setText("<Preço>");
+
+        jlImagemItemProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Product-Blacl.png"))); // NOI18N
+
+        jButtonAddCarrinho.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonAddCarrinho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Shopping-Cart-01-Black 30x30.png"))); // NOI18N
+        jButtonAddCarrinho.setAutoscrolls(true);
+        jButtonAddCarrinho.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButtonAddCarrinho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddCarrinhoActionPerformed(evt);
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 192));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Comprar");
 
-        JLabelProdutos.setBackground(new java.awt.Color(255, 255, 192));
-        JLabelProdutos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        JLabelProdutos.setText("Promoções");
+        jLabel2.setText("Nome:");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(JLabelProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(JLabelProdutos)
-                .addContainerGap(375, Short.MAX_VALUE))
-        );
+        jLabel3.setText("Promoções");
+
+        jLabel4.setText("Preço:");
+
+        jLabel5.setText("Descrição:");
+
+        jLabel6.setText("<Descrição>");
+
+        jButtonVoltarPromocao.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonVoltarPromocao.setText("<");
+        jButtonVoltarPromocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVoltarPromocaoActionPerformed(evt);
+            }
+        });
+
+        jButtonProximaPromocao.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonProximaPromocao.setText(">");
+        jButtonProximaPromocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProximaPromocaoActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("De:");
+
+        jLabel8.setText("Por:");
+
+        jlValorProdutoPromocional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlValorProdutoPromocional.setText("<Preço>");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jButtonVoltarPromocao)
+                        .addGap(33, 33, 33)
+                        .addComponent(jlImagemItemProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jLabel8))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                                        .addComponent(jLabel7)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jlValorProdutoPromocional, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(3, 3, 3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel6))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jlNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(110, 110, 110)
+                        .addComponent(jButtonProximaPromocao)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAddCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonProximaPromocao, jButtonVoltarPromocao});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(jButtonVoltarPromocao, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(11, 11, 11)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(16, 16, 16)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jlNomeProduto)
+                                .addComponent(jLabel2))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jlValorProduto)
+                                        .addComponent(jLabel7)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(27, 27, 27)
+                                    .addComponent(jLabel4)))
+                            .addGap(13, 13, 13)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jlValorProdutoPromocional)
+                                .addComponent(jLabel8)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(23, 23, 23)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButtonProximaPromocao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonAddCarrinho, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jlImagemItemProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonProximaPromocao, jButtonVoltarPromocao});
+
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_formComponentAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formComponentAdded
+    private void jButtonAddCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCarrinhoActionPerformed
+            
+    }//GEN-LAST:event_jButtonAddCarrinhoActionPerformed
+
+    private void jButtonVoltarPromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarPromocaoActionPerformed
+        if(existePromocoes()){
+            if(produtoIndex == 0){
+                produtoIndex = produtosPromocionais.size()-1;
+                initProdutos();
+            }
+            else{
+                produtoIndex --;
+                initProdutos();
+            }
+        }
+    }//GEN-LAST:event_jButtonVoltarPromocaoActionPerformed
+
+    private void jButtonProximaPromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximaPromocaoActionPerformed
+        if(existePromocoes()){
+            if(produtoIndex == produtosPromocionais.size()-1){
+                produtoIndex = 0;
+                initProdutos();
+            }
+            else{
+                produtoIndex++;
+                initProdutos();
+            }
+        }
+    }//GEN-LAST:event_jButtonProximaPromocaoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel JLabelProdutos;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jButtonAddCarrinho;
+    private javax.swing.JButton jButtonProximaPromocao;
+    private javax.swing.JButton jButtonVoltarPromocao;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jlImagemItemProduto;
+    private javax.swing.JLabel jlNomeProduto;
+    private javax.swing.JLabel jlValorProduto;
+    private javax.swing.JLabel jlValorProdutoPromocional;
     // End of variables declaration//GEN-END:variables
 
-    private void guardaVolumes() {
-        int valueX = 0;
-        int valueY = 0;
+    public void initProdutos(){
         for (Produto produto : ProdutoControl.listaProdutosPromocionais()) {
-            ItemListaPromocao itemListaPromocao = new ItemListaPromocao();
-            itemListaPromocao.populaItemListaPromocao(produto);
-            itemListaPromocao.setVisible(true);
-            itemListaPromocao.setBounds(valueX, valueY, 142, 222);            
-            if (valueX < 293) {
-                valueX += 152;
-            } else {
-                valueX = 0;
-            }
-            if (valueX == 152) {
-                valueY = 0;
-            }else{
-                valueY += 232;
-            }
-            jPanel1.add(itemListaPromocao);
+            produtosPromocionais.add(produto);
         }
+        if(existePromocoes()){
+            jlImagemItemProduto.setIcon(produtosPromocionais.get(produtoIndex).getFotoProduto().getFoto().getIcon());        
+            jlNomeProduto.setText(produtosPromocionais.get(produtoIndex).getNome());
+            jLabel6.setText(produtosPromocionais.get(produtoIndex).getDescricao());
+            jlValorProduto.setText(Double.toString(produtosPromocionais.get(produtoIndex).getValor()));        
+            jlValorProdutoPromocional.setText(Double.toString(produtosPromocionais.get(produtoIndex).getPromocao().getValorPromocional()));
+        } 
+    }
+    public boolean existePromocoes(){
+        if(produtosPromocionais.size() < 1) return false;
+        else return true;
+    }
+    public Produto getProduto() {
+        return produtosPromocionais.get(produtoIndex);
     }
 }

@@ -49,6 +49,7 @@ public class EditarCategoria extends javax.swing.JFrame {
         jLabelCategoriaImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Edição de Categorias");
         setBackground(new java.awt.Color(255, 255, 204));
         setResizable(false);
 

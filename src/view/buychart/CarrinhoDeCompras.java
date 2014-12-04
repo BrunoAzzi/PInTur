@@ -12,6 +12,7 @@ import model.Produto;
  * @author bruno_azzi
  */
 public class CarrinhoDeCompras {
+    private static TelaCarrinhoDeCompras telaCarrinhoDeCompras;
 
     private static ArrayList<Produto> produtos = new ArrayList();
 
@@ -32,5 +33,27 @@ public class CarrinhoDeCompras {
             quantidade += produto.getQuantidade();
         }
         return quantidade;
+    }
+
+    public static ArrayList<Produto> getProdutosNoCarrinho() {
+        return produtos;
+    }
+
+    public static void removeProduto(Produto produto) {
+        produtos.remove(produto);
+        telaCarrinhoDeCompras.updateCarrinho();
+        
+    }
+
+    static void setTela(TelaCarrinhoDeCompras aThis) {
+        telaCarrinhoDeCompras = aThis;
+    }
+
+    public static Double getValorTotalDaCompra(){
+        double valorTotal = 0;
+            for (Produto produto : produtos) {
+                valorTotal += produto.getQuantidade()*produto.getValor();
+            }
+            return valorTotal;
     }
 }

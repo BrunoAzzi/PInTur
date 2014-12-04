@@ -6,7 +6,9 @@ package view.produto;
 
 import control.ProdutoControl;
 import java.util.ArrayList;
+import model.Categoria;
 import model.Produto;
+import utilidades.Tela;
 
 /**
  *
@@ -14,6 +16,10 @@ import model.Produto;
  */
 public class MenuProdutos extends java.awt.Panel {
 
+    int incrementadorX = 0;
+    int x = 30;
+    int y = 10;
+    ArrayList<Produto> produtos = ProdutoControl.listaProdutos();
     ArrayList<ItemListaProduto> itemListaProdutos = new ArrayList();
     private MenuProdutosSelecionados menuProdutosSelecionados;
 
@@ -22,7 +28,7 @@ public class MenuProdutos extends java.awt.Panel {
      */
     public MenuProdutos() {
         initComponents();
-        initListaDeProdutos();
+        initListaDeProdutos(new Categoria());
     }
 
     /**
@@ -38,29 +44,29 @@ public class MenuProdutos extends java.awt.Panel {
         jPanel1 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(51, 102, 255));
-        addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                formComponentAdded(evt);
-            }
-        });
+        setPreferredSize(Tela.menuProdutosDimension());
 
         JLabelProdutos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         JLabelProdutos.setForeground(new java.awt.Color(255, 255, 255));
         JLabelProdutos.setText("Produtos");
 
         jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel1.setAutoscrolls(true);
+        jPanel1.setPreferredSize(new java.awt.Dimension(5000, 5000));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
+            .addGap(0, 5000, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
+            .addGap(0, 5000, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -69,55 +75,64 @@ public class MenuProdutos extends java.awt.Panel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addComponent(JLabelProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(JLabelProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(JLabelProdutos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void formComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_formComponentAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formComponentAdded
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLabelProdutos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    private void initListaDeProdutos() {
-        int valueX = 0;
-        int valueY = 0;
-        for (Produto produto : ProdutoControl.listaProdutos()) {
+    public void initListaDeProdutos(Categoria categoria) {
+        jPanel1.removeAll();
+        itemListaProdutos.clear();
+        produtos = ProdutoControl.listaProdutosByCategoria(categoria);
+
+        for (Produto produto : produtos) {
+            System.out.println(produto.getNome());
             ItemListaProduto itemListaProduto = new ItemListaProduto();
-            itemListaProduto.populaItemListaProduto(produto); 
-            
+            itemListaProduto.populaItemListaProduto(produto);
+            itemListaProdutos.add(itemListaProduto);
+
+            preparaItemMenu(itemListaProduto);
+
             itemListaProduto.setVisible(true);
-            
-            itemListaProduto.setBounds(valueX, valueY, 142, 222);            
-            if (valueX < 293) {
-                valueX += 152;
-            } else {
-                valueX = 0;
-            }
-            if (valueX == 152) {
-                valueY = 0;
-            }else{
-                valueY += 232;
-            }
             jPanel1.add(itemListaProduto);
         }
     }
 
-    public void setTelaDescricaoProduto(MenuProdutosSelecionados menuProdutosSelecionados) {
+    public void setMenuProdutosSelecionados(MenuProdutosSelecionados menuProdutosSelecionados) {
         this.menuProdutosSelecionados = menuProdutosSelecionados;
         for (ItemListaProduto itemListaProduto : itemListaProdutos) {
             itemListaProduto.setTelaDescricaoProduto(menuProdutosSelecionados);
+        }
+    }
+
+    private void preparaItemMenu(ItemListaProduto itemListaProduto) {
+        itemListaProduto.setBounds(x, y, 142, 222);
+
+        if (incrementadorX < 2) {
+            x += 172;
+            incrementadorX += 1;
+        } else {
+            x = 30;
+            y += 242;
+            incrementadorX = 0;
+            //jScrollPane1.setPreferredSize(new Dimension((172*4),(y*500)));
+            
         }
     }
 }

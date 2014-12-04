@@ -37,7 +37,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Produto.findByDescricao", query = "SELECT p FROM Produto p WHERE p.descricao = :descricao"),
     @NamedQuery(name = "Produto.findByValor", query = "SELECT p FROM Produto p WHERE p.valor = :valor"),
     @NamedQuery(name = "Produto.findByPromocao", query = "SELECT p FROM Produto p WHERE p.promocao IS NOT NULL"),
+    @NamedQuery(name = "Produto.findProdutosMaisVendidos", query = "SELECT p.nome, b.quantidadeVendida FROM vendaefetuada b INNER JOIN Produto p ON b.Produto = p.codigo ORDER BY b.quantidadeVendida DESC"),
     @NamedQuery(name = "Produto.findByQuantidade", query = "SELECT p FROM Produto p WHERE p.quantidade = :quantidade")})
+
 
 public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -161,26 +163,6 @@ public class Produto implements Serializable {
 
     public void setVendaefetuadaList(List<Vendaefetuada> vendaefetuadaList) {
         this.vendaefetuadaList = vendaefetuadaList;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (codigo != null ? codigo.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Produto)) {
-            return false;
-        }
-        Produto other = (Produto) object;
-        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
-            return false;
-        }
-        return true;
     }
 
     @Override
