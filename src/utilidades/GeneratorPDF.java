@@ -4,12 +4,18 @@
  */
 package utilidades;
 
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.LineSeparator;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import model.Produto;
@@ -21,43 +27,11 @@ import view.buychart.CarrinhoDeCompras;
  * @author gustavo_yuri
  */
 public class GeneratorPDF {
-
-    //UTILIZAR PARA SAÍDA DO CUMPOM FISCAL
-    private static String CUPOM_FISCAL = "CupomFiscal.pdf";
-    //UTILIZAR PARA SAÍDA DO RELATÓRIO DE PRODUTOS MAIS VENDIDOS
-    private static String PRODUTOS_MAIS_VENDIDOS = "RelatórioDeProdutosMaisVendidos.pdf";
-    //Este método gera um cupom fiscal a partir do carrinho de compras
-
-    public static void gerarRelatorioDeProdutosMaisVendidos(ArrayList<Vendaefetuada> vendaefetuada) {
-        try {
-            Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream(PRODUTOS_MAIS_VENDIDOS));
-            document.open();
-            Paragraph paragraph = new Paragraph("PInTur - Relatório de Itens Mais Vendidos");
-            paragraph.setAlignment(Element.ALIGN_CENTER);
-            document.add(paragraph);
-            
-            for (Vendaefetuada vendaefetuada1 : vendaefetuada) {               
-                paragraph = new Paragraph("Nome: " + vendaefetuada1.getProduto().getNome());
-                paragraph.setAlignment(Element.ALIGN_LEFT);
-                document.add(paragraph);                
-                paragraph = new Paragraph("Quantidade vendida: " + vendaefetuada1.getQuantidadeVendida());
-                paragraph.setAlignment(Element.ALIGN_LEFT);
-                document.add(paragraph);                
-                document.add(new Paragraph(" "));
-                document.add(new LineSeparator());              
-            }
-            document.close();
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
+    
     public static void gerarCupomFiscalPDF(ArrayList<Produto> produtos, ArrayList<Integer> quantidadeDoProduto) {
         try {
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream(CUPOM_FISCAL));
+            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\GustavoCalandriniPC\\Desktop\\Cupom Fiscal.pdf"));
             document.open();
             Paragraph paragraph = new Paragraph("PInTur - Cupom Fiscal");
             paragraph.setAlignment(Element.ALIGN_CENTER);
@@ -97,8 +71,86 @@ public class GeneratorPDF {
             paragraph.setAlignment(Element.ALIGN_RIGHT);
             document.add(paragraph);
             document.close();
+            
+            //Abre o documento (Mudar destino quando colocado em outro PC
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    File myFile = new File("C:\\Users\\GustavoCalandriniPC\\Desktop\\Cupom Fiscal.pdf");
+                    Desktop.getDesktop().open(myFile);
+                } catch (IOException ex) {
+                    System.out.println("Deu ruim");
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    public static void gerarRelatoriodeProdutosMaisVendidos(ArrayList<Vendaefetuada> vendaefetuada) {
+        try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\GustavoCalandriniPC\\Desktop\\Produtos mais vendidos.pdf"));
+            document.open();
+            Paragraph paragraph = new Paragraph("PInTur - Relatórios");
+            paragraph.setAlignment(Element.ALIGN_CENTER);
+            document.add(paragraph);
+            paragraph = new Paragraph(" ");
+            document.add(paragraph);
+            //Constroi a tabela
+            //seta o número de colunas
+            PdfPTable table = new PdfPTable(2);
+            PdfPCell header = new PdfPCell(new Paragraph("Relatório de produtos mais vendidos"));
+            header.setColspan(2);
+            header.setBackgroundColor(BaseColor.GRAY);
+            table.addCell(header);
+            table.addCell("Nome");
+            table.addCell("Quantidade vendida");
+            for (Vendaefetuada vendaefetuada1 : vendaefetuada) {
+                table.addCell(vendaefetuada1.getProduto().getNome());
+                table.addCell(Integer.toString(vendaefetuada1.getQuantidadeVendida()));
+            }
+            document.add(table);
+            document.close();
+            //Abre o documento (Mudar destino quando colocado em outro PC
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    File myFile = new File("C:\\Users\\GustavoCalandriniPC\\Desktop\\Produtos mais vendidos.pdf");
+                    Desktop.getDesktop().open(myFile);
+                } catch (IOException ex) {
+                    System.out.println("Deu ruim");
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+        }
+    }
+    
+    //Este método gera um cupom fiscal a partir do carrinho de compras
+
+//    public static void gerarRelatorioDeProdutosMaisVendidos(ArrayList<Vendaefetuada> vendaefetuada) {
+//        try {
+//            Document document = new Document();
+//            PdfWriter.getInstance(document, new FileOutputStream(PRODUTOS_MAIS_VENDIDOS));
+//            document.open();
+//            Paragraph paragraph = new Paragraph("PInTur - Relatório de Itens Mais Vendidos");
+//            paragraph.setAlignment(Element.ALIGN_CENTER);
+//            document.add(paragraph);
+//            
+//            for (Vendaefetuada vendaefetuada1 : vendaefetuada) {               
+//                paragraph = new Paragraph("Nome: " + vendaefetuada1.getProduto().getNome());
+//                paragraph.setAlignment(Element.ALIGN_LEFT);
+//                document.add(paragraph);                
+//                paragraph = new Paragraph("Quantidade vendida: " + vendaefetuada1.getQuantidadeVendida());
+//                paragraph.setAlignment(Element.ALIGN_LEFT);
+//                document.add(paragraph);                
+//                document.add(new Paragraph(" "));
+//                document.add(new LineSeparator());              
+//            }
+//            document.close();
+//
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+//    }
 }

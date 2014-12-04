@@ -29,7 +29,7 @@ public class EditarProduto extends javax.swing.JFrame {
      * Creates new form EditarCategoria
      */
     public EditarProduto() {
-        initComponents();
+        initComponents();      
         carregaComboBoxCategoria();
     }
 
@@ -96,6 +96,11 @@ public class EditarProduto extends javax.swing.JFrame {
         });
 
         jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbCategoriaActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(51, 102, 255));
         jButton1.setText("...");
@@ -230,6 +235,10 @@ public class EditarProduto extends javax.swing.JFrame {
        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jcbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbCategoriaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -288,8 +297,9 @@ public class EditarProduto extends javax.swing.JFrame {
         jtfNome.setText(produto.getNome());
         jtfDescricao.setText(produto.getDescricao());
         jtfValor.setText(String.valueOf(produto.getValor()));
-        jtfQuantidade.setText(String.valueOf(produto.getQuantidade()));
-        jlProdutoImage.setIcon(produto.getFotoProduto().getFoto().getIcon());
+        jtfQuantidade.setText(String.valueOf(produto.getQuantidade()));    
+        jcbCategoria.setSelectedItem(produto.getCategoria());
+        jlProdutoImage.setIcon(produto.getFotoProduto().getFoto().getIcon());        
     }
 
     private boolean certezaDeEdicao() {
@@ -335,7 +345,7 @@ public class EditarProduto extends javax.swing.JFrame {
     private void carregaComboBoxCategoria() {
         for (Categoria categoria : CategoriaControl.listaCategorias()) {
             defaultComboBoxModel.addElement(categoria);
-            jcbCategoria.setModel(defaultComboBoxModel);
-        }
+            jcbCategoria.setModel(defaultComboBoxModel);            
+        }                  
     }
 }

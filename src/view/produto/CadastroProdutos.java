@@ -8,7 +8,6 @@ import control.CategoriaControl;
 import control.FotoControl;
 import control.FotoProdutoControl;
 import control.ProdutoControl;
-import java.awt.Component;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import model.Categoria;
@@ -267,14 +266,22 @@ public class CadastroProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_jbRemoverActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        if (JOptionPane.showConfirmDialog(this, Mensagens.PRODUTO_ADICIONAR_CONFIRMACAO.getDescricao(), Mensagens.CONFIRM.getDescricao(), JOptionPane.YES_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION){
-            for (Produto produto : produtoTableModel.getAllProdutos()) {
-                FotoControl.add(produto.getFotoProduto().getFoto());
-                FotoProdutoControl.add(produto.getFotoProduto());
-                ProdutoControl.add(produto);
+        if (produtoTableModel.getAllProdutos().size() > 0) {
+            if (JOptionPane.showConfirmDialog(this, Mensagens.PRODUTO_ADICIONAR_CONFIRMACAO.getDescricao(), Mensagens.CONFIRM.getDescricao(), JOptionPane.YES_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+                
+                for (Produto produto : produtoTableModel.getAllProdutos()) {
+                    FotoControl.add(produto.getFotoProduto().getFoto());
+                    FotoProdutoControl.add(produto.getFotoProduto());
+                    ProdutoControl.add(produto);
+                }
+                
+                produtoTableModel.clear();
+                this.dispose();
             }
-            produtoTableModel.clear();
-            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, Mensagens.WARNING_SALVAR_SEM_NENHUM_CADASTRO.getDescricao(),
+                    Mensagens.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
@@ -359,12 +366,13 @@ public class CadastroProdutos extends javax.swing.JFrame {
         jtfValor.setText("");
         jtfQuantidade.setText("");
         jlProdutoImage.setIcon(null);
+        jcbCategoria.setSelectedItem(null);
         imageChooser = new ImageChooser(this);
     }
 
     private boolean isCamposValidados() {
         int quantidade = 0;
-        
+
         if (jtfQuantidade.getText().equals("")) {
             return false;
         }
@@ -377,21 +385,21 @@ public class CadastroProdutos extends javax.swing.JFrame {
         if (jtfDescricao.getText().equals("")) {
             return false;
         }
-        
-        if(jlProdutoImage.getIcon() == null){
+
+        if (jlProdutoImage.getIcon() == null) {
             return false;
         }
-        
+
         String produtoValorTratado = jtfValor.getText().replace(',', '.').trim();
-        
+
         Double valorDouble = (new Double(produtoValorTratado));
-        
+
         try {
             quantidade = new Integer(jtfQuantidade.getText());
         } catch (NumberFormatException numberFormatException) {
             return false;
         }
-        
+
         if (valorDouble < 0) {
             return false;
         }
@@ -404,9 +412,9 @@ public class CadastroProdutos extends javax.swing.JFrame {
     private Produto getProdutoPopulado() {
         Produto novoProduto = new Produto();
         Categoria categoriaProduto;
-        categoriaProduto = (Categoria) jcbCategoria.getSelectedItem();        
-        Fotoproduto fotoproduto = new Fotoproduto();        
-        fotoproduto.setDescricao(jtfNome.getText()+".jpg");
+        categoriaProduto = (Categoria) jcbCategoria.getSelectedItem();
+        Fotoproduto fotoproduto = new Fotoproduto();
+        fotoproduto.setDescricao(jtfNome.getText() + ".jpg");
         fotoproduto.setFoto(imageChooser.getFoto());
         novoProduto.setNome(jtfNome.getText());
         novoProduto.setDescricao(jtfDescricao.getText());
@@ -423,5 +431,6 @@ public class CadastroProdutos extends javax.swing.JFrame {
             defaultComboBoxModel.addElement(categoria);
             jcbCategoria.setModel(defaultComboBoxModel);
         }
+        jcbCategoria.setSelectedItem(null);
     }
 }
