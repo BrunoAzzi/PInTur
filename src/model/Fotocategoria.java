@@ -18,14 +18,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 /**
  *
  * @author bruno_azzi
  */
 @Entity
-@Table(name = "fotocategoria", catalog = "PInTur", schema = "")
 @NamedQueries({
     @NamedQuery(name = "Fotocategoria.findAll", query = "SELECT f FROM Fotocategoria f"),
     @NamedQuery(name = "Fotocategoria.findByCodigo", query = "SELECT f FROM Fotocategoria f WHERE f.codigo = :codigo"),
@@ -33,7 +31,7 @@ import javax.persistence.Table;
 public class Fotocategoria implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Basic(optional = false)
     @Column(name = "codigo", nullable = false)
     private Integer codigo;

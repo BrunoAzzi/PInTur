@@ -19,7 +19,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -37,7 +36,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Venda.findByQuantidadeDeParcelas", query = "SELECT v FROM Venda v WHERE v.quantidadeDeParcelas = :quantidadeDeParcelas")})
 public class Venda implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Basic(optional = false)
     @Column(name = "codigo", nullable = false)
     private Integer codigo;
@@ -54,7 +53,7 @@ public class Venda implements Serializable {
     @JoinColumn(name = "FormaDePagamento", referencedColumnName = "codigo", nullable = false)
     @ManyToOne(optional = false)
     private Formadepagamento formaDePagamento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "venda1")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "venda")
     private List<Vendaefetuada> vendaefetuadaList;
 
     public Venda() {

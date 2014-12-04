@@ -16,14 +16,12 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 /**
  *
  * @author bruno_azzi
  */
 @Entity
-@Table(name = "formadepagamento", catalog = "PInTur", schema = "")
 @NamedQueries({
     @NamedQuery(name = "Formadepagamento.findAll", query = "SELECT f FROM Formadepagamento f"),
     @NamedQuery(name = "Formadepagamento.findByCodigo", query = "SELECT f FROM Formadepagamento f WHERE f.codigo = :codigo"),
@@ -31,7 +29,7 @@ import javax.persistence.Table;
 public class Formadepagamento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Basic(optional = false)
     @Column(name = "codigo", nullable = false)
     private Integer codigo;

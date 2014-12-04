@@ -19,8 +19,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
@@ -28,8 +26,6 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author bruno_azzi
  */
 @Entity
-@Table(name = "produto", catalog = "PInTur", schema = "")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Produto.findAll", query = "SELECT p FROM Produto p"),
     @NamedQuery(name = "Produto.findByCodigo", query = "SELECT p FROM Produto p WHERE p.codigo = :codigo"),
@@ -37,14 +33,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Produto.findByDescricao", query = "SELECT p FROM Produto p WHERE p.descricao = :descricao"),
     @NamedQuery(name = "Produto.findByValor", query = "SELECT p FROM Produto p WHERE p.valor = :valor"),
     @NamedQuery(name = "Produto.findByPromocao", query = "SELECT p FROM Produto p WHERE p.promocao IS NOT NULL"),
-//    @NamedQuery(name = "Produto.findProdutosMaisVendidos", query = "SELECT p.nome, b.quantidadeVendida FROM vendaefetuada b INNER JOIN Produto p ON b.Produto = p.codigo ORDER BY b.quantidadeVendida DESC"),
     @NamedQuery(name = "Produto.findByQuantidade", query = "SELECT p FROM Produto p WHERE p.quantidade = :quantidade")})
 
 
 public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Basic(optional = false)
     @Column(name = "codigo", nullable = false)
     private Integer codigo;
@@ -69,7 +64,7 @@ public class Produto implements Serializable {
     @JoinColumn(name = "FotoProduto", referencedColumnName = "codigo", nullable = false)
     @ManyToOne(optional = false)
     private Fotoproduto fotoProduto;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto1")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
     private List<Vendaefetuada> vendaefetuadaList;
 
     public Produto() {

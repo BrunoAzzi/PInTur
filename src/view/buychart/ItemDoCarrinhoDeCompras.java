@@ -139,8 +139,15 @@ public class ItemDoCarrinhoDeCompras extends javax.swing.JPanel {
         jLabelNome.setText(produto.getNome());
         jLabelDescricao.setText(produto.getDescricao());
         jSpinnerQuantidade.setValue(produto.getQuantidade());
-        jLabelValorUnitario.setText(Double.toString(produto.getValor()));
-        jLabelValorTotal.setText(Double.toString(produto.getQuantidade()*produto.getValor()));
+        if(produto.getPromocao() == null){
+            jLabelValorUnitario.setText(Double.toString(produto.getValor()));
+            jLabelValorTotal.setText(Double.toString(produto.getQuantidade()*produto.getValor()));
+        }
+        else{
+            jLabelValorUnitario.setText(Double.toString(produto.getPromocao().getValorPromocional()));
+            jLabelValorTotal.setText(Double.toString(produto.getQuantidade()*produto.getPromocao().getValorPromocional()));
+        }
+        
         //TODO colocar foto
     }
 
