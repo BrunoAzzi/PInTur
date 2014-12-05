@@ -41,6 +41,9 @@ public class ItemListaProduto extends java.awt.Panel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SetInMenuProdutosSelecionados(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                formMouseExited(evt);
+            }
         });
 
         jlNomeProduto.setForeground(new java.awt.Color(255, 255, 255));
@@ -113,8 +116,15 @@ public class ItemListaProduto extends java.awt.Panel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void SetInMenuProdutosSelecionados(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SetInMenuProdutosSelecionados
-        menuProdutosSelecionados.setProduto(produto);        
+        if(produto != null){
+            menuProdutosSelecionados.setProduto(produto);                    
+        } 
+        System.out.println("Teste Set Menu Produtos Selecionados"+produto.getNome());
     }//GEN-LAST:event_SetInMenuProdutosSelecionados
+
+    private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
