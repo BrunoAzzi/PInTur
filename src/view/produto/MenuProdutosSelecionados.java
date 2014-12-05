@@ -11,7 +11,7 @@ import model.Produto;
  * @author gustavo_yuri
  */
 public class MenuProdutosSelecionados extends javax.swing.JPanel {
-    
+
     public static Produto produto;
 
     /**
@@ -19,6 +19,8 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
      */
     public MenuProdutosSelecionados() {
         initComponents();
+        jlabelValorPromocional.setVisible(false);
+        jlPrecoPromocional.setVisible(false);
     }
 
     /**
@@ -41,10 +43,12 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
         jlValorProduto = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jlabelValorPromocional = new javax.swing.JLabel();
+        jlPrecoPromocional = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jpImagemProduto.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jpImagemProduto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jpImagemProduto.setMaximumSize(new java.awt.Dimension(199, 182));
         jpImagemProduto.setMinimumSize(new java.awt.Dimension(199, 182));
 
@@ -92,6 +96,10 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Comprar");
 
+        jlabelValorPromocional.setText("Compre agora por:");
+
+        jlPrecoPromocional.setText("<Preço Promocional do Produto>");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -106,7 +114,7 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jpImagemProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -119,8 +127,12 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlValorProduto)))
-                        .addGap(0, 225, Short.MAX_VALUE)))
+                                .addComponent(jlValorProduto))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jlabelValorPromocional)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlPrecoPromocional)))
+                        .addGap(0, 198, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -142,7 +154,11 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jlValorProduto)))
+                            .addComponent(jlValorProduto))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jlabelValorPromocional)
+                            .addComponent(jlPrecoPromocional)))
                     .addComponent(jpImagemProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,9 +180,7 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
     }//GEN-LAST:event_jButton2ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
@@ -177,7 +191,9 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
     private javax.swing.JLabel jlDescricaoProduto;
     private javax.swing.JLabel jlImagemProduto;
     private javax.swing.JLabel jlNomeProduto;
+    private javax.swing.JLabel jlPrecoPromocional;
     private javax.swing.JLabel jlValorProduto;
+    private javax.swing.JLabel jlabelValorPromocional;
     private javax.swing.JPanel jpImagemProduto;
     // End of variables declaration//GEN-END:variables
 
@@ -191,8 +207,15 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
         jlNomeProduto.setText(produto.getNome());
         jlDescricaoProduto.setText(produto.getDescricao());
         jlValorProduto.setText(String.valueOf(produto.getValor()));
-        jlImagemProduto.setIcon(produto.getFotoProduto().getFoto().getIcon());        
+        if (produto.getPromocao() != null) {
+            jlPrecoPromocional.setText(Double.toString(produto.getPromocao().getValorPromocional()));
+            jlabelValorPromocional.setVisible(true);
+            jlPrecoPromocional.setVisible(true);
+        } else {
+            jlabelValorPromocional.setVisible(false);
+            jlPrecoPromocional.setVisible(false);
+        }
+        jlImagemProduto.setIcon(produto.getFotoProduto().getFoto().getIcon());
         System.out.println("Setando em Menu descricao Produtos");
     }
-    
 }
