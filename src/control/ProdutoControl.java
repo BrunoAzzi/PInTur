@@ -31,12 +31,9 @@ public class ProdutoControl {
             if(produto.getCategoria().getCodigo() == categoria.getCodigo() ){
                 novosProdutos.add(produto);
                 System.out.println(produto.getNome());
-            }else{
-                System.out.println("NUM DEU");
-            }
-        }
-        
-        return produtos;
+            }       
+        }        
+        return novosProdutos;
     }
     
     public static ArrayList<Produto> listaProdutosPromocionais(){

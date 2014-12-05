@@ -97,7 +97,12 @@ public class MenuProdutos extends java.awt.Panel {
     // End of variables declaration//GEN-END:variables
 
     public void initListaDeProdutos(Categoria categoria) {
+        x = 30;
+        y = 10;
+        incrementadorX = 0;
         jPanel1.removeAll();
+        jPanel1.revalidate();
+        jPanel1.repaint();
         itemListaProdutos.clear();
         produtos = ProdutoControl.listaProdutosByCategoria(categoria);
 
@@ -106,9 +111,7 @@ public class MenuProdutos extends java.awt.Panel {
             ItemListaProduto itemListaProduto = new ItemListaProduto();
             itemListaProduto.populaItemListaProduto(produto);
             itemListaProdutos.add(itemListaProduto);
-
             preparaItemMenu(itemListaProduto);
-
             itemListaProduto.setVisible(true);
             jPanel1.add(itemListaProduto);
         }
@@ -132,7 +135,7 @@ public class MenuProdutos extends java.awt.Panel {
             y += 242;
             incrementadorX = 0;
             //jScrollPane1.setPreferredSize(new Dimension((172*4),(y*500)));
-            
+
         }
     }
 }
