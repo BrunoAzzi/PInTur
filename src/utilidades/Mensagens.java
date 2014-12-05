@@ -28,7 +28,11 @@ public enum Mensagens {
     WARNING("Aviso!"),
     CONFIRM("Confirme!"), 
     ADICIONAR_CONFIRMACAO("Deseja mesmo salvar este(s) registro(s) no banco?"), 
-    NAO_TEM_PERMISSAO("Você não tem permissão para acessar a área Admnistrativa!");
+    NAO_TEM_PERMISSAO("Você não tem permissão para acessar a área Admnistrativa!"), 
+    DELETAR_CONFIRMACAO("Tem certeza que deseja deletar o registro selecionado?"),
+    DELETAR_CATEGORIA_IMPOSSIBILIDADE("Não foi possível deletar a categoria selecionada pois ela possui produtos vinculados a ela!"),
+    DELETAR_CATEGORIA_SUCESSO("A Categoria selecionada foi removida com sucesso!"), 
+    SUCESSO("Operação bem sucedida!");
     
     String descricao;
 

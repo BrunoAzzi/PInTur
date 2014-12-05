@@ -74,7 +74,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateListas(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_updateListas
-        menuCategorias.initCategorias();
+        menuCategorias.atualizaMenuCategorias();
     }//GEN-LAST:event_updateListas
 
     /**
@@ -117,7 +117,6 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
     private void initMenuProdutos() {
         menuProdutos.setVisible(true);
         menuProdutos.setBounds(Tela.menuProdutosBounds());
-        //menuProdutos.setPreferredSize(Tela.menuProdutosDimension());
         this.add(menuProdutos);
     }
 

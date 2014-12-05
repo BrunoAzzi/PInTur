@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.persistence.RollbackException;
 
 /**
  *
@@ -32,19 +33,22 @@ public class Conexao {
         }
     }
 
-    protected static void persist(Object aThis) {
+    protected static void persist(Object object) {
         getTransaction();
-        em.persist(aThis);
-        commit();
+        em.persist(object);
     }
 
-    protected static void remove(Object aThis) {
+    protected static void remove(Object object) {
         getTransaction();
-        em.remove(aThis);
-        commit();
+        em.remove(object);
     }
     
-    protected static List<Object> namedQuery(String namedQuery){
+    protected static void merge(Object object){
+        getTransaction();
+        em.merge(object);
+    }
+
+    protected static List<Object> namedQuery(String namedQuery) {
         Query query = em.createNamedQuery(namedQuery);
         return query.getResultList();
     }
@@ -59,13 +63,13 @@ public class Conexao {
         return query.getResultList();
     }
 
-    protected static List<Object> namedQuery(String namedQuery, Object value, String parameter){
+    protected static List<Object> namedQuery(String namedQuery, Object value, String parameter) {
         Query query = em.createNamedQuery(namedQuery);
         query.setParameter(parameter, value);
         return query.getResultList();
     }
-    
-    protected static Object singleResultNamedQuery(String namedQuery, List<Object> values, String[] parameters){
+
+    protected static Object singleResultNamedQuery(String namedQuery, List<Object> values, String[] parameters) {
         Query query = em.createNamedQuery(namedQuery);
 
         for (int iterador = 0; iterador < values.size(); iterador++) {
@@ -74,17 +78,22 @@ public class Conexao {
 
         return query.getSingleResult();
     }
-    
+
     protected static Object singleResultNamedQuery(String namedQuery, Object value, String parameter) {
         Query query = em.createNamedQuery(namedQuery);
         query.setParameter(parameter, value);
         return query.getSingleResult();
     }
-    
-    public static void endConnection(){
-        if(em.isOpen()) em.close();
+
+    public static void endConnection() {
+        if (em.isOpen()) {
+            em.close();
+        }
         factory.close();
     }
-    
-    
+
+    static void clear() {
+        em.clear();
+        commit();
+    }
 }

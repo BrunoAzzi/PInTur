@@ -19,12 +19,13 @@ import view.produto.MenuProdutos;
  * @author bruno_azzi
  */
 public class MenuCategorias extends javax.swing.JPanel {
-    MenuProdutos menuProdutos;
 
+    MenuProdutos menuProdutos;
     int x = 0;
     int y = 0;
     ArrayList<Categoria> categorias = CategoriaControl.listaCategorias();
-    
+    ArrayList<ItemMenuCategoria> itemMenuCategorias = new ArrayList();
+
     /**
      * Creates new form MenuCategorias
      */
@@ -144,7 +145,6 @@ public class MenuCategorias extends javax.swing.JPanel {
         TelaCarrinhoDeCompras telaCarrinhoDeCompras = new TelaCarrinhoDeCompras();
         telaCarrinhoDeCompras.setVisible(true);
     }//GEN-LAST:event_AbreCarrinhoDeCompras
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
@@ -156,25 +156,31 @@ public class MenuCategorias extends javax.swing.JPanel {
 
     public void initCategorias() {
         jPanel1.removeAll();
+
         categorias = CategoriaControl.listaCategorias();
-        
+
         for (Categoria categoria : categorias) {
             ItemMenuCategoria itemMenuCategoria = new ItemMenuCategoria();
             itemMenuCategoria.setCategoria(categoria);
+            //SERVE PARA OS EVENTOS ONCLICK 
             itemMenuCategoria.setMenuProdutos(menuProdutos);
-            
+            //ARMAZENA PONTEIRO NUMA LISTA
+            itemMenuCategorias.add(itemMenuCategoria);
+
             preparaItemMenu(itemMenuCategoria);
-            
+
             jPanel1.add(itemMenuCategoria);
             itemMenuCategoria.setVisible(true);
+            itemMenuCategoria.repaint();
         }
-        
+
         x = 0;
-        jPanel1.setPreferredSize(new Dimension(5000,5000));
+        jPanel1.setPreferredSize(new Dimension(5000, 5000));
+        jPanel1.repaint();
     }
 
     private void preparaItemMenu(ItemMenuCategoria itemMenuCategoria) {
-        itemMenuCategoria.setBounds(x ,y , 140, 140);
+        itemMenuCategoria.setBounds(x, y, 140, 140);
         x += 150;
     }
 
@@ -182,4 +188,9 @@ public class MenuCategorias extends javax.swing.JPanel {
         this.menuProdutos = menuProdutos;
     }
     
+    public void atualizaMenuCategorias(){
+        initCategorias();
+        jLabelQuantidadeDeItensNoCarrinho.setText(CarrinhoDeCompras.getQuantidadeDeProdutosNoCarrinho().toString());
+        repaint();
+    }
 }

@@ -5,6 +5,7 @@
 package view.categoria;
 
 import control.CategoriaControl;
+import javax.persistence.RollbackException;
 import javax.swing.JOptionPane;
 import utilidades.Mensagens;
 import view.TableModels.CategoriaTableModel.ListarCategoriaTableModel;
@@ -49,9 +50,12 @@ public class ListarCategoria extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 204));
+
         jTable2.setModel(listarCategoriasTableModel);
         jScrollPane2.setViewportView(jTable2);
 
+        jButton4.setBackground(new java.awt.Color(51, 102, 255));
         jButton4.setText("Remover");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,6 +63,7 @@ public class ListarCategoria extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setBackground(new java.awt.Color(51, 102, 255));
         jButton5.setText("Editar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +71,7 @@ public class ListarCategoria extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setBackground(new java.awt.Color(51, 102, 255));
         jButton6.setText("Novo");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,29 +134,41 @@ public class ListarCategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if (jTable2.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(this,
+                    Mensagens.EDITAR_LINHA_NAO_SELECIONADA.getDescricao(),
+                    Mensagens.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
         EditarCategoria editarCategoria = new EditarCategoria();
-        try{
         editarCategoria.setCategoria(listarCategoriasTableModel.getCategoriaAt(jTable2.getSelectedRow()));
         editarCategoria.setVisible(true);
-        }catch(IndexOutOfBoundsException indexOutOfBoundsException){
-            JOptionPane.showMessageDialog(this, 
-                    Mensagens.EDITAR_LINHA_NAO_SELECIONADA.getDescricao(), 
-                    Mensagens.WARNING.getDescricao(), 
-                    JOptionPane.WARNING_MESSAGE);
-            // There is no nedd of sout(ex.getMessage)
-        }
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        try{
-            CategoriaControl.delete(listarCategoriasTableModel.getCategoriaAt(jTable2.getSelectedRow()));
-            listarCategoriasTableModel.deleteRow(jTable2.getSelectedRow());
-        }catch(IndexOutOfBoundsException indexOutOfBoundsException){
-            JOptionPane.showMessageDialog(this, 
+        if (jTable2.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(this,
                     Mensagens.REMOVER_LINHA_NAO_SELECIONADA.getDescricao(),
                     Mensagens.WARNING.getDescricao(),
-                    JOptionPane.WARNING_MESSAGE);
-        }/* catch*(SQLException problemascomexclusao) */
+                    JOptionPane.YES_NO_OPTION);
+            return;
+        }
+
+        int resposta = JOptionPane.showConfirmDialog(this,
+                Mensagens.DELETAR_CONFIRMACAO.getDescricao(),
+                Mensagens.WARNING.getDescricao(),
+                JOptionPane.YES_NO_OPTION);
+
+        if (resposta == JOptionPane.YES_OPTION) {
+            
+                CategoriaControl.delete(listarCategoriasTableModel.getCategoriaAt(jTable2.getSelectedRow()));
+
+                //listarCategoriasTableModel.deleteRow(jTable2.getSelectedRow());
+            
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void UpdateLista(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_UpdateLista
