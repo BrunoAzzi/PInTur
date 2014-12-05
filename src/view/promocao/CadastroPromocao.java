@@ -36,6 +36,7 @@ DefaultListModel defaultListModel = new DefaultListModel();
         for (Produto produto : produtoControl.listaProdutos()) {
             defaultListModel.addElement(produto);
             jList1.setModel(defaultListModel);
+            
         }
         
     }
@@ -66,6 +67,9 @@ DefaultListModel defaultListModel = new DefaultListModel();
         jLabel4 = new javax.swing.JLabel();
         jFormattedTextFieldValorPromocional = new javax.swing.JFormattedTextField();
         jButton4 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldValorProduto = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -85,6 +89,11 @@ DefaultListModel defaultListModel = new DefaultListModel();
 
         Produtos.setBackground(new java.awt.Color(255, 255, 192));
 
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jLabel1.setText("Produto");
@@ -118,6 +127,7 @@ DefaultListModel defaultListModel = new DefaultListModel();
         jTable1.setGridColor(new java.awt.Color(255, 255, 255));
         jScrollPane2.setViewportView(jTable1);
 
+        jDateChooserDateInicial.setMaxSelectableDate(new java.util.Date(253370775701000L));
         jDateChooserDateInicial.setMaximumSize(new java.awt.Dimension(89, 20));
         jDateChooserDateInicial.setMinimumSize(new java.awt.Dimension(89, 20));
 
@@ -144,6 +154,13 @@ DefaultListModel defaultListModel = new DefaultListModel();
             }
         });
 
+        jLabel5.setText("Valor");
+
+        jTextFieldValorProduto.setEditable(false);
+
+        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel6.setText("Atenção: Todos os campos são obrigatórios!");
+
         javax.swing.GroupLayout ProdutosLayout = new javax.swing.GroupLayout(Produtos);
         Produtos.setLayout(ProdutosLayout);
         ProdutosLayout.setHorizontalGroup(
@@ -154,36 +171,39 @@ DefaultListModel defaultListModel = new DefaultListModel();
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(ProdutosLayout.createSequentialGroup()
                         .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
                             .addGroup(ProdutosLayout.createSequentialGroup()
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(44, 44, 44)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(ProdutosLayout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
                                     .addGroup(ProdutosLayout.createSequentialGroup()
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(88, 88, 88)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(ProdutosLayout.createSequentialGroup()
+                                        .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(ProdutosLayout.createSequentialGroup()
-                                                .addComponent(jLabel3)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jDateChooserDataFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGroup(ProdutosLayout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jFormattedTextFieldValorPromocional))
-                                            .addGroup(ProdutosLayout.createSequentialGroup()
-                                                .addComponent(jLabel2)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jDateChooserDateInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(0, 10, Short.MAX_VALUE))))
+                                        .addComponent(jTextFieldValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(ProdutosLayout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jFormattedTextFieldValorPromocional, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(ProdutosLayout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jDateChooserDateInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(ProdutosLayout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jDateChooserDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel6))
+                        .addGap(0, 31, Short.MAX_VALUE))))
         );
 
-        ProdutosLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel2, jLabel3});
+        ProdutosLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel4, jLabel5});
 
         ProdutosLayout.setVerticalGroup(
             ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,16 +223,22 @@ DefaultListModel defaultListModel = new DefaultListModel();
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jTextFieldValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)
+                        .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jFormattedTextFieldValorPromocional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                .addGap(4, 4, 4)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -257,12 +283,18 @@ DefaultListModel defaultListModel = new DefaultListModel();
             calendarioFim.setTime(dataFim);
             calendarioInicio.get(Calendar.MONTH);
            
-            if(valorDouble <= 0 || valorDouble >= produto.getValor()){
+            if(valorDouble >= produto.getValor()){
                 JOptionPane.showMessageDialog(null, 
-                        Mensagens.PROMOCAO_CADASTRO_CAMPOS_INVALIDOS.getDescricao(),
+                        Mensagens.PROMOCAO_VALOR_MAIOR_OU_IGUAL_DO_PRODUTO.getDescricao(),
                         Mensagens.WARNING.getDescricao(), 
                         JOptionPane.WARNING_MESSAGE);
 
+            }
+            else if(valorDouble <= 0){
+                        JOptionPane.showMessageDialog(null, 
+                Mensagens.PROMOCAO_VALOR_MAIOR_QUE_ZERO.getDescricao(),
+                Mensagens.WARNING.getDescricao(), 
+                JOptionPane.WARNING_MESSAGE);
             }
             else if(calendarioInicio.get(Calendar.MONTH) != calendarioComputador.get(Calendar.MONTH)
                     || calendarioFim.get(Calendar.MONTH) != calendarioComputador.get(Calendar.MONTH)){
@@ -284,6 +316,14 @@ DefaultListModel defaultListModel = new DefaultListModel();
                         Mensagens.WARNING.getDescricao(), 
                         JOptionPane.WARNING_MESSAGE);
             }
+
+            else if((Produto) jList1.getSelectedValue() == null){
+                    JOptionPane.showMessageDialog(null, 
+               Mensagens.PROMOCAO_PRODUTO_NAO_SELECIONADO.getDescricao(), 
+               Mensagens.WARNING.getDescricao(), 
+               JOptionPane.WARNING_MESSAGE);   
+            }
+            
             else{
                 // Nova promocao
                 Promocao novaPromocao = new Promocao();
@@ -303,6 +343,7 @@ DefaultListModel defaultListModel = new DefaultListModel();
                     JOptionPane.WARNING_MESSAGE);
 
         } catch(NumberFormatException e){
+            
             JOptionPane.showMessageDialog(null, 
                     Mensagens.PROMOCAO_CADASTRO_CAMPOS_INVALIDOS.getDescricao(), 
                     Mensagens.WARNING.getDescricao(), 
@@ -346,6 +387,11 @@ DefaultListModel defaultListModel = new DefaultListModel();
         if(jTable1.getSelectedRow() >= 0){
             promocaoTableModel.deleteRow(jTable1.getSelectedRow());}
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        Produto produto = (Produto) jList1.getSelectedValue();
+        jTextFieldValorProduto.setText(String.valueOf(produto.getValor()));
+    }//GEN-LAST:event_jList1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -394,11 +440,14 @@ DefaultListModel defaultListModel = new DefaultListModel();
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JList jList1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextFieldValorProduto;
     // End of variables declaration//GEN-END:variables
 
     private void populaPromocao(Promocao novaPromocao) {

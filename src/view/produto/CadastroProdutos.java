@@ -68,7 +68,6 @@ public class CadastroProdutos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Produtos");
         setBackground(new java.awt.Color(255, 255, 204));
-        setMaximumSize(new java.awt.Dimension(287, 400));
         setMinimumSize(new java.awt.Dimension(287, 400));
         setResizable(false);
 
