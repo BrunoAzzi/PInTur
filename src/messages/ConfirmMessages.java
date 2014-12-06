@@ -10,7 +10,12 @@ package messages;
  */
 public enum ConfirmMessages {
     
-    CERTEZA_DE_EDICAO("Tem certeza de que quer salvar esta edição?");
+    CATEGORIA_ADICIONAR_CONFIRMACAO("Deseja salvar esta(s) categoria(s)?"),
+    PROMOCAO_ADICIONAR_CONFIRMACAO("Deseja salvar esta(s) promoção(ões)?"),
+    ADICIONAR_CONFIRMACAO("Deseja mesmo salvar este(s) registro(s)?"), 
+    DELETAR_CONFIRMACAO("Tem certeza que deseja deletar o registro selecionado?"),
+    PRODUTO_ADICIONAR_CONFIRMACAO("Deseja salvar este(s) produto(s)?"), 
+    EDITAR_CONFIRMACAO("Deseja mesmo editar este registro?");
     
     String descricao;
 

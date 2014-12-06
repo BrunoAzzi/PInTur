@@ -7,6 +7,8 @@ package view.login;
 import control.UsuarioControl;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import messages.Titles;
+import messages.UsuarioFormWarning;
 import model.Usuario;
 import utilidades.Formatador;
 import utilidades.Mensagens;
@@ -147,14 +149,9 @@ public class LoginAdmin extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(this,
                         Mensagens.NAO_TEM_PERMISSAO.getDescricao(),
-                        Mensagens.WARNING.getDescricao(),
+                        Titles.WARNING.getDescricao(),
                         JOptionPane.WARNING_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(this,
-                    Mensagens.CAMPOS_INVALIDOS.getDescricao(),
-                    Mensagens.WARNING.getDescricao(),
-                    JOptionPane.WARNING_MESSAGE);
         }
         limpaCampos();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -205,9 +202,17 @@ public class LoginAdmin extends javax.swing.JFrame {
 
     private boolean isCamposValidos() {
         if (jTextField1.getText().equals("")) {
+            JOptionPane.showMessageDialog(this,
+                    UsuarioFormWarning.LOGIN_INVALIDO.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if (jPasswordField1.getPassword().length <= 0) {
+            JOptionPane.showMessageDialog(this,
+                    UsuarioFormWarning.SENHA_INVALIDA.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
             return false;
         }
         return true;

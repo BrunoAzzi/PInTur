@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import messages.Titles;
 import model.Foto;
 
 /**
@@ -22,7 +23,7 @@ public class ImageChooser extends FileDialog {
 
     public ImageChooser(Frame parent) {
         super(parent);
-        setTitle("Escolha uma imagem");
+        setTitle("Escolha uma imagem.");
         this.setAutoRequestFocus(true);
         //TODO ver como se aceita apenas imagens
     }
@@ -43,9 +44,14 @@ public class ImageChooser extends FileDialog {
         return image;
     }
             
-    public File getSingleImageFile() throws NullPointerException {
-        if(getFiles().length <= 0) throw new NullPointerException();
+    public File getSingleImageFile() {
+        try{
+            if(getFiles().length <= 0) return null;
         return getFiles()[0];
+        }catch(NullPointerException nullPointerException){
+            return null;
+        }
+        
     }
     
     public Foto getFoto(){
@@ -57,20 +63,13 @@ public class ImageChooser extends FileDialog {
     public ImageIcon getIcon(){
         return new ImageIcon(getImage());
     }
+
+    public File getInternalFile() {
+        return file;
+    }
+
+    public void setInternalFile(File file) {
+        this.file = file;
+    }
     
-//    public byte[] getTesteResizedImage(){
-//        if(getSingleImageFile() == null) return null;
-//        
-//        byte[] image = new byte[(int) Imagem.testeFileResizeImage(100, 100, getSingleImageFile()).length()];
-//
-//        try {
-//            FileInputStream fileInputStream = new FileInputStream(Imagem.testeFileResizeImage(100, 100, getSingleImageFile()));
-//            fileInputStream.read(image);
-//            fileInputStream.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        
-//        return image;
-//    }
 }

@@ -5,8 +5,9 @@
 package view.categoria;
 
 import control.CategoriaControl;
-import javax.persistence.RollbackException;
 import javax.swing.JOptionPane;
+import messages.ConfirmMessages;
+import messages.Titles;
 import utilidades.Mensagens;
 import view.TableModels.CategoriaTableModel.ListarCategoriaTableModel;
 
@@ -137,7 +138,7 @@ public class ListarCategoria extends javax.swing.JFrame {
         if (jTable2.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(this,
                     Mensagens.EDITAR_LINHA_NAO_SELECIONADA.getDescricao(),
-                    Mensagens.WARNING.getDescricao(),
+                    Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -152,22 +153,16 @@ public class ListarCategoria extends javax.swing.JFrame {
         if (jTable2.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(this,
                     Mensagens.REMOVER_LINHA_NAO_SELECIONADA.getDescricao(),
-                    Mensagens.WARNING.getDescricao(),
+                    Titles.WARNING.getDescricao(),
                     JOptionPane.YES_NO_OPTION);
             return;
         }
 
-        int resposta = JOptionPane.showConfirmDialog(this,
-                Mensagens.DELETAR_CONFIRMACAO.getDescricao(),
-                Mensagens.WARNING.getDescricao(),
-                JOptionPane.YES_NO_OPTION);
+        
 
-        if (resposta == JOptionPane.YES_OPTION) {
-            
+        if (areUsure()) {
                 CategoriaControl.delete(listarCategoriasTableModel.getCategoriaAt(jTable2.getSelectedRow()));
-
                 //listarCategoriasTableModel.deleteRow(jTable2.getSelectedRow());
-            
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -218,7 +213,12 @@ public class ListarCategoria extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 
-    private boolean preRequisitosParaRemocaoIsOk() {
-        return true;
+    private boolean areUsure() {
+        return JOptionPane.showConfirmDialog(this,
+                ConfirmMessages.DELETAR_CONFIRMACAO.getDescricao(),
+                Titles.CONFIRM.getDescricao(),
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
+
+    
 }

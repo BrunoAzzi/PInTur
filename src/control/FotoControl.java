@@ -14,6 +14,7 @@ public class FotoControl {
 
     public static void add(Foto foto) {
         Conexao.persist(foto);
+        Conexao.commit();
     }
     
 }

@@ -8,11 +8,12 @@ import control.CategoriaControl;
 import control.FotoCategoriaControl;
 import control.FotoControl;
 import javax.swing.JOptionPane;
+import messages.CategoriaFormWarning;
 import messages.ConfirmMessages;
+import messages.Titles;
 import model.Categoria;
 import utilidades.ImageChooser;
 import utilidades.Imagem;
-import utilidades.Mensagens;
 
 /**
  *
@@ -167,27 +168,24 @@ public class EditarCategoria extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (camposIsOK()) {
             if (areUSure()) {
-                try{
-                FotoControl.add(categoria.getFotoCategoria().getFoto());
-                FotoCategoriaControl.add(categoria.getFotoCategoria());
-                CategoriaControl.add(categoria);
-                this.dispose();
-                }catch(NullPointerException nullPointerException){
+                    populaCategoria();
+                    FotoControl.add(categoria.getFotoCategoria().getFoto());
+                    FotoCategoriaControl.add(categoria.getFotoCategoria());
                     CategoriaControl.add(categoria);
                     this.dispose();
-                }
+//                    CategoriaControl.add(categoria);
+//                    this.dispose();
             }
-        }else{
-            JOptionPane.showMessageDialog(this, 
-                    Mensagens.CAMPOS_INVALIDOS.getDescricao(), 
-                    Mensagens.WARNING.getDescricao(), 
-                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         imageChooser.setVisible(true);
-        jLabelCategoriaImage.setIcon(Imagem.resizeImage(100, 100, imageChooser.getSingleImageFile()));       
+        try{
+            jLabelCategoriaImage.setIcon(Imagem.resizeImage(100, 100, imageChooser.getSingleImageFile()));
+        }catch(NullPointerException nullPointerException){
+            System.out.println("Imagem nao selecionada");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -237,30 +235,46 @@ public class EditarCategoria extends javax.swing.JFrame {
 
     void setCategoria(Categoria categoria) {
         this.categoria = categoria;
-        
         jTextField1.setText(categoria.getNome());
-                        System.out.println(categoria.getNome());
         jLabelCategoriaImage.setIcon(categoria.getFotoCategoria().getFoto().getIcon());
-        //TODO rever redimensionamento da Imagem;
     }
 
     boolean areUSure() {
-        if (JOptionPane.showConfirmDialog(this, ConfirmMessages.CERTEZA_DE_EDICAO.getDescricao(), "Confirm Diaolog", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
-            try{
-                categoria.getFotoCategoria().setFoto(imageChooser.getFoto());
-                categoria.getFotoCategoria().setDescricao(imageChooser.getSingleImageFile().getName());
-            }catch(NullPointerException exception){
-                System.out.println("NULLPOINTER");
-            }       
-            categoria.setNome(jTextField1.getText());
-            return true;
-        }
-        return false;
+        return JOptionPane.showConfirmDialog(null,
+                ConfirmMessages.EDITAR_CONFIRMACAO.getDescricao(),
+                Titles.CONFIRM.getDescricao(),
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION; 
     }
 
     private boolean camposIsOK() {
-        if(jTextField1.getText().equals("")) return false;
-        if(jLabelCategoriaImage.getIcon() == null) return false;
+        
+        if (jTextField1.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,
+                    CategoriaFormWarning.NOME_INVALIDO.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (jLabelCategoriaImage.getIcon() == null) {
+            JOptionPane.showMessageDialog(null,
+                    CategoriaFormWarning.IMAGEM_INVALIDA.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
         return true;
+    }
+
+    private void populaCategoria() {
+        try{
+            categoria.getFotoCategoria().getFoto().setImage(imageChooser.getImage());
+            categoria.setNome(jTextField1.getText());
+            jLabelCategoriaImage.setIcon(imageChooser.getIcon());
+        }catch(NullPointerException nullPointerException){
+            //TODO REVER TRATAMENTO
+        }
     }
 }

@@ -12,11 +12,12 @@ import model.Fotoproduto;
  * @author Gustavo Coelho
  */
 public class FotoProdutoControl {
-    public static ArrayList<Fotoproduto> listaCategorias(){
+    public static ArrayList<Fotoproduto> listaFotosDosProdutos(){
         return new ArrayList(Conexao.namedQuery("Fotoproduto.findAll"));
     }
 
     public static void add(Fotoproduto fotoproduto) {
         Conexao.persist(fotoproduto);
+        Conexao.commit();
     }
 }

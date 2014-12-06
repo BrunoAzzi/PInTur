@@ -7,8 +7,9 @@ package control;
 import java.util.ArrayList;
 import javax.persistence.RollbackException;
 import javax.swing.JOptionPane;
+import messages.DeleteMessages;
+import messages.Titles;
 import model.Categoria;
-import utilidades.Mensagens;
 
 public class CategoriaControl {
     
@@ -18,7 +19,14 @@ public class CategoriaControl {
 
     public static void add(Categoria categoria) {
         Conexao.persist(categoria);
-        Conexao.commit();
+        try {
+            Conexao.commit();
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(null,
+                    exception.getMessage(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public static Categoria findByCodigo(Integer codigo){
@@ -34,14 +42,14 @@ public class CategoriaControl {
         try{
             Conexao.commit();
             JOptionPane.showMessageDialog(null, 
-                    Mensagens.DELETAR_CATEGORIA_SUCESSO.getDescricao(), 
-                    Mensagens.SUCESSO.getDescricao(), 
+                    DeleteMessages.CATEGORIA_SUCESSO.getDescricao(), 
+                    Titles.SUCESSO.getDescricao(), 
                     JOptionPane.INFORMATION_MESSAGE);
         }catch(RollbackException rollbackException){
             Conexao.clear();
             JOptionPane.showMessageDialog(null, 
-                    Mensagens.DELETAR_CATEGORIA_IMPOSSIBILIDADE.getDescricao(), 
-                    Mensagens.WARNING.getDescricao(), 
+                    DeleteMessages.CATEGORIA_IMPOSSIBILIDADE.getDescricao(), 
+                    Titles.WARNING.getDescricao(), 
                     JOptionPane.WARNING_MESSAGE);
         }
     }

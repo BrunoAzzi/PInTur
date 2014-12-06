@@ -11,6 +11,7 @@ import control.ProdutoControl;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import messages.ConfirmMessages;
+import messages.Titles;
 import model.Categoria;
 import model.Produto;
 import utilidades.ImageChooser;
@@ -311,7 +312,12 @@ public class EditarProduto extends javax.swing.JFrame {
     }
 
     private boolean certezaDeEdicao() {
-        if (JOptionPane.showConfirmDialog(this, ConfirmMessages.CERTEZA_DE_EDICAO.getDescricao(), "Confirm Dialog", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+        if (JOptionPane.showConfirmDialog(null, 
+                ConfirmMessages.EDITAR_CONFIRMACAO.getDescricao(), 
+                Titles.CONFIRM.getDescricao(), 
+                JOptionPane.YES_NO_OPTION, 
+                JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+            
             produto.setNome(jtfNome.getText());
             produto.setDescricao(jtfDescricao.getText());
             String produtoValorTratado = jtfValor.getText().replace(',', '.').trim();

@@ -19,6 +19,7 @@ public class FotoCategoriaControl {
 
     public static void add(Fotocategoria fotoCategoria) {
         Conexao.persist(fotoCategoria);
+        Conexao.commit();
     }
     
 }

@@ -192,5 +192,6 @@ public class MenuCategorias extends javax.swing.JPanel {
         initCategorias();
         jLabelQuantidadeDeItensNoCarrinho.setText(CarrinhoDeCompras.getQuantidadeDeProdutosNoCarrinho().toString());
         repaint();
+        jScrollPane1.revalidate();
     }
 }

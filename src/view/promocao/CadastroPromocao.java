@@ -12,6 +12,9 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import messages.ConfirmMessages;
+import messages.PromocaoFormWarning;
+import messages.Titles;
 import model.Produto;
 import model.Promocao;
 import utilidades.Mensagens;
@@ -285,42 +288,43 @@ DefaultListModel defaultListModel = new DefaultListModel();
            
             if(valorDouble >= produto.getValor()){
                 JOptionPane.showMessageDialog(null, 
-                        Mensagens.PROMOCAO_VALOR_MAIOR_OU_IGUAL_DO_PRODUTO.getDescricao(),
-                        Mensagens.WARNING.getDescricao(), 
+                        PromocaoFormWarning.PROMOCAO_VALOR_MAIOR_OU_IGUAL_DO_PRODUTO.getDescricao(),
+                        Titles.WARNING.getDescricao(), 
                         JOptionPane.WARNING_MESSAGE);
 
             }
             else if(valorDouble <= 0){
                         JOptionPane.showMessageDialog(null, 
-                Mensagens.PROMOCAO_VALOR_MAIOR_QUE_ZERO.getDescricao(),
-                Mensagens.WARNING.getDescricao(), 
+                PromocaoFormWarning.PROMOCAO_VALOR_MAIOR_QUE_ZERO.getDescricao(),
+                Titles.WARNING.getDescricao(), 
                 JOptionPane.WARNING_MESSAGE);
             }
             else if(calendarioInicio.get(Calendar.MONTH) != calendarioComputador.get(Calendar.MONTH)
                     || calendarioFim.get(Calendar.MONTH) != calendarioComputador.get(Calendar.MONTH)){
                 JOptionPane.showMessageDialog(null, 
-                        Mensagens.PROMOCAO_CADASTRO_MES_INVALIDO.getDescricao(),
-                        Mensagens.WARNING.getDescricao(), 
+                        PromocaoFormWarning.PROMOCAO_CADASTRO_MES_INVALIDO.getDescricao(),
+                        Titles.WARNING.getDescricao(), 
                         JOptionPane.WARNING_MESSAGE);
             }
             else if(calendarioInicio.get(Calendar.DAY_OF_MONTH) < calendarioComputador.get(Calendar.DAY_OF_MONTH)
                     || calendarioFim.get(Calendar.DAY_OF_MONTH) < calendarioComputador.get(Calendar.DAY_OF_MONTH)){
-                JOptionPane.showMessageDialog(null, Mensagens.PROMOCAO_CADASTRO_DIA_MENOR_QUE_DIA_ATUAL.getDescricao(),
-                        Mensagens.WARNING.getDescricao(), 
+                JOptionPane.showMessageDialog(null, 
+                        PromocaoFormWarning.PROMOCAO_CADASTRO_DIA_MENOR_QUE_DIA_ATUAL.getDescricao(),
+                        Titles.WARNING.getDescricao(), 
                         JOptionPane.WARNING_MESSAGE);
             }
                 
             else if(calendarioInicio.get(Calendar.DAY_OF_MONTH) > calendarioFim.get(Calendar.DAY_OF_MONTH)){
                 JOptionPane.showMessageDialog(null, 
-                        Mensagens.PROMOCAO_CADASTRO_DIA_INVALIDO.getDescricao(), 
-                        Mensagens.WARNING.getDescricao(), 
+                        PromocaoFormWarning.PROMOCAO_CADASTRO_DIA_INVALIDO.getDescricao(), 
+                        Titles.WARNING.getDescricao(), 
                         JOptionPane.WARNING_MESSAGE);
             }
 
             else if((Produto) jList1.getSelectedValue() == null){
                     JOptionPane.showMessageDialog(null, 
-               Mensagens.PROMOCAO_PRODUTO_NAO_SELECIONADO.getDescricao(), 
-               Mensagens.WARNING.getDescricao(), 
+               PromocaoFormWarning.PROMOCAO_PRODUTO_NAO_SELECIONADO.getDescricao(), 
+               Titles.WARNING.getDescricao(), 
                JOptionPane.WARNING_MESSAGE);   
             }
             
@@ -338,15 +342,15 @@ DefaultListModel defaultListModel = new DefaultListModel();
         } catch (NullPointerException e) {
             
             JOptionPane.showMessageDialog(null,
-                    Mensagens.PROMOCAO_CADASTRO_OBJETO_NULO.getDescricao(), 
-                    Mensagens.WARNING.getDescricao(), 
+                    PromocaoFormWarning.PROMOCAO_CADASTRO_OBJETO_NULO.getDescricao(), 
+                    Titles.WARNING.getDescricao(), 
                     JOptionPane.WARNING_MESSAGE);
 
         } catch(NumberFormatException e){
             
             JOptionPane.showMessageDialog(null, 
-                    Mensagens.PROMOCAO_CADASTRO_CAMPOS_INVALIDOS.getDescricao(), 
-                    Mensagens.WARNING.getDescricao(), 
+                    PromocaoFormWarning.PROMOCAO_CADASTRO_CAMPOS_INVALIDOS.getDescricao(), 
+                    Titles.WARNING.getDescricao(), 
                     JOptionPane.WARNING_MESSAGE);
         }
         
@@ -358,8 +362,8 @@ DefaultListModel defaultListModel = new DefaultListModel();
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if(promocaoTableModel.getAllProdutos().size() > 0){
             if (JOptionPane.showConfirmDialog(this,
-                    Mensagens.PROMOCAO_ADICIONAR_CONFIRMACAO.getDescricao(),
-                    Mensagens.CONFIRM.getDescricao(), JOptionPane.YES_OPTION,
+                    ConfirmMessages.PROMOCAO_ADICIONAR_CONFIRMACAO.getDescricao(),
+                    Titles.CONFIRM.getDescricao(), JOptionPane.YES_OPTION,
                     JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION){
 
                 ArrayList<Promocao> arrayListPromocao = promocaoTableModel.getAllPromocoes();
@@ -377,8 +381,9 @@ DefaultListModel defaultListModel = new DefaultListModel();
             }
         }
         else{
-           JOptionPane.showMessageDialog(this, Mensagens.WARNING_SALVAR_SEM_NENHUM_CADASTRO.getDescricao(),
-                    Mensagens.WARNING.getDescricao(),
+           JOptionPane.showMessageDialog(this,
+                    Mensagens.WARNING_SALVAR_SEM_NENHUM_CADASTRO.getDescricao(),
+                    Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE); 
         }
     }//GEN-LAST:event_jButton4ActionPerformed

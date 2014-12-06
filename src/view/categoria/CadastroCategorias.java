@@ -8,7 +8,11 @@ import control.CategoriaControl;
 import control.FotoCategoriaControl;
 import control.FotoControl;
 import javax.swing.JOptionPane;
+import messages.CategoriaFormWarning;
+import messages.ConfirmMessages;
+import messages.Titles;
 import model.Categoria;
+import model.Foto;
 import model.Fotocategoria;
 import utilidades.ImageChooser;
 import utilidades.Imagem;
@@ -23,6 +27,7 @@ public class CadastroCategorias extends javax.swing.JFrame {
 
     CategoriaTableModel categoriaTableModel = new CategoriaTableModel(1, false);
     ImageChooser imageChooser = new ImageChooser(this);
+    private Foto categoriaFoto;
 
     /**
      * Creates new form CadastroCategorias
@@ -185,8 +190,6 @@ public class CadastroCategorias extends javax.swing.JFrame {
     private void jButtonNovaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaCategoriaActionPerformed
         if (camposValidados()) {
             categoriaTableModel.add(getCategoriaPopulada());
-        } else {
-            JOptionPane.showMessageDialog(rootPane, Mensagens.CATEGORIA_CADASTRO_CAMPOS_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
         }
         limpaCampos();
     }//GEN-LAST:event_jButtonNovaCategoriaActionPerformed
@@ -197,25 +200,24 @@ public class CadastroCategorias extends javax.swing.JFrame {
         } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
             JOptionPane.showMessageDialog(this,
                     Mensagens.REMOVER_LINHA_NAO_SELECIONADA.getDescricao(),
-                    Mensagens.WARNING.getDescricao(),
+                    Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         imageChooser.setVisible(true);
-        try {
+        if (imageChooser.getSingleImageFile() != null) {
             jLabelCategoriaImage.setIcon(Imagem.resizeImage(100, 100, imageChooser.getSingleImageFile()));
-        } catch (NullPointerException ex) {
-            System.out.println("No File Selected");
+            categoriaFoto = imageChooser.getFoto();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (categoriaTableModel.getAllCategorias().size() > 0) {
             if (JOptionPane.showConfirmDialog(this,
-                    Mensagens.CATEGORIA_ADICIONAR_CONFIRMACAO.getDescricao(),
-                    Mensagens.CONFIRM.getDescricao(),
+                    ConfirmMessages.CATEGORIA_ADICIONAR_CONFIRMACAO.getDescricao(),
+                    Titles.CONFIRM.getDescricao(),
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
 
@@ -225,13 +227,17 @@ public class CadastroCategorias extends javax.swing.JFrame {
                     FotoCategoriaControl.add(categoria.getFotoCategoria());
                     CategoriaControl.add(categoria);
                 }
+                JOptionPane.showMessageDialog(null, 
+                        Mensagens.ADICIONAR_CATEGORIA_SUCESSO.getDescricao(),
+                        Titles.SUCESSO.getDescricao(),
+                        JOptionPane.INFORMATION_MESSAGE);
                 categoriaTableModel.clear();
                 this.dispose();
             }
         } else {
             JOptionPane.showMessageDialog(this,
                     Mensagens.WARNING_SALVAR_SEM_NENHUM_CADASTRO.getDescricao(),
-                    Mensagens.WARNING.getDescricao(),
+                    Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -285,30 +291,37 @@ public class CadastroCategorias extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void limpaCampos() {
-
         jTextField1.setText("");
         jLabelCategoriaImage.setIcon(null);
         imageChooser = new ImageChooser(this);
-
     }
 
     private boolean camposValidados() {
-        if(jTextField1.getText().equals("")) return false;
-        if(jLabelCategoriaImage.getIcon() == null) return false;
+        if (jTextField1.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,
+                    CategoriaFormWarning.NOME_INVALIDO.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (jLabelCategoriaImage.getIcon() == null) {
+            JOptionPane.showMessageDialog(null,
+                    CategoriaFormWarning.IMAGEM_INVALIDA.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
         return true;
     }
 
     private Categoria getCategoriaPopulada() {
-
         Fotocategoria fotocategoria = new Fotocategoria();
         Categoria categoria = new Categoria();
-
         fotocategoria.setDescricao(jTextField1.getText() + ".jpg");
-        fotocategoria.setFoto(imageChooser.getFoto());
-
+        fotocategoria.setFoto(categoriaFoto);
         categoria.setNome(jTextField1.getText());
         categoria.setFotoCategoria(fotocategoria);
         return categoria;
-
     }
 }

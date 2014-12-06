@@ -6,6 +6,7 @@ package view.produto;
 
 import control.ProdutoControl;
 import javax.swing.JOptionPane;
+import messages.Titles;
 import utilidades.Mensagens;
 import view.TableModels.ProdutoTableModel.ListaProdutosTableModel;
 
@@ -145,7 +146,10 @@ public class ListarProdutos extends javax.swing.JFrame {
             editarProduto.setVisible(true);
         } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
             System.out.println(indexOutOfBoundsException.getMessage());
-            JOptionPane.showMessageDialog(rootPane, Mensagens.EDITAR_LINHA_NAO_SELECIONADA.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, 
+                    Mensagens.EDITAR_LINHA_NAO_SELECIONADA.getDescricao(), 
+                    Titles.WARNING.getDescricao(), 
+                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
     
@@ -156,7 +160,10 @@ public class ListarProdutos extends javax.swing.JFrame {
         listaProdutosTableModel.deleteRow(jTable2.getSelectedRow());            
         } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
             System.out.println(indexOutOfBoundsException.getMessage());
-            JOptionPane.showMessageDialog(rootPane, Mensagens.REMOVER_LINHA_NAO_SELECIONADA.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, 
+                    Mensagens.REMOVER_LINHA_NAO_SELECIONADA.getDescricao(), 
+                    Titles.WARNING.getDescricao(), 
+                    JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
