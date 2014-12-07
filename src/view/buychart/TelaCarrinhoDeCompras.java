@@ -18,7 +18,7 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
     int x = 10;
     int y = 10;
     
-    public ArrayList<Produto> produtosNoCarrinhoDeCompras = CarrinhoDeCompras.getProdutosNoCarrinho();
+    public ArrayList<Produto> produtosNoCarrinhoDeCompras = CarrinhoDeCompras.getProdutos();
 
     /**
      * Creates new form TelaCarrinhoDeCompras
@@ -113,6 +113,7 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Money-Black.png"))); // NOI18N
 
         buttonGroup1.add(jRadioButton3);
+        jRadioButton3.setSelected(true);
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton3ActionPerformed(evt);
@@ -122,7 +123,6 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Paypal-Black.png"))); // NOI18N
 
         buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setSelected(true);
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton2ActionPerformed(evt);
@@ -249,7 +249,7 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO inicializar compra e gerar recibo (relatorio)
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
@@ -336,12 +336,11 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
         x = 10;
         y = 10;
         
-        jPanelCarrinho.removeAll();
-        produtosNoCarrinhoDeCompras = CarrinhoDeCompras.getProdutosNoCarrinho();
+        jPanelCarrinho.removeAll(); 
         
-        for (Produto produto : produtosNoCarrinhoDeCompras) {
+        for (Produto produto : CarrinhoDeCompras.getProdutos()) {
             ItemDoCarrinhoDeCompras itemDoCarrinhoDeCompras = new ItemDoCarrinhoDeCompras();
-            itemDoCarrinhoDeCompras.setProduto(produto);
+            itemDoCarrinhoDeCompras.setProduto(produto, CarrinhoDeCompras.getQuantidadeDoProduto(produto));
             
             preparaItemMenu(itemDoCarrinhoDeCompras);
             
@@ -357,6 +356,8 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
     
     public void updateCarrinho(){
         initItensDoCarrinhoDeCompras();
+        jLabelTotalDaCompra.setText(CarrinhoDeCompras.getValorTotalDaCompra().toString());
         jPanelCarrinho.repaint();
+        revalidate();
     }
 }

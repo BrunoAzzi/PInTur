@@ -4,6 +4,9 @@
  */
 package view.buychart;
 
+import javax.swing.JOptionPane;
+import messages.Titles;
+import messages.Warnings;
 import model.Produto;
 
 /**
@@ -11,8 +14,9 @@ import model.Produto;
  * @author bruno_azzi
  */
 public class ItemDoCarrinhoDeCompras extends javax.swing.JPanel {
-    
+
     Produto produto;
+    private Integer quantidadeDoProduto;
 
     /**
      * Creates new form ItemDoCarrinhoDeCompras
@@ -159,9 +163,18 @@ public class ItemDoCarrinhoDeCompras extends javax.swing.JPanel {
     }//GEN-LAST:event_atualizaValorTotal
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        if ((Integer) jSpinnerQuantidade.getValue() > produto.getQuantidade()) {
+            JOptionPane.showMessageDialog(this,
+                    Warnings.QUANTIDADE_EXCEDENTE_EM_ESTOQUE.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
+            jSpinnerQuantidade.setValue(produto.getQuantidade());
+        } else {
+            quantidadeDoProduto = (Integer) jSpinnerQuantidade.getValue();
+            CarrinhoDeCompras.setQuantidadeDoProduto(produto, quantidadeDoProduto);
+            CarrinhoDeCompras.updateTelaDeCarrinhos();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -177,25 +190,26 @@ public class ItemDoCarrinhoDeCompras extends javax.swing.JPanel {
     private javax.swing.JSpinner jSpinnerQuantidade;
     // End of variables declaration//GEN-END:variables
 
-    public void setProduto(Produto produto) {
+    public void setProduto(Produto produto, Integer quantidadeDoProduto) {
         this.produto = produto;
+        this.quantidadeDoProduto = quantidadeDoProduto;
+        
         jLabelNome.setText(produto.getNome());
         jLabelDescricao.setText(produto.getDescricao());
-        jSpinnerQuantidade.setValue(produto.getQuantidade());
-        if(produto.getPromocao() == null){
-            jLabelValorUnitario.setText(Double.toString(produto.getValor()));
-            jLabelValorTotal.setText(Double.toString(produto.getQuantidade()*produto.getValor()));
-        }
-        else{
-            jLabelValorUnitario.setText(Double.toString(produto.getPromocao().getValorPromocional()));
-            jLabelValorTotal.setText(Double.toString(produto.getQuantidade()*produto.getPromocao().getValorPromocional()));
-        }
+        jSpinnerQuantidade.setValue(quantidadeDoProduto);
         
+        if (produto.getPromocao() == null) {
+            jLabelValorUnitario.setText(Double.toString(produto.getValor()));
+            jLabelValorTotal.setText(Double.toString(quantidadeDoProduto * produto.getValor()));
+        } else {
+            jLabelValorUnitario.setText(Double.toString(produto.getPromocao().getValorPromocional()));
+            jLabelValorTotal.setText(Double.toString(quantidadeDoProduto * produto.getPromocao().getValorPromocional()));
+        }
+
         //TODO colocar foto
     }
 
-    public Produto getProduto() {
-        return produto;
+    void setQuantidade(Integer quantidadeDoProduto) {
+        this.quantidadeDoProduto = quantidadeDoProduto;
     }
-
 }

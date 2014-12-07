@@ -5,13 +5,12 @@
 package view.produto;
 
 import control.VendaEfetuadaControl;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JOptionPane;
+import messages.ConfirmMessages;
 import messages.PromocaoFormWarning;
+import messages.RelatorioFormWarning;
 import messages.Titles;
 import utilidades.GeneratorPDF;
-import utilidades.Mensagens;
 
 /**
  *
@@ -19,9 +18,6 @@ import utilidades.Mensagens;
  */
 public class Relatorio extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Relatorio
-     */
     public Relatorio() {
         initComponents();
     }
@@ -45,6 +41,7 @@ public class Relatorio extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(102, 153, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(335, 102));
@@ -127,21 +124,15 @@ public class Relatorio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarRelatorioActionPerformed
-            //TODO Revisar
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date dataInicial = jDateChooserDataInicial.getDate();
-            Date dataFinal = jDateChooserDataFinal.getDate();
-        try {
-            simpleDateFormat.format(dataInicial);
-            simpleDateFormat.format(dataFinal);
-        } catch (NullPointerException nullPointerException) {
-            JOptionPane.showMessageDialog(this, "Campos inválidos", Titles.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+        if (camposValidos()) {
+            if (areUSure()) {
+                GeneratorPDF.gerarRelatoriodeProdutosMaisVendidos(
+                        VendaEfetuadaControl.retornaListaOrdenadaDeProdutosMaisVendidos(),
+                        jDateChooserDataInicial.getDate(),
+                        jDateChooserDataFinal.getDate());
+            }
         }
-        if (validaData()) {            
-            GeneratorPDF.gerarRelatoriodeProdutosMaisVendidos(VendaEfetuadaControl.retornaListaOrdenadaDeProdutosMaisVendidos(), dataInicial, dataFinal);
-        } else {
-            System.out.println("Deu ruim");
-        }
+
     }//GEN-LAST:event_jButtonGerarRelatorioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -193,20 +184,36 @@ public class Relatorio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
-    private boolean validaData() {
+    private boolean camposValidos() {
         if (jDateChooserDataInicial == null) {
-            JOptionPane.showMessageDialog(null, PromocaoFormWarning.PROMOCAO_DATA_INICIAL_NULA.getDescricao(), Titles.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,
+                    PromocaoFormWarning.PROMOCAO_DATA_INICIAL_NULA.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if (jDateChooserDataFinal == null) {
-            JOptionPane.showMessageDialog(null, PromocaoFormWarning.PROMOCAO_DATA_FINAL_NULA.getDescricao(), Titles.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,
+                    PromocaoFormWarning.PROMOCAO_DATA_FINAL_NULA.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
             return false;
         }
 
         if (jDateChooserDataInicial.getDate().after(jDateChooserDataFinal.getDate())) {
-            JOptionPane.showMessageDialog(null, "Data inicial maior que data final", Titles.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,
+                    RelatorioFormWarning.DATA_INICIAL_MAIOR_QUE_DATA_FINAL.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
             return false;
         }
         return true;
+    }
+
+    private boolean areUSure() {
+        return JOptionPane.showConfirmDialog(null,
+                ConfirmMessages.GERAR_RELATORIO.getDescricao(),
+                Titles.CONFIRM.getDescricao(),
+                JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION;
     }
 }

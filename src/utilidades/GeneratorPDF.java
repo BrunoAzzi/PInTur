@@ -18,7 +18,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JOptionPane;
 import model.Produto;
 import model.Vendaefetuada;
 import view.buychart.CarrinhoDeCompras;
@@ -87,7 +86,9 @@ public class GeneratorPDF {
         }
     }
 
-    public static void gerarRelatoriodeProdutosMaisVendidos(ArrayList<Vendaefetuada> vendaefetuada, Date dataInicial, Date dataFinal) {
+    public static void gerarRelatoriodeProdutosMaisVendidos(ArrayList<Vendaefetuada> vendasefetuadas, 
+                                                            Date dataInicial, Date dataFinal) {
+        
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\GustavoCalandriniPC\\Desktop\\Produtos mais vendidos.pdf"));
@@ -106,12 +107,12 @@ public class GeneratorPDF {
             table.addCell(header);
             table.addCell("Nome");
             table.addCell("Quantidade vendida");
-            for (Vendaefetuada vendaefetuada1 : vendaefetuada) {
+            for (Vendaefetuada vendaefetuada : vendasefetuadas) {
                 //TODO Pegar apenas itens com datas entre dataInicial e dataFinal
-                if (vendaefetuada1.getVenda().getData().after(dataInicial) || vendaefetuada1.getVenda().getData().before(dataFinal)) {
-                    table.addCell(vendaefetuada1.getProduto().getNome());
-                    System.out.println(vendaefetuada1.getProduto().getNome() + vendaefetuada1.getVenda().getData());
-                    table.addCell(Integer.toString(vendaefetuada1.getQuantidadeVendida()));
+                if (vendaefetuada.getVenda().getData().after(dataInicial) && vendaefetuada.getVenda().getData().before(dataFinal)) {
+                    table.addCell(vendaefetuada.getProduto().getNome());
+                    System.out.println(vendaefetuada.getProduto().getNome() + vendaefetuada.getVenda().getData());
+                    table.addCell(Integer.toString(vendaefetuada.getQuantidadeVendida()));
                 }
             }
             document.add(table);

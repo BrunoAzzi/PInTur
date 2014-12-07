@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package view.promocao;
+
 import control.ProdutoControl;
 import java.util.ArrayList;
 import model.Produto;
@@ -13,14 +14,15 @@ import view.buychart.CarrinhoDeCompras;
  * @author everton_m
  */
 public class MenuPromocao extends java.awt.Panel {
-    
+
     private ArrayList<Produto> produtosPromocionais = new ArrayList();
     private int produtoIndex;
+
     /**
      * Creates new form ItemListaPromocao
      */
     public MenuPromocao() {
-        initComponents(); 
+        initComponents();
         initProdutos();
     }
 
@@ -205,37 +207,32 @@ public class MenuPromocao extends java.awt.Panel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCarrinhoActionPerformed
-        Produto novoProdutoDoCarrinho =  produtosPromocionais.get(produtoIndex);
-        novoProdutoDoCarrinho.setQuantidade(1);
-        CarrinhoDeCompras.addProdutoNoCarrinho(novoProdutoDoCarrinho);
+        CarrinhoDeCompras.addProdutoNoCarrinho(produtosPromocionais.get(produtoIndex));
     }//GEN-LAST:event_jButtonAddCarrinhoActionPerformed
 
     private void jButtonVoltarPromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarPromocaoActionPerformed
-        if(existePromocoes()){
-            if(produtoIndex == 0){
-                produtoIndex = produtosPromocionais.size()-1;
+        if (existePromocoes()) {
+            if (produtoIndex == 0) {
+                produtoIndex = produtosPromocionais.size() - 1;
                 initProdutos();
-            }
-            else{
-                produtoIndex --;
+            } else {
+                produtoIndex--;
                 initProdutos();
             }
         }
     }//GEN-LAST:event_jButtonVoltarPromocaoActionPerformed
 
     private void jButtonProximaPromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProximaPromocaoActionPerformed
-        if(existePromocoes()){
-            if(produtoIndex == produtosPromocionais.size()-1){
+        if (existePromocoes()) {
+            if (produtoIndex == produtosPromocionais.size() - 1) {
                 produtoIndex = 0;
                 initProdutos();
-            }
-            else{
+            } else {
                 produtoIndex++;
                 initProdutos();
             }
         }
     }//GEN-LAST:event_jButtonProximaPromocaoActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAddCarrinho;
     private javax.swing.JButton jButtonProximaPromocao;
@@ -254,17 +251,17 @@ public class MenuPromocao extends java.awt.Panel {
     private javax.swing.JLabel jlValorProdutoPromocional;
     // End of variables declaration//GEN-END:variables
 
-    public void initProdutos(){
+    public void initProdutos() {
         for (Produto produto : ProdutoControl.listaProdutosPromocionais()) {
             produtosPromocionais.add(produto);
         }
-        if(existePromocoes()){
-            jlImagemItemProduto.setIcon(produtosPromocionais.get(produtoIndex).getFotoProduto().getFoto().getIcon());        
+        if (existePromocoes()) {
+            jlImagemItemProduto.setIcon(produtosPromocionais.get(produtoIndex).getFotoProduto().getFoto().getIcon());
             jlNomeProduto.setText(produtosPromocionais.get(produtoIndex).getNome());
             jLabel6.setText(produtosPromocionais.get(produtoIndex).getDescricao());
-            jlValorProduto.setText(Double.toString(produtosPromocionais.get(produtoIndex).getValor()));        
+            jlValorProduto.setText(Double.toString(produtosPromocionais.get(produtoIndex).getValor()));
             jlValorProdutoPromocional.setText(Double.toString(produtosPromocionais.get(produtoIndex).getPromocao().getValorPromocional()));
-        } 
+        }
     }
     public boolean existePromocoes(){
         if(produtosPromocionais.size() < 1){
@@ -279,6 +276,7 @@ public class MenuPromocao extends java.awt.Panel {
             return true;
         }
     }
+
     public Produto getProduto() {
         return produtosPromocionais.get(produtoIndex);
     }
