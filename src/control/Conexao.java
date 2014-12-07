@@ -9,7 +9,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+import org.hibernate.exception.DataException;
 
 /**
  *
@@ -32,7 +34,7 @@ public class Conexao {
         }
     }
 
-    protected static void persist(Object object) {
+    protected static void persist(Object object) throws DataException, PersistenceException{
         getTransaction();
         em.persist(object);
     }

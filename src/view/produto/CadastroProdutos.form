@@ -166,6 +166,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtfNome">
+          <Properties>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[6, 20]"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtfDescricao">
         </Component>

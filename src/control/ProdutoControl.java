@@ -6,6 +6,7 @@ package control;
 
 import java.util.ArrayList;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 import javax.persistence.RollbackException;
 import javax.swing.JOptionPane;
 import messages.DeleteMessages;
@@ -13,6 +14,7 @@ import messages.Titles;
 import messages.Warnings;
 import model.Categoria;
 import model.Produto;
+import org.hibernate.exception.DataException;
 
 /**
  *
@@ -63,19 +65,7 @@ public class ProdutoControl {
         return new ArrayList(Conexao.namedQuery("Produto.findByNome"));
     }
 
-    public static void addWithMessage(Produto produto){
-        Conexao.persist(produto);
-        try {
-            Conexao.commit();
-        } catch (Exception exception) {
-            JOptionPane.showMessageDialog(null,
-                    exception.getMessage(),
-                    Titles.WARNING.getDescricao(),
-                    JOptionPane.ERROR_MESSAGE);
-        }
-    }
-    
-    public static void add(Produto produto) {
+    public static void addWithMessage(Produto produto) {
         Conexao.persist(produto);
         try {
             Conexao.commit();
@@ -87,22 +77,43 @@ public class ProdutoControl {
         }
     }
 
-    public static void delete(Produto produto) {
-            Conexao.remove(produto);
-            try{
-            Conexao.commit();    
-            }catch(RollbackException rollbackException){
-                JOptionPane.showMessageDialog(null,
-                    DeleteMessages.PRODUTO_IMPOSSIBILIDADE.getDescricao(),
+    public static void add(Produto produto){
+        
+            Conexao.persist(produto);
+        try {
+            Conexao.commit();
+        } catch (PersistenceException persistenceException){
+            JOptionPane.showMessageDialog(null, persistenceException.getMessage(),
                     Titles.WARNING.getDescricao(),
                     JOptionPane.ERROR_MESSAGE);
-            }catch(Exception exception){
-                JOptionPane.showMessageDialog(null,
+        } catch (DataException dataException) {
+            JOptionPane.showMessageDialog(null, dataException.getMessage(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.ERROR_MESSAGE);
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(null,
                     exception.getMessage(),
                     Titles.WARNING.getDescricao(),
                     JOptionPane.ERROR_MESSAGE);
-            }
-                    
-            
+        }
+    }
+
+    public static void delete(Produto produto) {
+        Conexao.remove(produto);
+        try {
+            Conexao.commit();
+        } catch (RollbackException rollbackException) {
+            JOptionPane.showMessageDialog(null,
+                    DeleteMessages.PRODUTO_IMPOSSIBILIDADE.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.ERROR_MESSAGE);
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(null,
+                    exception.getMessage(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+
     }
 }
