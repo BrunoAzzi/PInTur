@@ -16,7 +16,14 @@ public enum Mensagens {
     WARNING_SALVAR_SEM_NENHUM_CADASTRO("Nenhum cadastro encontrado! \nNão foi possível salvar."),
     NAO_TEM_PERMISSAO("Você não tem permissão para acessar a área Admnistrativa!"), 
     ADICIONAR_CATEGORIA_SUCESSO("Adicionou-se com sucesso a(s) categoria(s)."), 
-    ADICIONAR_PRODUTO_SUCESSO("Adicionou-se com sucesso o(s) produto(s).");
+    ADICIONAR_PRODUTO_SUCESSO("Adicionou-se com sucesso o(s) produto(s)."),
+    QUANTIDADE_INVALIDA("Quantidade de produtos inválida."), 
+    VALOR_INVALIDO("Valor do produto inválido."), 
+    NOME_INVALIDO("Nome do produto inválido."), 
+    DESCRICAO_INVALIDA("Descricao do produto inválida"), 
+    IMAGEM_PRODUTO_INVALIDA("Imagem inválida no cadastro de produtos."), 
+    VALOR_MENOR_OU_IGUAL_A_ZERO("O valor deve ser um número positivo diferente de zero."), 
+    QUANTIDADE_MENOR_OU_IGUAL_A_ZERO("Ä Quantidade de ser um numero positivo inteiro diferente de zero.");
     
     
     String descricao;

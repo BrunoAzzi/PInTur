@@ -5,6 +5,7 @@
 package view.produto;
 
 import model.Produto;
+import view.buychart.CarrinhoDeCompras;
 
 /**
  *
@@ -48,7 +49,7 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jpImagemProduto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jpImagemProduto.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jpImagemProduto.setMaximumSize(new java.awt.Dimension(199, 182));
         jpImagemProduto.setMinimumSize(new java.awt.Dimension(199, 182));
 
@@ -180,7 +181,11 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Produto novoProdutoDoCarrinho =  produto;
+        novoProdutoDoCarrinho.setQuantidade(1);
+        CarrinhoDeCompras.addProdutoNoCarrinho(novoProdutoDoCarrinho);
     }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;

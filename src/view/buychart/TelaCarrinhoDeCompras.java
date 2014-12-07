@@ -122,6 +122,7 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Paypal-Black.png"))); // NOI18N
 
         buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setSelected(true);
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton2ActionPerformed(evt);
@@ -151,7 +152,7 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
         jLabelQuantidadeDeParcelas.setForeground(new java.awt.Color(255, 255, 255));
         jLabelQuantidadeDeParcelas.setText("Quantidade de Parcelas:");
 
-        jComboBoxQuantidadeDeParcelas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A vista", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12" }));
+        jComboBoxQuantidadeDeParcelas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A vista" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -180,7 +181,7 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabelQuantidadeDeParcelas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBoxQuantidadeDeParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)

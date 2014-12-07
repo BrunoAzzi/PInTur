@@ -119,7 +119,6 @@ public class ItemListaProduto extends java.awt.Panel {
         if(produto != null){
             menuProdutosSelecionados.setProduto(produto);                    
         } 
-        System.out.println("Teste Set Menu Produtos Selecionados"+produto.getNome());
     }//GEN-LAST:event_SetInMenuProdutosSelecionados
 
     private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
