@@ -10,16 +10,17 @@ package messages;
  */
 public enum Warnings {
     
-    OBJETO_NAO_ENCONTRADO("A consulta do banco nao retornou resultados.");
+    OBJETO_NAO_ENCONTRADO("A consulta do banco nao retornou resultados."), 
+    QUANTIDADE_DE_PRODUTOS_EXCEDENTE("Nao foi possivel adicionar o produto no carrinho.\nA quantidade de produtos excede o estoque.");
 
-    final String mensagem;
+    final String descricao;
     
     private Warnings(String descricao) {
-        this.mensagem = descricao;
+        this.descricao = descricao;
     }
 
-    public String getMensagem() {
-        return mensagem;
+    public String getDescricao() {
+        return descricao;
     }
     
 }

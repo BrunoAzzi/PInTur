@@ -54,7 +54,7 @@ public class ProdutoControl {
             return (Produto) Conexao.singleResultNamedQuery("Produto.findByCodigo", codigo, "codigo");
         } catch (NoResultException noResultException) {
             JOptionPane.showMessageDialog(null,
-                    Warnings.OBJETO_NAO_ENCONTRADO.getMensagem(),
+                    Warnings.OBJETO_NAO_ENCONTRADO.getDescricao(),
                     JOptionPane.MESSAGE_PROPERTY,
                     JOptionPane.WARNING_MESSAGE);
             return null;

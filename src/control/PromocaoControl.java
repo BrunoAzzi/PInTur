@@ -36,7 +36,7 @@ public class PromocaoControl {
         try {
             return (Promocao) Conexao.singleResultNamedQuery("Promocao.findByCodigo", codigo, "codigo");
         } catch (NoResultException e) {
-            JOptionPane.showMessageDialog(null, Warnings.OBJETO_NAO_ENCONTRADO.getMensagem(), JOptionPane.MESSAGE_PROPERTY, JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, Warnings.OBJETO_NAO_ENCONTRADO.getDescricao(), JOptionPane.MESSAGE_PROPERTY, JOptionPane.WARNING_MESSAGE);
             return null;
         }
     }
