@@ -73,7 +73,6 @@ public class PromocaoControl {
     public static void verificarPromocoes() {
         Calendar dataAtual = Calendar.getInstance();
         Calendar dataFinalPromocao = Calendar.getInstance();
-
         for (Produto produto : ProdutoControl.listaProdutosPromocionais()) {
             System.out.println(produto.getNome());
             System.out.println(produto.getPromocao().getDataFinal());
@@ -85,5 +84,6 @@ public class PromocaoControl {
 
             }
         }
+
     }
 }

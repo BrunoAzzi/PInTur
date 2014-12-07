@@ -285,7 +285,6 @@ DefaultListModel defaultListModel = new DefaultListModel();
             
             calendarioFim.setTime(dataFim);
             calendarioInicio.get(Calendar.MONTH);
-           
             if(valorDouble >= produto.getValor()){
                 JOptionPane.showMessageDialog(null, 
                         PromocaoFormWarning.PROMOCAO_VALOR_MAIOR_OU_IGUAL_DO_PRODUTO.getDescricao(),
@@ -299,6 +298,7 @@ DefaultListModel defaultListModel = new DefaultListModel();
                 Titles.WARNING.getDescricao(), 
                 JOptionPane.WARNING_MESSAGE);
             }
+            
             else if(calendarioInicio.get(Calendar.MONTH) != calendarioComputador.get(Calendar.MONTH)
                     || calendarioFim.get(Calendar.MONTH) != calendarioComputador.get(Calendar.MONTH)){
                 JOptionPane.showMessageDialog(null, 

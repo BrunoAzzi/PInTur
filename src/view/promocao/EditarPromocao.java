@@ -6,6 +6,11 @@ package view.promocao;
 
 
 import control.PromocaoControl;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import messages.PromocaoFormWarning;
+import messages.Titles;
 import model.Produto;
 import model.Promocao;
 
@@ -103,34 +108,33 @@ public class EditarPromocao extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jDateChooserDateInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4))
-                                .addGap(22, 22, 22))
-                            .addComponent(jDateChooserDateFinal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField2)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                                    .addComponent(jDateChooserDateInicial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jDateChooserDateFinal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel4))
+                                        .addGap(22, 22, 22))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(96, 96, 96)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel6)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,7 +159,7 @@ public class EditarPromocao extends javax.swing.JFrame {
                 .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -166,7 +170,7 @@ public class EditarPromocao extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,18 +181,76 @@ public class EditarPromocao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        PromocaoControl promocaoControl = new PromocaoControl(); 
-        String promocaoValorTratado = jFormattedTextField1.getText().replace(',', '.').trim();
-        Double valorDouble = (new Double(promocaoValorTratado));
-        promocao.setDataInicio(jDateChooserDateInicial.getDate());
-        promocao.setDataFinal(jDateChooserDateFinal.getDate());
-        promocao.setValorPromocional(valorDouble);
-        promocaoControl.add(promocao);
-        this.setVisible(false);
+        try {
+            Date dataInicio =  jDateChooserDateInicial.getDate();
+            Date dataFim =  jDateChooserDateFinal.getDate();
+            Calendar calendarioInicio = Calendar.getInstance();
+            calendarioInicio.setTime(dataInicio);
+            Calendar calendarioFim = Calendar.getInstance();
+            Calendar calendarioComputador = Calendar.getInstance();
+            calendarioFim.setTime(dataFim);
+            calendarioInicio.get(Calendar.MONTH);   
+            String promocaoValorTratado = jFormattedTextField1.getText().replace(',', '.').trim();
+            Double valorDouble = (new Double(promocaoValorTratado));  
+            if(calendarioInicio.get(Calendar.MONTH) != calendarioComputador.get(Calendar.MONTH)
+                        || calendarioFim.get(Calendar.MONTH) != calendarioComputador.get(Calendar.MONTH)){
+                    JOptionPane.showMessageDialog(null, 
+                            PromocaoFormWarning.PROMOCAO_CADASTRO_MES_INVALIDO.getDescricao(),
+                            Titles.WARNING.getDescricao(), 
+                            JOptionPane.WARNING_MESSAGE);
+            }
+            else if(calendarioInicio.get(Calendar.DAY_OF_MONTH) < calendarioComputador.get(Calendar.DAY_OF_MONTH)
+                        || calendarioFim.get(Calendar.DAY_OF_MONTH) < calendarioComputador.get(Calendar.DAY_OF_MONTH)){
+                    JOptionPane.showMessageDialog(null, 
+                            PromocaoFormWarning.PROMOCAO_CADASTRO_DIA_MENOR_QUE_DIA_ATUAL.getDescricao(),
+                            Titles.WARNING.getDescricao(), 
+                            JOptionPane.WARNING_MESSAGE);
+            }
+            else if(calendarioInicio.get(Calendar.DAY_OF_MONTH) > calendarioFim.get(Calendar.DAY_OF_MONTH)){
+                    JOptionPane.showMessageDialog(null, 
+                            PromocaoFormWarning.PROMOCAO_CADASTRO_DIA_INVALIDO.getDescricao(), 
+                            Titles.WARNING.getDescricao(), 
+                            JOptionPane.WARNING_MESSAGE);
+            }
+            else if(valorDouble >= produto.getValor()){
+                    JOptionPane.showMessageDialog(null, 
+                            PromocaoFormWarning.PROMOCAO_VALOR_MAIOR_OU_IGUAL_DO_PRODUTO.getDescricao(),
+                            Titles.WARNING.getDescricao(), 
+                            JOptionPane.WARNING_MESSAGE);
+
+            }
+            else if(valorDouble <= 0){
+                            JOptionPane.showMessageDialog(null, 
+                    PromocaoFormWarning.PROMOCAO_VALOR_MAIOR_QUE_ZERO.getDescricao(),
+                    Titles.WARNING.getDescricao(), 
+                    JOptionPane.WARNING_MESSAGE);
+            }        
+            else {
+                promocao.setDataInicio(jDateChooserDateInicial.getDate());
+                promocao.setDataFinal(jDateChooserDateFinal.getDate());
+                promocao.setValorPromocional(valorDouble);                    
+                PromocaoControl promocaoControl = new PromocaoControl();
+                promocaoControl.add(promocao);
+                this.setVisible(false);
+            }            
+        }  catch (NullPointerException e) {
+            
+            JOptionPane.showMessageDialog(null,
+                    PromocaoFormWarning.PROMOCAO_CADASTRO_OBJETO_NULO.getDescricao(), 
+                    Titles.WARNING.getDescricao(), 
+                    JOptionPane.WARNING_MESSAGE);
+
+        } catch(NumberFormatException e){
+            
+            JOptionPane.showMessageDialog(null, 
+                    PromocaoFormWarning.PROMOCAO_CADASTRO_CAMPOS_INVALIDOS.getDescricao(), 
+                    Titles.WARNING.getDescricao(), 
+                    JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

@@ -86,6 +86,7 @@ public class MenuPromocao extends java.awt.Panel {
 
         jButtonVoltarPromocao.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButtonVoltarPromocao.setText("<");
+        jButtonVoltarPromocao.setEnabled(false);
         jButtonVoltarPromocao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVoltarPromocaoActionPerformed(evt);
@@ -94,6 +95,7 @@ public class MenuPromocao extends java.awt.Panel {
 
         jButtonProximaPromocao.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButtonProximaPromocao.setText(">");
+        jButtonProximaPromocao.setEnabled(false);
         jButtonProximaPromocao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonProximaPromocaoActionPerformed(evt);
@@ -130,7 +132,7 @@ public class MenuPromocao extends java.awt.Panel {
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jlNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
@@ -265,10 +267,23 @@ public class MenuPromocao extends java.awt.Panel {
         } 
     }
     public boolean existePromocoes(){
-        if(produtosPromocionais.size() < 1) return false;
-        else return true;
+        if(produtosPromocionais.size() < 1){
+            return false;
+        }
+        else if(produtosPromocionais.size() == 1){
+            return true;
+        }
+        else{
+            jButtonVoltarPromocao.setEnabled(true);
+            jButtonProximaPromocao.setEnabled(true);
+            return true;
+        }
     }
     public Produto getProduto() {
         return produtosPromocionais.get(produtoIndex);
+    }
+    public boolean visibilidadePromocao(boolean visibilidade){
+        
+        return visibilidade;
     }
 }

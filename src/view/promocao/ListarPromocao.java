@@ -4,6 +4,7 @@
  */
 package view.promocao;
 
+import control.ProdutoControl;
 import control.PromocaoControl;
 import javax.swing.JOptionPane;
 import messages.ConfirmMessages;
@@ -89,14 +90,15 @@ public class ListarPromocao extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
                         .addComponent(jButton6)
                         .addGap(18, 18, 18)
                         .addComponent(jButton5)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4)))
+                        .addComponent(jButton4)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -160,10 +162,12 @@ public class ListarPromocao extends javax.swing.JFrame {
         }
 
         if (areUsure()) {
+            
             Produto produtoSendoEditado = listarPromocoesTableModel.getPromocaoAt(jTable2.getSelectedRow());
             Promocao promocao = produtoSendoEditado.getPromocao();
             produtoSendoEditado.setPromocao(null);
             PromocaoControl.delete(promocao);
+            ProdutoControl.add(produtoSendoEditado);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
