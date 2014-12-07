@@ -4,7 +4,11 @@
  */
 package view.buychart;
 
+import control.ProdutoControl;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import messages.Titles;
+import messages.Warnings;
 import model.Produto;
 
 /**
@@ -23,12 +27,18 @@ public class CarrinhoDeCompras {
 
         if (!(produtos.indexOf(produto) >= 0)) {
             produtos.add(produto);
-        }else{
-            produtos.get(produtos.indexOf(produto)).setQuantidade(
-                    produtos.get(produtos.indexOf(produto)).getQuantidade()+1
-                    );
+        } else {
+            if (ProdutoControl.findByCodigo(produto.getCodigo()).getQuantidade() < produtos.get(produtos.indexOf(produto)).getQuantidade()) {
+                produtos.get(produtos.indexOf(produto)).setQuantidade(
+                        produtos.get(produtos.indexOf(produto)).getQuantidade() + 1);
+            }else{
+                JOptionPane.showMessageDialog(null, 
+                        Warnings.QUANTIDADE_DE_PRODUTOS_EXCEDENTE.getDescricao(),
+                        Titles.WARNING.getDescricao(),
+                        JOptionPane.WARNING_MESSAGE);
+            }
         }
-        
+
     }
 
     public static void removeAllProdutosFromCarrinho() {

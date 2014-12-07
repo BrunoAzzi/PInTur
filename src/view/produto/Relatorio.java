@@ -212,6 +212,7 @@ public class Relatorio extends javax.swing.JFrame {
         return JOptionPane.showConfirmDialog(null, 
                 ConfirmMessages.GERAR_RELATORIO.getDescricao(), 
                 Titles.CONFIRM.getDescricao(), 
-                JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION;
+                JOptionPane.INFORMATION_MESSAGE, 
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 }
