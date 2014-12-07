@@ -15,7 +15,8 @@ public enum ConfirmMessages {
     ADICIONAR_CONFIRMACAO("Deseja mesmo salvar este(s) registro(s)?"), 
     DELETAR_CONFIRMACAO("Tem certeza que deseja deletar o registro selecionado?"),
     PRODUTO_ADICIONAR_CONFIRMACAO("Deseja salvar este(s) produto(s)?"), 
-    EDITAR_CONFIRMACAO("Deseja mesmo editar este registro?");
+    EDITAR_CONFIRMACAO("Deseja mesmo editar este registro?"), 
+    GERAR_RELATORIO("Deseja gerar este relatorio?");
     
     String descricao;
 
