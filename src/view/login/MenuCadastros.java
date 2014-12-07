@@ -4,8 +4,6 @@
  */
 package view.login;
 
-import control.VendaEfetuadaControl;
-import utilidades.GeneratorPDF;
 import view.categoria.ListarCategoria;
 import view.produto.ListarProdutos;
 import view.produto.Relatorio;

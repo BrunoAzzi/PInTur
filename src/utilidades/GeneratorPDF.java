@@ -18,7 +18,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JOptionPane;
 import model.Produto;
 import model.Vendaefetuada;
 import view.buychart.CarrinhoDeCompras;
