@@ -16,7 +16,9 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import model.Produto;
 import model.Vendaefetuada;
@@ -98,19 +100,27 @@ public class GeneratorPDF {
             document.add(paragraph);
             //Constroi a tabela
             //seta o número de colunas
-            PdfPTable table = new PdfPTable(2);
+            PdfPTable table = new PdfPTable(3);
             PdfPCell header = new PdfPCell(new Paragraph("Relatório de produtos mais vendidos"));
-            header.setColspan(2);
+            header.setColspan(3);
             header.setBackgroundColor(BaseColor.GRAY);
             table.addCell(header);
             table.addCell("Nome");
             table.addCell("Quantidade vendida");
+            table.addCell("Data de Venda");
             
             for (Vendaefetuada vendaefetuada : vendasefetuadas) {
                 //TODO Pegar apenas itens com datas entre dataInicial e dataFinal
-                if (vendaefetuada.getVenda().getData().after(dataInicial) && vendaefetuada.getVenda().getData().before(dataFinal)) {
+                
+                System.out.println(dataInicial);
+                Calendar calendarioVendaEfetuada = Calendar.getInstance();
+                calendarioVendaEfetuada.setTime(vendaefetuada.getVenda().getData());
+                System.out.println(calendarioVendaEfetuada.getTime());
+                if (calendarioVendaEfetuada.getTime().equals(dataInicial) || vendaefetuada.getVenda().getData() == dataFinal|| vendaefetuada.getVenda().getData().after(dataInicial) && vendaefetuada.getVenda().getData().before(dataFinal)) {
                     table.addCell(vendaefetuada.getProduto().getNome());
-                    table.addCell(Integer.toString(vendaefetuada.getQuantidadeVendida()));                   
+                    table.addCell(Integer.toString(vendaefetuada.getQuantidadeVendida()));    
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                    table.addCell(sdf.format(vendaefetuada.getVenda().getData()));
                 }
             }
             document.add(table);

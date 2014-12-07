@@ -286,6 +286,7 @@ DefaultListModel defaultListModel = new DefaultListModel();
             Calendar calendarioComputador = Calendar.getInstance();
             
             calendarioFim.setTime(dataFim);
+            System.out.println(dataFim);
             calendarioInicio.get(Calendar.MONTH);
             if(valorDouble >= produto.getValor()){
                 JOptionPane.showMessageDialog(null, 
