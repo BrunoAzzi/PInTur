@@ -47,6 +47,15 @@ public class Relatorio extends javax.swing.JFrame {
         jPanel1.setMaximumSize(new java.awt.Dimension(335, 102));
         jPanel1.setMinimumSize(new java.awt.Dimension(335, 102));
 
+        jDateChooserDataInicial.setDateFormatString("dd/MM/yyyy");
+        jDateChooserDataInicial.setMaximumSize(new java.awt.Dimension(87, 20));
+        jDateChooserDataInicial.setMinSelectableDate(new java.util.Date(-62135755086000L));
+        jDateChooserDataInicial.setMinimumSize(new java.awt.Dimension(87, 20));
+
+        jDateChooserDataFinal.setDateFormatString("dd/MM/yyyy");
+        jDateChooserDataFinal.setMaximumSize(new java.awt.Dimension(87, 20));
+        jDateChooserDataFinal.setMinimumSize(new java.awt.Dimension(87, 20));
+
         jLabel1.setText("Data Inicial");
 
         jLabel2.setText("Data Final");
@@ -78,18 +87,18 @@ public class Relatorio extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jDateChooserDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooserDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonGerarRelatorio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateChooserDataInicial, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateChooserDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -109,11 +118,13 @@ public class Relatorio extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jDateChooserDataFinal, jDateChooserDataInicial});
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,13 +137,9 @@ public class Relatorio extends javax.swing.JFrame {
     private void jButtonGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarRelatorioActionPerformed
         if (camposValidos()) {
             if (areUSure()) {
-                GeneratorPDF.gerarRelatoriodeProdutosMaisVendidos(
-                        VendaEfetuadaControl.retornaListaOrdenadaDeProdutosMaisVendidos(),
-                        jDateChooserDataInicial.getDate(),
-                        jDateChooserDataFinal.getDate());
+                GeneratorPDF.gerarRelatoriodeProdutosMaisVendidos(VendaEfetuadaControl.retornaListaOrdenadaDeProdutosMaisVendidos(), jDateChooserDataInicial.getDate(), jDateChooserDataFinal.getDate());
             }
         }
-
     }//GEN-LAST:event_jButtonGerarRelatorioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -213,7 +220,7 @@ public class Relatorio extends javax.swing.JFrame {
     private boolean areUSure() {
         return JOptionPane.showConfirmDialog(null,
                 ConfirmMessages.GERAR_RELATORIO.getDescricao(),
-                Titles.CONFIRM.getDescricao(),
+                Titles.CONFIRM.getDescricao(), JOptionPane.YES_OPTION,
                 JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION;
     }
 }
