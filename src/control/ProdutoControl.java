@@ -77,12 +77,11 @@ public class ProdutoControl {
         }
     }
 
-    public static void add(Produto produto){
-        
-            Conexao.persist(produto);
+    public static void add(Produto produto) {
         try {
+            Conexao.persist(produto);
             Conexao.commit();
-        } catch (PersistenceException persistenceException){
+        } catch (PersistenceException persistenceException) {
             JOptionPane.showMessageDialog(null, persistenceException.getMessage(),
                     Titles.WARNING.getDescricao(),
                     JOptionPane.ERROR_MESSAGE);
