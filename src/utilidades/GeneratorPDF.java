@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import model.Produto;
 import model.Vendaefetuada;
 import view.buychart.CarrinhoDeCompras;
@@ -27,7 +28,7 @@ import view.buychart.CarrinhoDeCompras;
  * @author gustavo_yuri
  */
 public class GeneratorPDF {
-    
+
     public static void gerarCupomFiscalPDF(ArrayList<Produto> produtos, ArrayList<Integer> quantidadeDoProduto) {
         try {
             Document document = new Document();
@@ -71,7 +72,7 @@ public class GeneratorPDF {
             paragraph.setAlignment(Element.ALIGN_RIGHT);
             document.add(paragraph);
             document.close();
-            
+
             //Abre o documento (Mudar destino quando colocado em outro PC
             if (Desktop.isDesktopSupported()) {
                 try {
@@ -86,7 +87,7 @@ public class GeneratorPDF {
         }
     }
 
-    public static void gerarRelatoriodeProdutosMaisVendidos(ArrayList<Vendaefetuada> vendaefetuada) {
+    public static void gerarRelatoriodeProdutosMaisVendidos(ArrayList<Vendaefetuada> vendaefetuada, Date dataInicial, Date dataFinal) {
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\GustavoCalandriniPC\\Desktop\\Produtos mais vendidos.pdf"));
@@ -106,8 +107,12 @@ public class GeneratorPDF {
             table.addCell("Nome");
             table.addCell("Quantidade vendida");
             for (Vendaefetuada vendaefetuada1 : vendaefetuada) {
-                table.addCell(vendaefetuada1.getProduto().getNome());
-                table.addCell(Integer.toString(vendaefetuada1.getQuantidadeVendida()));
+                //TODO Pegar apenas itens com datas entre dataInicial e dataFinal
+                if (vendaefetuada1.getVenda().getData().after(dataInicial) || vendaefetuada1.getVenda().getData().before(dataFinal)) {
+                    table.addCell(vendaefetuada1.getProduto().getNome());
+                    System.out.println(vendaefetuada1.getProduto().getNome() + vendaefetuada1.getVenda().getData());
+                    table.addCell(Integer.toString(vendaefetuada1.getQuantidadeVendida()));
+                }
             }
             document.add(table);
             document.close();
@@ -125,9 +130,7 @@ public class GeneratorPDF {
             System.out.println(e.getCause());
         }
     }
-    
     //Este método gera um cupom fiscal a partir do carrinho de compras
-
 //    public static void gerarRelatorioDeProdutosMaisVendidos(ArrayList<Vendaefetuada> vendaefetuada) {
 //        try {
 //            Document document = new Document();

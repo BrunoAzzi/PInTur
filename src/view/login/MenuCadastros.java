@@ -8,6 +8,7 @@ import control.VendaEfetuadaControl;
 import utilidades.GeneratorPDF;
 import view.categoria.ListarCategoria;
 import view.produto.ListarProdutos;
+import view.produto.Relatorio;
 import view.promocao.ListarPromocao;
 import view.usuarios.ListarUsuarios;
 
@@ -159,7 +160,8 @@ public class MenuCadastros extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        GeneratorPDF.gerarRelatoriodeProdutosMaisVendidos(VendaEfetuadaControl.retornaListaOrdenadaDeProdutosMaisVendidos());
+        Relatorio relatorio = new Relatorio();        
+        relatorio.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
