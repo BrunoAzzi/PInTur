@@ -6,6 +6,7 @@ package view.usuarios;
 
 import control.UsuarioControl;
 import javax.swing.JOptionPane;
+import messages.ConfirmMessages;
 import messages.Titles;
 import utilidades.Mensagens;
 import view.TableModels.UsuarioTableModel.UsuarioTableModel;
@@ -134,15 +135,17 @@ public class ListarUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try{
-            UsuarioControl.delete(usuariosTableModel.getUsuarioAt(jTable1.getSelectedRow()));
-            usuariosTableModel.deleteRow(jTable1.getSelectedRow());
-        }catch(IndexOutOfBoundsException indexOutOfBoundsException){
-            JOptionPane.showMessageDialog(this, 
+        if (jTable1.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(null,
                     Mensagens.REMOVER_LINHA_NAO_SELECIONADA.getDescricao(),
                     Titles.WARNING.getDescricao(),
-                    JOptionPane.WARNING_MESSAGE);
-        }/* catch*(SQLException problemascomexclusao) */
+                    JOptionPane.YES_NO_OPTION);
+            return;
+        }
+
+        if (areUsure()) {
+                UsuarioControl.delete(usuariosTableModel.getUsuarioAt(jTable1.getSelectedRow()));
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -205,4 +208,11 @@ public class ListarUsuarios extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private boolean areUsure() {
+        return JOptionPane.showConfirmDialog(null,
+                ConfirmMessages.DELETAR_CONFIRMACAO.getDescricao(),
+                Titles.CONFIRM.getDescricao(),
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+    }
 }
