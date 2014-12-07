@@ -23,21 +23,6 @@ public class EditarPromocao extends javax.swing.JFrame {
     public EditarPromocao() {
         initComponents();
     }
-    
-    public EditarPromocao(Produto produto){
-        this.produto = produto;
-        this.promocao = produto.getPromocao();
-        
-        initComponents();
-        jTextField1.setText(produto.getNome());
-        jTextField2.setText(String.valueOf(produto.getValor()));
-        jDateChooserDateInicial.setDate(produto.getPromocao().getDataInicio());
-        jDateChooserDateFinal.setDate(produto.getPromocao().getDataFinal());
-        jFormattedTextField1.setText(String.valueOf(produto.getPromocao().getValorPromocional()));
-        
-
-  
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -265,4 +250,17 @@ public class EditarPromocao extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+        this.promocao = produto.getPromocao();
+       
+        jTextField1.setText(produto.getNome());
+        jTextField2.setText(String.valueOf(produto.getValor()));
+        jDateChooserDateInicial.setDate(produto.getPromocao().getDataInicio());
+        jDateChooserDateFinal.setDate(produto.getPromocao().getDataFinal());
+        jFormattedTextField1.setText(String.valueOf(produto.getPromocao().getValorPromocional()));
+    }
+
+    
 }

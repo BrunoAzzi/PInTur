@@ -5,8 +5,12 @@
 package view.promocao;
 
 import control.PromocaoControl;
+import javax.swing.JOptionPane;
+import messages.ConfirmMessages;
+import messages.Titles;
 import model.Produto;
 import model.Promocao;
+import utilidades.Mensagens;
 import view.TableModels.PromocaoTableModel.ListarPromocaoTableModel;
 
 /**
@@ -43,6 +47,11 @@ public class ListarPromocao extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listagem de Promoções");
         setBackground(new java.awt.Color(255, 255, 204));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                updateTable(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 204));
 
@@ -128,33 +137,43 @@ public class ListarPromocao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        EditarPromocao editarPromocao = new EditarPromocao(listarPromocoesTableModel.getPromocaoAt(jTable2.getSelectedRow()));
+        if (jTable2.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(null,
+                    Mensagens.EDITAR_LINHA_NAO_SELECIONADA.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        EditarPromocao editarPromocao = new EditarPromocao();
+        editarPromocao.setProduto(listarPromocoesTableModel.getPromocaoAt(jTable2.getSelectedRow()));
         editarPromocao.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        try {
+        if (jTable2.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(null,
+                    Mensagens.REMOVER_LINHA_NAO_SELECIONADA.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (areUsure()) {
             Produto produtoSendoEditado = listarPromocoesTableModel.getPromocaoAt(jTable2.getSelectedRow());
             Promocao promocao = produtoSendoEditado.getPromocao();
-
-
             produtoSendoEditado.setPromocao(null);
-          
-                PromocaoControl.delete(promocao);
-            
-            listarPromocoesTableModel.deleteRow(jTable2.getSelectedRow());
-            }catch (IndexOutOfBoundsException indexOutOfBoundsException){
-                //TODO JOPTIONPANE informando falta de selecao na tabela
-            }/* catch( exceptionDeBanco ){
-             * tratar de acordo
-             */
+            PromocaoControl.delete(promocao);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-        /**
-         * @param args the command line arguments
-         */
-    
+    private void updateTable(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_updateTable
+        listarPromocoesTableModel.update();
+    }//GEN-LAST:event_updateTable
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -194,4 +213,11 @@ public class ListarPromocao extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
+
+    private boolean areUsure() {
+        return JOptionPane.showConfirmDialog(null,
+                ConfirmMessages.DELETAR_CONFIRMACAO.getDescricao(),
+                Titles.CONFIRM.getDescricao(),
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+    }
 }

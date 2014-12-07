@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import messages.ConfirmMessages;
 import messages.Titles;
 import model.Categoria;
+import model.Foto;
 import model.Fotoproduto;
 import model.Produto;
 import utilidades.ImageChooser;
@@ -29,6 +30,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
     DefaultComboBoxModel<Categoria> defaultComboBoxModel = new DefaultComboBoxModel();
     ImageChooser imageChooser = new ImageChooser(this);
     ProdutoTableModel produtoTableModel = new ProdutoTableModel(3, false);
+    private Foto produtoFoto;
 
     /**
      * Creates new form CadastroProdutos
@@ -267,7 +269,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
     private void jbRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRemoverActionPerformed
         if (jTable1.getSelectedRow() >= 0) {
             produtoTableModel.deleteRow(jTable1.getSelectedRow());
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, Mensagens.REMOVER_LINHA_NAO_SELECIONADA.getDescricao(),
                     Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
@@ -276,29 +278,31 @@ public class CadastroProdutos extends javax.swing.JFrame {
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
         if (produtoTableModel.getAllProdutos().size() > 0) {
-            if (JOptionPane.showConfirmDialog(null, 
-                    ConfirmMessages.PRODUTO_ADICIONAR_CONFIRMACAO.getDescricao(), 
-                    Titles.CONFIRM.getDescricao(), JOptionPane.YES_OPTION, 
-                    JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
-                
+            if (areUSure()) {
                 for (Produto produto : produtoTableModel.getAllProdutos()) {
                     FotoControl.add(produto.getFotoProduto().getFoto());
                     FotoProdutoControl.add(produto.getFotoProduto());
                     ProdutoControl.add(produto);
                 }
-                
+
                 produtoTableModel.clear();
+                
+                JOptionPane.showMessageDialog(null, 
+                        Mensagens.ADICIONAR_PRODUTO_SUCESSO.getDescricao(),
+                        Titles.SUCESSO.getDescricao(),
+                        JOptionPane.INFORMATION_MESSAGE);
+                
                 this.dispose();
             }
         } else {
-            JOptionPane.showMessageDialog(this, Mensagens.WARNING_SALVAR_SEM_NENHUM_CADASTRO.getDescricao(),
+            JOptionPane.showMessageDialog(null, 
+                    Mensagens.WARNING_SALVAR_SEM_NENHUM_CADASTRO.getDescricao(),
                     Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
-
         if (isCamposValidados()) {
             produtoTableModel.add(getProdutoPopulado());
         }
@@ -307,10 +311,9 @@ public class CadastroProdutos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         imageChooser.setVisible(true);
-        try {
-            jlProdutoImage.setIcon(Imagem.resizeImage(105, 105, imageChooser.getSingleImageFile()));
-        } catch (NullPointerException nullPointerException) {
-            System.out.println("No file Selected");
+        if (imageChooser.getSingleImageFile() != null) {
+            jlProdutoImage.setIcon(Imagem.resizeImage(100, 100, imageChooser.getSingleImageFile()));
+            produtoFoto = imageChooser.getFoto();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -385,36 +388,36 @@ public class CadastroProdutos extends javax.swing.JFrame {
         int quantidade = 0;
 
         if (jtfQuantidade.getText().equals("")) {
-             JOptionPane.showMessageDialog(null, 
+            JOptionPane.showMessageDialog(null,
                     Mensagens.QUANTIDADE_INVALIDA.getDescricao(),
                     Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if (jtfValor.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, 
+            JOptionPane.showMessageDialog(null,
                     Mensagens.VALOR_INVALIDO.getDescricao(),
                     Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if (jtfNome.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, 
+            JOptionPane.showMessageDialog(null,
                     Mensagens.NOME_INVALIDO.getDescricao(),
                     Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if (jtfDescricao.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, 
+            JOptionPane.showMessageDialog(null,
                     Mensagens.DESCRICAO_INVALIDA.getDescricao(),
                     Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
             return false;
         }
 
-        if (jlProdutoImage.getIcon() == null) {
-            JOptionPane.showMessageDialog(null, 
+        if (jlProdutoImage.getIcon() == null || produtoFoto == null) {
+            JOptionPane.showMessageDialog(null,
                     Mensagens.IMAGEM_PRODUTO_INVALIDA.getDescricao(),
                     Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
@@ -428,7 +431,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
         try {
             quantidade = new Integer(jtfQuantidade.getText());
         } catch (NumberFormatException numberFormatException) {
-            JOptionPane.showMessageDialog(null, 
+            JOptionPane.showMessageDialog(null,
                     Mensagens.QUANTIDADE_INVALIDA.getDescricao(),
                     Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
@@ -436,14 +439,14 @@ public class CadastroProdutos extends javax.swing.JFrame {
         }
 
         if (valorDouble <= 0) {
-            JOptionPane.showMessageDialog(null, 
+            JOptionPane.showMessageDialog(null,
                     Mensagens.VALOR_MENOR_OU_IGUAL_A_ZERO.getDescricao(),
                     Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if (quantidade <= 0) {
-            JOptionPane.showMessageDialog(null, 
+            JOptionPane.showMessageDialog(null,
                     Mensagens.QUANTIDADE_MENOR_OU_IGUAL_A_ZERO.getDescricao(),
                     Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
@@ -458,7 +461,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
         categoriaProduto = (Categoria) jcbCategoria.getSelectedItem();
         Fotoproduto fotoproduto = new Fotoproduto();
         fotoproduto.setDescricao(jtfNome.getText() + ".jpg");
-        fotoproduto.setFoto(imageChooser.getFoto());
+        fotoproduto.setFoto(produtoFoto);
         novoProduto.setNome(jtfNome.getText());
         novoProduto.setDescricao(jtfDescricao.getText());
         String produtoValorTratado = jtfValor.getText().replace(',', '.').trim();
@@ -475,5 +478,12 @@ public class CadastroProdutos extends javax.swing.JFrame {
             jcbCategoria.setModel(defaultComboBoxModel);
         }
         jcbCategoria.setSelectedItem(null);
+    }
+
+    private boolean areUSure() {
+        return JOptionPane.showConfirmDialog(null,
+                    ConfirmMessages.PRODUTO_ADICIONAR_CONFIRMACAO.getDescricao(),
+                    Titles.CONFIRM.getDescricao(), JOptionPane.YES_OPTION,
+                    JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION;
     }
 }

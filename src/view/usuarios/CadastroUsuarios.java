@@ -7,6 +7,9 @@ package view.usuarios;
 import control.PerfilControl;
 import control.UsuarioControl;
 import javax.swing.JOptionPane;
+import messages.ConfirmMessages;
+import messages.Titles;
+import messages.UsuarioFormWarning;
 import model.Perfil;
 import model.Usuario;
 import utilidades.Formatador;
@@ -166,8 +169,6 @@ public class CadastroUsuarios extends javax.swing.JFrame {
     private void jButtonNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoUsuarioActionPerformed
         if (camposValidados()) {
             usuarioTableModel.add(getUsuarioPopulado());
-        } else {
-            JOptionPane.showMessageDialog(rootPane, Mensagens.CAMPOS_INVALIDOS.getDescricao(), Mensagens.WARNING.getDescricao(), JOptionPane.WARNING_MESSAGE);
         }
         limpaCampos();
     }//GEN-LAST:event_jButtonNovoUsuarioActionPerformed
@@ -178,7 +179,7 @@ public class CadastroUsuarios extends javax.swing.JFrame {
         } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
             JOptionPane.showMessageDialog(this,
                     Mensagens.REMOVER_LINHA_NAO_SELECIONADA.getDescricao(),
-                    Mensagens.WARNING.getDescricao(),
+                    Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -186,8 +187,8 @@ public class CadastroUsuarios extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (usuarioTableModel.getAllUsuarios().size() > 0) {
             if (JOptionPane.showConfirmDialog(this,
-                    Mensagens.ADICIONAR_CONFIRMACAO.getDescricao(),
-                    Mensagens.CONFIRM.getDescricao(),
+                    ConfirmMessages.ADICIONAR_CONFIRMACAO.getDescricao(),
+                    Titles.CONFIRM.getDescricao(),
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
 
@@ -200,7 +201,7 @@ public class CadastroUsuarios extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this,
                     Mensagens.WARNING_SALVAR_SEM_NENHUM_CADASTRO.getDescricao(),
-                    Mensagens.WARNING.getDescricao(),
+                    Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -256,9 +257,17 @@ public class CadastroUsuarios extends javax.swing.JFrame {
 
     private boolean camposValidados() {
         if (jTextFieldLogin.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, 
+                    UsuarioFormWarning.LOGIN_INVALIDO.getDescricao(), 
+                    Titles.WARNING.getDescricao(), 
+                    JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if (jPasswordFieldSenha.getPassword().length <= 0) {
+            JOptionPane.showMessageDialog(null, 
+                    UsuarioFormWarning.SENHA_INVALIDA.getDescricao(), 
+                    Titles.WARNING.getDescricao(), 
+                    JOptionPane.WARNING_MESSAGE);
             return false;
         }
         return true;

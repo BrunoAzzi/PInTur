@@ -13,24 +13,28 @@ import javax.swing.JOptionPane;
 import messages.ConfirmMessages;
 import messages.Titles;
 import model.Categoria;
+import model.Foto;
 import model.Produto;
 import utilidades.ImageChooser;
 import utilidades.Imagem;
+import utilidades.Mensagens;
 
 /**
  *
  * @author gustavo_yuri
  */
 public class EditarProduto extends javax.swing.JFrame {
+
     DefaultComboBoxModel<Categoria> defaultComboBoxModel = new DefaultComboBoxModel();
     ImageChooser imageChooser = new ImageChooser(this);
     Produto produto = new Produto();
+    private Foto produtoFoto;
 
     /**
      * Creates new form EditarCategoria
      */
     public EditarProduto() {
-        initComponents();      
+        initComponents();
         carregaComboBoxCategoria();
     }
 
@@ -222,25 +226,26 @@ public class EditarProduto extends javax.swing.JFrame {
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
         if (isCamposValidados()) {
-            if (certezaDeEdicao()) {
+            if (areUSure()) {
+                populaProduto();
                 FotoControl.add(produto.getFotoProduto().getFoto());
                 FotoProdutoControl.add(produto.getFotoProduto());
                 ProdutoControl.add(produto);
+                this.dispose();
             }
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         imageChooser.setVisible(true);
-        try {
-            jlProdutoImage.setIcon(Imagem.resizeImage(105, 105, imageChooser.getSingleImageFile()));
-        } catch (NullPointerException nullPointerException) {
-            System.out.println("No file Selected");
+        if (imageChooser.getSingleImageFile() != null) {
+            jlProdutoImage.setIcon(Imagem.resizeImage(100, 100, imageChooser.getSingleImageFile()));
+            produtoFoto = imageChooser.getFoto();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jcbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCategoriaActionPerformed
@@ -303,69 +308,106 @@ public class EditarProduto extends javax.swing.JFrame {
 
     public void setProduto(Produto produto) {
         this.produto = produto;
+        produtoFoto = produto.getFotoProduto().getFoto();
         jtfNome.setText(produto.getNome());
         jtfDescricao.setText(produto.getDescricao());
         jtfValor.setText(String.valueOf(produto.getValor()));
-        jtfQuantidade.setText(String.valueOf(produto.getQuantidade()));    
+        jtfQuantidade.setText(String.valueOf(produto.getQuantidade()));
         jcbCategoria.setSelectedItem(produto.getCategoria());
-        jlProdutoImage.setIcon(produto.getFotoProduto().getFoto().getIcon());        
-    }
-
-    private boolean certezaDeEdicao() {
-        if (JOptionPane.showConfirmDialog(null, 
-                ConfirmMessages.EDITAR_CONFIRMACAO.getDescricao(), 
-                Titles.CONFIRM.getDescricao(), 
-                JOptionPane.YES_NO_OPTION, 
-                JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
-            
-            produto.setNome(jtfNome.getText());
-            produto.setDescricao(jtfDescricao.getText());
-            String produtoValorTratado = jtfValor.getText().replace(',', '.').trim();
-            produto.setValor(new Double(produtoValorTratado));
-            produto.setQuantidade(new Integer(jtfQuantidade.getText()));
-            produto.setCategoria((Categoria)jcbCategoria.getSelectedItem());
-            //Caso não seja selecionada nova foto, cadastra a mesma novamente
-            if(imageChooser.getFile() == null){
-                produto.getFotoProduto().setFoto(produto.getFotoProduto().getFoto());                
-            }else{
-                produto.getFotoProduto().setFoto(imageChooser.getFoto());                
-            }
-            produto.getFotoProduto().setDescricao(jtfNome.getText()+".jpg");            
-            this.dispose();
-            return true;            
-        }
-        return false;
+        jlProdutoImage.setIcon(produto.getFotoProduto().getFoto().getIcon());
     }
 
     private boolean isCamposValidados() {
+        int quantidade = 0;
+
         if (jtfQuantidade.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,
+                    Mensagens.QUANTIDADE_INVALIDA.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if (jtfValor.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,
+                    Mensagens.VALOR_INVALIDO.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if (jtfNome.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,
+                    Mensagens.NOME_INVALIDO.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if (jtfDescricao.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,
+                    Mensagens.DESCRICAO_INVALIDA.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
             return false;
         }
+
+        if (jlProdutoImage.getIcon() == null || produtoFoto == null) {
+            JOptionPane.showMessageDialog(null,
+                    Mensagens.IMAGEM_PRODUTO_INVALIDA.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
         String produtoValorTratado = jtfValor.getText().replace(',', '.').trim();
+
         Double valorDouble = (new Double(produtoValorTratado));
-        int quantidade = new Integer(jtfQuantidade.getText());
-        if (valorDouble < 0) {
+
+        try {
+            quantidade = new Integer(jtfQuantidade.getText());
+        } catch (NumberFormatException numberFormatException) {
+            JOptionPane.showMessageDialog(null,
+                    Mensagens.QUANTIDADE_INVALIDA.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
             return false;
         }
-        if (quantidade < 0) {
+
+        if (valorDouble <= 0) {
+            JOptionPane.showMessageDialog(null,
+                    Mensagens.VALOR_MENOR_OU_IGUAL_A_ZERO.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        if (quantidade <= 0) {
+            JOptionPane.showMessageDialog(null,
+                    Mensagens.QUANTIDADE_MENOR_OU_IGUAL_A_ZERO.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
             return false;
         }
         return true;
     }
-    
+
     private void carregaComboBoxCategoria() {
         for (Categoria categoria : CategoriaControl.listaCategorias()) {
             defaultComboBoxModel.addElement(categoria);
-            jcbCategoria.setModel(defaultComboBoxModel);            
-        }                  
+            jcbCategoria.setModel(defaultComboBoxModel);
+        }
+    }
+
+    private boolean areUSure() {
+        return JOptionPane.showConfirmDialog(null,
+                ConfirmMessages.EDITAR_CONFIRMACAO.getDescricao(),
+                Titles.CONFIRM.getDescricao(),
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION;
+    }
+
+    private void populaProduto() {
+        produto.setNome(jtfNome.getText());
+        produto.setDescricao(jtfDescricao.getText());
+        produto.setValor(new Double(jtfQuantidade.getText()));
+        produto.setQuantidade(new Integer(jtfQuantidade.getText()));
+        produto.getFotoProduto().setFoto(produtoFoto);
     }
 }

@@ -136,10 +136,10 @@ public class ListarCategoria extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         if (jTable2.getSelectedRow() < 0) {
-            JOptionPane.showMessageDialog(this,
+            JOptionPane.showMessageDialog(null,
                     Mensagens.EDITAR_LINHA_NAO_SELECIONADA.getDescricao(),
                     Titles.WARNING.getDescricao(),
-                    JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -151,14 +151,12 @@ public class ListarCategoria extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if (jTable2.getSelectedRow() < 0) {
-            JOptionPane.showMessageDialog(this,
+            JOptionPane.showMessageDialog(null,
                     Mensagens.REMOVER_LINHA_NAO_SELECIONADA.getDescricao(),
                     Titles.WARNING.getDescricao(),
                     JOptionPane.YES_NO_OPTION);
             return;
         }
-
-        
 
         if (areUsure()) {
                 CategoriaControl.delete(listarCategoriasTableModel.getCategoriaAt(jTable2.getSelectedRow()));
@@ -214,7 +212,7 @@ public class ListarCategoria extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private boolean areUsure() {
-        return JOptionPane.showConfirmDialog(this,
+        return JOptionPane.showConfirmDialog(null,
                 ConfirmMessages.DELETAR_CONFIRMACAO.getDescricao(),
                 Titles.CONFIRM.getDescricao(),
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;

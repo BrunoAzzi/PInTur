@@ -12,6 +12,7 @@ import messages.CategoriaFormWarning;
 import messages.ConfirmMessages;
 import messages.Titles;
 import model.Categoria;
+import model.Foto;
 import utilidades.ImageChooser;
 import utilidades.Imagem;
 
@@ -23,6 +24,7 @@ public class EditarCategoria extends javax.swing.JFrame {
 
     ImageChooser imageChooser = new ImageChooser(this);
     Categoria categoria = new Categoria();
+    private Foto categoriaFoto;
 
     /**
      * Creates new form EditarCategoria
@@ -173,18 +175,15 @@ public class EditarCategoria extends javax.swing.JFrame {
                     FotoCategoriaControl.add(categoria.getFotoCategoria());
                     CategoriaControl.add(categoria);
                     this.dispose();
-//                    CategoriaControl.add(categoria);
-//                    this.dispose();
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         imageChooser.setVisible(true);
-        try{
+        if (imageChooser.getSingleImageFile() != null) {
             jLabelCategoriaImage.setIcon(Imagem.resizeImage(100, 100, imageChooser.getSingleImageFile()));
-        }catch(NullPointerException nullPointerException){
-            System.out.println("Imagem nao selecionada");
+            categoriaFoto = imageChooser.getFoto();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -237,6 +236,7 @@ public class EditarCategoria extends javax.swing.JFrame {
         this.categoria = categoria;
         jTextField1.setText(categoria.getNome());
         jLabelCategoriaImage.setIcon(categoria.getFotoCategoria().getFoto().getIcon());
+        categoriaFoto = categoria.getFotoCategoria().getFoto();
     }
 
     boolean areUSure() {
@@ -257,7 +257,7 @@ public class EditarCategoria extends javax.swing.JFrame {
             return false;
         }
 
-        if (jLabelCategoriaImage.getIcon() == null) {
+        if (jLabelCategoriaImage.getIcon() == null || categoriaFoto == null) {
             JOptionPane.showMessageDialog(null,
                     CategoriaFormWarning.IMAGEM_INVALIDA.getDescricao(),
                     Titles.WARNING.getDescricao(),
@@ -269,12 +269,7 @@ public class EditarCategoria extends javax.swing.JFrame {
     }
 
     private void populaCategoria() {
-        try{
-            categoria.getFotoCategoria().getFoto().setImage(imageChooser.getImage());
+            categoria.getFotoCategoria().setFoto(categoriaFoto);
             categoria.setNome(jTextField1.getText());
-            jLabelCategoriaImage.setIcon(imageChooser.getIcon());
-        }catch(NullPointerException nullPointerException){
-            //TODO REVER TRATAMENTO
-        }
     }
 }

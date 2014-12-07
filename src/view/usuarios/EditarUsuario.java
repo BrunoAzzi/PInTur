@@ -8,9 +8,9 @@ import control.PerfilControl;
 import control.UsuarioControl;
 import javax.swing.JOptionPane;
 import messages.ConfirmMessages;
+import messages.Titles;
 import model.Perfil;
 import model.Usuario;
-import utilidades.Mensagens;
 
 /**
  *
@@ -195,8 +195,8 @@ public class EditarUsuario extends javax.swing.JFrame {
 
     boolean areUSure() {
         if (JOptionPane.showConfirmDialog(this, 
-                ConfirmMessages.CERTEZA_DE_EDICAO.getDescricao(), 
-                Mensagens.CONFIRM.getDescricao(), 
+                ConfirmMessages.EDITAR_CONFIRMACAO.getDescricao(), 
+                Titles.CONFIRM.getDescricao(), 
                 JOptionPane.YES_NO_OPTION, 
                 JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
 

@@ -5,6 +5,7 @@
 package view.TableModels.PromocaoTableModel;
 
 
+import control.CategoriaControl;
 import control.ProdutoControl;
 import java.util.ArrayList;
 import java.util.Date;
@@ -90,5 +91,10 @@ public class ListarPromocaoTableModel extends AbstractTableModel{
     public Produto getPromocaoAt(int rowIndex){
         if(rowIndex < 0 || rowIndex >= produtos.size()) throw new IndexOutOfBoundsException();
         return produtos.get(rowIndex);
+    }
+
+    public void update() {
+        produtos = ProdutoControl.listaProdutosPromocionais();
+        fireTableDataChanged();
     }
 }

@@ -6,6 +6,7 @@ package view.usuarios;
 
 import control.UsuarioControl;
 import javax.swing.JOptionPane;
+import messages.Titles;
 import utilidades.Mensagens;
 import view.TableModels.UsuarioTableModel.UsuarioTableModel;
 
@@ -139,7 +140,7 @@ public class ListarUsuarios extends javax.swing.JFrame {
         }catch(IndexOutOfBoundsException indexOutOfBoundsException){
             JOptionPane.showMessageDialog(this, 
                     Mensagens.REMOVER_LINHA_NAO_SELECIONADA.getDescricao(),
-                    Mensagens.WARNING.getDescricao(),
+                    Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
         }/* catch*(SQLException problemascomexclusao) */
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -152,7 +153,7 @@ public class ListarUsuarios extends javax.swing.JFrame {
         }catch(IndexOutOfBoundsException indexOutOfBoundsException){
             JOptionPane.showMessageDialog(this, 
                     Mensagens.EDITAR_LINHA_NAO_SELECIONADA.getDescricao(), 
-                    Mensagens.WARNING.getDescricao(), 
+                    Titles.WARNING.getDescricao(), 
                     JOptionPane.WARNING_MESSAGE);
             // There is no nedd of sout(ex.getMessage)
         }

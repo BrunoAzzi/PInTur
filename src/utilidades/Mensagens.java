@@ -15,7 +15,8 @@ public enum Mensagens {
     EDITAR_LINHA_NAO_SELECIONADA("Selecionar linha para edição!"),
     WARNING_SALVAR_SEM_NENHUM_CADASTRO("Nenhum cadastro encontrado! \nNão foi possível salvar."),
     NAO_TEM_PERMISSAO("Você não tem permissão para acessar a área Admnistrativa!"), 
-    ADICIONAR_CATEGORIA_SUCESSO("Adicionou-se com sucesso a(s) categoria(s)!");
+    ADICIONAR_CATEGORIA_SUCESSO("Adicionou-se com sucesso a(s) categoria(s)."), 
+    ADICIONAR_PRODUTO_SUCESSO("Adicionou-se com sucesso o(s) produto(s).");
     
     
     String descricao;

@@ -6,6 +6,7 @@ package view.produto;
 
 import control.ProdutoControl;
 import javax.swing.JOptionPane;
+import messages.ConfirmMessages;
 import messages.Titles;
 import utilidades.Mensagens;
 import view.TableModels.ProdutoTableModel.ListaProdutosTableModel;
@@ -15,6 +16,7 @@ import view.TableModels.ProdutoTableModel.ListaProdutosTableModel;
  * @author gustavo_yuri
  */
 public class ListarProdutos extends javax.swing.JFrame {
+
     ProdutoControl produtoControl = new ProdutoControl();
     ListaProdutosTableModel listaProdutosTableModel = new ListaProdutosTableModel(3, false);
 
@@ -137,33 +139,34 @@ public class ListarProdutos extends javax.swing.JFrame {
         CadastroProdutos cadastroProdutos = new CadastroProdutos();
         cadastroProdutos.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
-    
+
     //Botão que chama tela de edição de produtos
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        EditarProduto editarProduto = new EditarProduto();
-        try {
-            editarProduto.setProduto(listaProdutosTableModel.getProdutoAt(jTable2.getSelectedRow()));
-            editarProduto.setVisible(true);
-        } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
-            System.out.println(indexOutOfBoundsException.getMessage());
-            JOptionPane.showMessageDialog(null, 
-                    Mensagens.EDITAR_LINHA_NAO_SELECIONADA.getDescricao(), 
-                    Titles.WARNING.getDescricao(), 
-                    JOptionPane.WARNING_MESSAGE);
+        if (jTable2.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(null,
+                    Mensagens.EDITAR_LINHA_NAO_SELECIONADA.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.ERROR_MESSAGE);
+            return;
         }
+
+        EditarProduto editarProduto = new EditarProduto();
+        editarProduto.setProduto(listaProdutosTableModel.getProdutoAt(jTable2.getSelectedRow()));
+        editarProduto.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
-    
+
     //Botão que deleta do banco e da tabela inferior o produto selecionado
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        try {
-        produtoControl.delete(listaProdutosTableModel.getProdutoAt(jTable2.getSelectedRow()));
-        listaProdutosTableModel.deleteRow(jTable2.getSelectedRow());            
-        } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
-            System.out.println(indexOutOfBoundsException.getMessage());
-            JOptionPane.showMessageDialog(null, 
-                    Mensagens.REMOVER_LINHA_NAO_SELECIONADA.getDescricao(), 
-                    Titles.WARNING.getDescricao(), 
+        if (jTable2.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(null,
+                    Mensagens.REMOVER_LINHA_NAO_SELECIONADA.getDescricao(),
+                    Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (areUsure()) {
+            ProdutoControl.delete(listaProdutosTableModel.getProdutoAt(jTable2.getSelectedRow()));
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -217,4 +220,11 @@ public class ListarProdutos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
+
+    private boolean areUsure() {
+        return JOptionPane.showConfirmDialog(null,
+                ConfirmMessages.DELETAR_CONFIRMACAO.getDescricao(),
+                Titles.CONFIRM.getDescricao(),
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+    }
 }
