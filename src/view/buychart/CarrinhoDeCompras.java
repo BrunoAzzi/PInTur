@@ -28,7 +28,7 @@ public class CarrinhoDeCompras {
                     produtos.get(produtos.indexOf(produto)).getQuantidade()+1
                     );
         }
-
+        
     }
 
     public static void removeAllProdutosFromCarrinho() {
