@@ -87,7 +87,7 @@ public class PromocaoTableModel extends AbstractTableModel {
         fireTableDataChanged();
     }
 
-    private void addProduto(Produto value) {
+    private void addProduto(Produto value) {   
         produtos.add(value);
     }
     
@@ -102,7 +102,7 @@ public class PromocaoTableModel extends AbstractTableModel {
      public ArrayList<Promocao> getAllPromocoes(){       
         return new ArrayList(promocoes);        
     }
-     
+
     public void clear(){
         promocoes.clear();
         produtos.clear();
