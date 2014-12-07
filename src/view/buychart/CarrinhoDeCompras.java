@@ -4,7 +4,6 @@
  */
 package view.buychart;
 
-import control.ProdutoControl;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import messages.Titles;
@@ -19,6 +18,7 @@ public class CarrinhoDeCompras {
 
     private static TelaCarrinhoDeCompras telaCarrinhoDeCompras;
     private static ArrayList<Produto> produtos = new ArrayList();
+    private static ArrayList<Integer> quantidadeDeCompras = new ArrayList();
 
     public static void addProdutoNoCarrinho(Produto produto) {
         if (produto == null) {
@@ -27,12 +27,12 @@ public class CarrinhoDeCompras {
 
         if (!(produtos.indexOf(produto) >= 0)) {
             produtos.add(produto);
+            quantidadeDeCompras.add(1);
         } else {
-            if (ProdutoControl.findByCodigo(produto.getCodigo()).getQuantidade() < produtos.get(produtos.indexOf(produto)).getQuantidade()) {
-                produtos.get(produtos.indexOf(produto)).setQuantidade(
-                        produtos.get(produtos.indexOf(produto)).getQuantidade() + 1);
-            }else{
-                JOptionPane.showMessageDialog(null, 
+            if (produto.getQuantidade() > quantidadeDeCompras.get(produtos.indexOf(produto))) {
+                quantidadeDeCompras.set(produtos.indexOf(produto), quantidadeDeCompras.get(produtos.indexOf(produto)) + 1);
+            } else {
+                JOptionPane.showMessageDialog(null,
                         Warnings.QUANTIDADE_DE_PRODUTOS_EXCEDENTE.getDescricao(),
                         Titles.WARNING.getDescricao(),
                         JOptionPane.WARNING_MESSAGE);
@@ -43,18 +43,24 @@ public class CarrinhoDeCompras {
 
     public static void removeAllProdutosFromCarrinho() {
         produtos.clear();
+        quantidadeDeCompras.clear();
+        telaCarrinhoDeCompras.updateCarrinho();
     }
 
     public static Integer getQuantidadeDeProdutosNoCarrinho() {
-        int quantidade = produtos.size();
-        return quantidade;
+        return produtos.size();
     }
 
-    public static ArrayList<Produto> getProdutosNoCarrinho() {
+    public static ArrayList<Produto> getProdutos() {
         return produtos;
     }
 
+    public static ArrayList<Integer> getQuantidadeDeCompras() {
+        return quantidadeDeCompras;
+    }
+
     public static void removeProduto(Produto produto) {
+        quantidadeDeCompras.remove(produtos.indexOf(produto));
         produtos.remove(produto);
         telaCarrinhoDeCompras.updateCarrinho();
 
@@ -68,11 +74,31 @@ public class CarrinhoDeCompras {
         double valorTotal = 0;
         for (Produto produto : produtos) {
             if (produto.getPromocao() == null) {
-                valorTotal += produto.getQuantidade() * produto.getValor();
+                valorTotal += quantidadeDeCompras.get(produtos.indexOf(produto)) * produto.getValor();
             } else {
-                valorTotal += produto.getQuantidade() * produto.getPromocao().getValorPromocional();
+                valorTotal += quantidadeDeCompras.get(produtos.indexOf(produto)) * produto.getPromocao().getValorPromocional();
             }
         }
         return valorTotal;
+    }
+
+    public static Integer getQuantidadeDoProduto(Produto produto){
+        if (!(produtos.indexOf(produto) >= 0)) {
+            return 0;
+        }else{
+            return quantidadeDeCompras.get(produtos.indexOf(produto));
+        }
+    }
+    
+    public static void setQuantidadeDoProduto(Produto produto, Integer quantidade){
+        if (!(produtos.indexOf(produto) >= 0)) {
+            System.out.println("Produto null em carrinho de compras");
+        }else{
+            quantidadeDeCompras.set(produtos.indexOf(produto), quantidade);
+        }
+    }
+
+    public static void updateTelaDeCarrinhos(){
+        telaCarrinhoDeCompras.updateCarrinho();
     }
 }

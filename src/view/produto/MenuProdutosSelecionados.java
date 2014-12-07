@@ -181,9 +181,7 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Produto novoProdutoDoCarrinho =  produto;
-        novoProdutoDoCarrinho.setQuantidade(1);
-        CarrinhoDeCompras.addProdutoNoCarrinho(novoProdutoDoCarrinho);
+        CarrinhoDeCompras.addProdutoNoCarrinho(produto);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -221,6 +219,5 @@ public class MenuProdutosSelecionados extends javax.swing.JPanel {
             jlPrecoPromocional.setVisible(false);
         }
         jlImagemProduto.setIcon(produto.getFotoProduto().getFoto().getIcon());
-        System.out.println("Setando em Menu descricao Produtos");
     }
 }

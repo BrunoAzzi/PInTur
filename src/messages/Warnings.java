@@ -11,7 +11,8 @@ package messages;
 public enum Warnings {
     
     OBJETO_NAO_ENCONTRADO("A consulta do banco nao retornou resultados."), 
-    QUANTIDADE_DE_PRODUTOS_EXCEDENTE("Nao foi possivel adicionar o produto no carrinho.\nA quantidade de produtos excede o estoque.");
+    QUANTIDADE_DE_PRODUTOS_EXCEDENTE("Nao foi possivel adicionar o produto no carrinho.\nA quantidade de produtos excede o estoque."), 
+    QUANTIDADE_EXCEDENTE_EM_ESTOQUE("A quantidade informada excede a quantidade do produto em estoque.");
 
     final String descricao;
     
