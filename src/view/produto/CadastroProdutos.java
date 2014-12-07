@@ -11,6 +11,7 @@ import control.ProdutoControl;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import messages.ConfirmMessages;
+import messages.ProdutoFormWarning;
 import messages.Titles;
 import model.Categoria;
 import model.Foto;
@@ -30,7 +31,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
     DefaultComboBoxModel<Categoria> defaultComboBoxModel = new DefaultComboBoxModel();
     ImageChooser imageChooser = new ImageChooser(this);
     ProdutoTableModel produtoTableModel = new ProdutoTableModel(3, false);
-    private Foto produtoFoto;
+    private Foto produtoFoto;    
 
     /**
      * Creates new form CadastroProdutos
@@ -87,6 +88,8 @@ public class CadastroProdutos extends javax.swing.JFrame {
         jLabel2.setText("Descricao");
 
         jLabel1.setText("Nome");
+
+        jtfNome.setMaximumSize(new java.awt.Dimension(6, 20));
 
         jcbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -175,7 +178,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtfNome))
+                        .addComponent(jtfNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -260,6 +263,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void jbRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRemoverActionPerformed
         if (jTable1.getSelectedRow() >= 0) {
             produtoTableModel.deleteRow(jTable1.getSelectedRow());
@@ -381,7 +385,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
     private boolean isCamposValidados() {
         int quantidade = 0;
         Double valorDouble = 0.0;
-
+        
         if (jtfQuantidade.getText().equals("")) {
             JOptionPane.showMessageDialog(null,
                     Mensagens.QUANTIDADE_INVALIDA.getDescricao(),
@@ -446,6 +450,12 @@ public class CadastroProdutos extends javax.swing.JFrame {
         if (quantidade <= 0) {
             JOptionPane.showMessageDialog(null,
                     Mensagens.QUANTIDADE_MENOR_OU_IGUAL_A_ZERO.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        if(jcbCategoria.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(null, ProdutoFormWarning.PRODUTO_CATEGORIA_CAMPO_INVALIDO.getDescricao(),
                     Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
             return false;

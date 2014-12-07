@@ -8,6 +8,7 @@ import control.VendaEfetuadaControl;
 import javax.swing.JOptionPane;
 import messages.ConfirmMessages;
 import messages.PromocaoFormWarning;
+import messages.RelatorioFormWarning;
 import messages.Titles;
 import utilidades.GeneratorPDF;
 
@@ -185,24 +186,24 @@ public class Relatorio extends javax.swing.JFrame {
 
     private boolean camposValidos() {
         if (jDateChooserDataInicial == null) {
-            JOptionPane.showMessageDialog(null, 
-                    PromocaoFormWarning.PROMOCAO_DATA_INICIAL_NULA.getDescricao(), 
-                    Titles.WARNING.getDescricao(), 
+            JOptionPane.showMessageDialog(null,
+                    PromocaoFormWarning.PROMOCAO_DATA_INICIAL_NULA.getDescricao(),
+                    Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if (jDateChooserDataFinal == null) {
-            JOptionPane.showMessageDialog(null, 
-                    PromocaoFormWarning.PROMOCAO_DATA_FINAL_NULA.getDescricao(), 
-                    Titles.WARNING.getDescricao(), 
+            JOptionPane.showMessageDialog(null,
+                    PromocaoFormWarning.PROMOCAO_DATA_FINAL_NULA.getDescricao(),
+                    Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
             return false;
         }
 
         if (jDateChooserDataInicial.getDate().after(jDateChooserDataFinal.getDate())) {
-            JOptionPane.showMessageDialog(null, 
-                    "Data inicial maior que data final", 
-                    Titles.WARNING.getDescricao(), 
+            JOptionPane.showMessageDialog(null,
+                    RelatorioFormWarning.DATA_INICIAL_MAIOR_QUE_DATA_FINAL.getDescricao(),
+                    Titles.WARNING.getDescricao(),
                     JOptionPane.WARNING_MESSAGE);
             return false;
         }
@@ -210,9 +211,9 @@ public class Relatorio extends javax.swing.JFrame {
     }
 
     private boolean areUSure() {
-        return JOptionPane.showConfirmDialog(null, 
-                ConfirmMessages.GERAR_RELATORIO.getDescricao(), 
-                Titles.CONFIRM.getDescricao(), 
+        return JOptionPane.showConfirmDialog(null,
+                ConfirmMessages.GERAR_RELATORIO.getDescricao(),
+                Titles.CONFIRM.getDescricao(),
                 JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION;
     }
 }

@@ -5,7 +5,6 @@
 package view.produto;
 
 import model.Produto;
-import view.TesteMenuPrincipal;
 import view.buychart.CarrinhoDeCompras;
 
 /**
