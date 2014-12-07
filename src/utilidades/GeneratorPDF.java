@@ -31,7 +31,7 @@ public class GeneratorPDF {
     public static void gerarCupomFiscalPDF(ArrayList<Produto> produtos, ArrayList<Integer> quantidadeDoProduto) {
         try {
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\GustavoCalandriniPC\\Desktop\\Cupom Fiscal.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\Sandro\\Desktop\\cuzinho.pdf"));
             document.open();
             Paragraph paragraph = new Paragraph("PInTur - Cupom Fiscal");
             paragraph.setAlignment(Element.ALIGN_CENTER);
@@ -75,7 +75,7 @@ public class GeneratorPDF {
             //Abre o documento (Mudar destino quando colocado em outro PC
             if (Desktop.isDesktopSupported()) {
                 try {
-                    File myFile = new File("C:\\Users\\GustavoCalandriniPC\\Desktop\\Cupom Fiscal.pdf");
+                    File myFile = new File("C:\\Users\\Sandro\\Desktop\\cuzinho.pdf");
                     Desktop.getDesktop().open(myFile);
                 } catch (IOException ex) {
                     System.out.println("Deu ruim");
@@ -91,7 +91,7 @@ public class GeneratorPDF {
         
         try {
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\GustavoCalandriniPC\\Desktop\\Produtos mais vendidos.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\Sandro\\Desktop\\cuzinho.pdf"));
             document.open();
             Paragraph paragraph = new Paragraph("PInTur - Relatórios");
             paragraph.setAlignment(Element.ALIGN_CENTER);
@@ -107,6 +107,7 @@ public class GeneratorPDF {
             table.addCell(header);
             table.addCell("Nome");
             table.addCell("Quantidade vendida");
+            table.addCell("Quantidade vensdasdasdasdida");
             for (Vendaefetuada vendaefetuada : vendasefetuadas) {
                 //TODO Pegar apenas itens com datas entre dataInicial e dataFinal
                 if (vendaefetuada.getVenda().getData().after(dataInicial) && vendaefetuada.getVenda().getData().before(dataFinal)) {
@@ -120,7 +121,7 @@ public class GeneratorPDF {
             //Abre o documento (Mudar destino quando colocado em outro PC
             if (Desktop.isDesktopSupported()) {
                 try {
-                    File myFile = new File("C:\\Users\\GustavoCalandriniPC\\Desktop\\Produtos mais vendidos.pdf");
+                    File myFile = new File("C:\\Users\\Sandro\\Desktop\\cuzinho.pdf");
                     Desktop.getDesktop().open(myFile);
                 } catch (IOException ex) {
                     System.out.println("Deu ruim");
