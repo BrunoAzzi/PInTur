@@ -86,9 +86,7 @@ public class GeneratorPDF {
         }
     }
 
-    public static void gerarRelatoriodeProdutosMaisVendidos(ArrayList<Vendaefetuada> vendasefetuadas, 
-                                                            Date dataInicial, Date dataFinal) {
-        
+    public static void gerarRelatoriodeProdutosMaisVendidos(ArrayList<Vendaefetuada> vendasefetuadas, Date dataInicial, Date dataFinal) {
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\GustavoCalandriniPC\\Desktop\\Produtos mais vendidos.pdf"));
@@ -107,16 +105,25 @@ public class GeneratorPDF {
             table.addCell(header);
             table.addCell("Nome");
             table.addCell("Quantidade vendida");
+            
             for (Vendaefetuada vendaefetuada : vendasefetuadas) {
                 //TODO Pegar apenas itens com datas entre dataInicial e dataFinal
                 if (vendaefetuada.getVenda().getData().after(dataInicial) && vendaefetuada.getVenda().getData().before(dataFinal)) {
                     table.addCell(vendaefetuada.getProduto().getNome());
-                    System.out.println(vendaefetuada.getProduto().getNome() + vendaefetuada.getVenda().getData());
-                    table.addCell(Integer.toString(vendaefetuada.getQuantidadeVendida()));
+                    table.addCell(Integer.toString(vendaefetuada.getQuantidadeVendida()));                   
                 }
             }
             document.add(table);
             document.close();
+            abrePDF();
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+        }
+    }
+    
+    private static void abrePDF(){        
             //Abre o documento (Mudar destino quando colocado em outro PC
             if (Desktop.isDesktopSupported()) {
                 try {
@@ -126,10 +133,6 @@ public class GeneratorPDF {
                     System.out.println("Deu ruim");
                 }
             }
-
-        } catch (Exception e) {
-            System.out.println(e.getCause());
-        }
     }
     //Este método gera um cupom fiscal a partir do carrinho de compras
 //    public static void gerarRelatorioDeProdutosMaisVendidos(ArrayList<Vendaefetuada> vendaefetuada) {
