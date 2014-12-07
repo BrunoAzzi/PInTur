@@ -100,25 +100,29 @@ public class MenuProdutos extends java.awt.Panel {
         x = 30;
         y = 10;
         incrementadorX = 0;
+        
         jPanel1.removeAll();
-        jPanel1.revalidate();
-        jPanel1.repaint();
         itemListaProdutos.clear();
+        
         produtos = ProdutoControl.listaProdutosByCategoria(categoria);
 
         for (Produto produto : produtos) {
-            System.out.println(produto.getNome());
             ItemListaProduto itemListaProduto = new ItemListaProduto();
             itemListaProduto.populaItemListaProduto(produto);
             itemListaProdutos.add(itemListaProduto);
+            itemListaProduto.setTelaDescricaoProduto(menuProdutosSelecionados);
             preparaItemMenu(itemListaProduto);
             itemListaProduto.setVisible(true);
             jPanel1.add(itemListaProduto);
         }
+        
+        jPanel1.repaint();
+        jPanel1.revalidate();
     }
 
     public void setMenuProdutosSelecionados(MenuProdutosSelecionados menuProdutosSelecionados) {
         this.menuProdutosSelecionados = menuProdutosSelecionados;
+        
         for (ItemListaProduto itemListaProduto : itemListaProdutos) {
             itemListaProduto.setTelaDescricaoProduto(menuProdutosSelecionados);
         }

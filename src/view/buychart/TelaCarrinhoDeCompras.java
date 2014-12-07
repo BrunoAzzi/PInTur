@@ -18,7 +18,7 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
     int x = 10;
     int y = 10;
     
-    public ArrayList<Produto> produtosNoCarrinhoDeCompras = CarrinhoDeCompras.getProdutosNoCarrinho();
+    public ArrayList<Produto> produtosNoCarrinhoDeCompras = CarrinhoDeCompras.getProdutos();
 
     /**
      * Creates new form TelaCarrinhoDeCompras
@@ -336,12 +336,11 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
         x = 10;
         y = 10;
         
-        jPanelCarrinho.removeAll();
-        produtosNoCarrinhoDeCompras = CarrinhoDeCompras.getProdutosNoCarrinho();
+        jPanelCarrinho.removeAll(); 
         
-        for (Produto produto : produtosNoCarrinhoDeCompras) {
+        for (Produto produto : CarrinhoDeCompras.getProdutos()) {
             ItemDoCarrinhoDeCompras itemDoCarrinhoDeCompras = new ItemDoCarrinhoDeCompras();
-            itemDoCarrinhoDeCompras.setProduto(produto);
+            itemDoCarrinhoDeCompras.setProduto(produto, CarrinhoDeCompras.getQuantidadeDoProduto(produto));
             
             preparaItemMenu(itemDoCarrinhoDeCompras);
             
