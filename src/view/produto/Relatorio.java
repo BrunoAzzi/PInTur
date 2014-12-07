@@ -45,6 +45,7 @@ public class Relatorio extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(102, 153, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(335, 102));
