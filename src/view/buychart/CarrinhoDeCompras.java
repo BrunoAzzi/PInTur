@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import messages.Titles;
 import messages.Warnings;
 import model.Produto;
+import view.categoria.MenuCategorias;
 
 /**
  *
@@ -16,6 +17,7 @@ import model.Produto;
  */
 public class CarrinhoDeCompras {
 
+    private static MenuCategorias menuCategorias;
     private static TelaCarrinhoDeCompras telaCarrinhoDeCompras;
     private static ArrayList<Produto> produtos = new ArrayList();
     private static ArrayList<Integer> quantidadeDeCompras = new ArrayList();
@@ -26,8 +28,15 @@ public class CarrinhoDeCompras {
         }
 
         if (!(produtos.indexOf(produto) >= 0)) {
-            produtos.add(produto);
-            quantidadeDeCompras.add(1);
+            if (!(produto.getQuantidade() <= 0)) {
+                produtos.add(produto);
+                quantidadeDeCompras.add(1);
+            }else{
+                JOptionPane.showMessageDialog(null,
+                        Warnings.QUANTIDADE_DE_PRODUTOS_EXCEDENTE.getDescricao(),
+                        Titles.WARNING.getDescricao(),
+                        JOptionPane.WARNING_MESSAGE);
+            }
         } else {
             if (produto.getQuantidade() > quantidadeDeCompras.get(produtos.indexOf(produto))) {
                 quantidadeDeCompras.set(produtos.indexOf(produto), quantidadeDeCompras.get(produtos.indexOf(produto)) + 1);
@@ -82,23 +91,35 @@ public class CarrinhoDeCompras {
         return valorTotal;
     }
 
-    public static Integer getQuantidadeDoProduto(Produto produto){
+    public static Integer getQuantidadeDoProduto(Produto produto) {
         if (!(produtos.indexOf(produto) >= 0)) {
             return 0;
-        }else{
+        } else {
             return quantidadeDeCompras.get(produtos.indexOf(produto));
         }
     }
-    
-    public static void setQuantidadeDoProduto(Produto produto, Integer quantidade){
+
+    public static void setQuantidadeDoProduto(Produto produto, Integer quantidade) {
         if (!(produtos.indexOf(produto) >= 0)) {
             System.out.println("Produto null em carrinho de compras");
-        }else{
+        } else {
             quantidadeDeCompras.set(produtos.indexOf(produto), quantidade);
         }
     }
 
-    public static void updateTelaDeCarrinhos(){
+    public static void updateTelaDeCarrinhos() {
         telaCarrinhoDeCompras.updateCarrinho();
+    }
+
+    public static void setMenuCategorias(MenuCategorias menuCategorias) {
+        CarrinhoDeCompras.menuCategorias = menuCategorias;
+    }
+
+    public static MenuCategorias getMenuCategorias() {
+        return menuCategorias;
+    }
+
+    public static void updateMenuCategoriasQuantidadeNoCarrinho() {
+        menuCategorias.atualizaMenuCategorias();
     }
 }

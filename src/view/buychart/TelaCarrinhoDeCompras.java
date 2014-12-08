@@ -5,8 +5,21 @@
  */
 package view.buychart;
 
+import control.FormaDePagamentoControl;
+import control.ProdutoControl;
+import control.VendaControl;
+import control.VendaEfetuadaControl;
 import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import messages.ConfirmMessages;
+import messages.Titles;
+import messages.Warnings;
+import model.Formadepagamento;
 import model.Produto;
+import model.Venda;
+import model.Vendaefetuada;
+import utilidades.Mensagens;
 import utilidades.Tela;
 
 /**
@@ -14,10 +27,9 @@ import utilidades.Tela;
  * @author brunoazzi
  */
 public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
-    
+
     int x = 10;
     int y = 10;
-    
     public ArrayList<Produto> produtosNoCarrinhoDeCompras = CarrinhoDeCompras.getProdutos();
 
     /**
@@ -45,19 +57,20 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanelCarrinho = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jRadioButton5 = new javax.swing.JRadioButton();
+        jRadioMasterCard = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        jRadioButtonVisa = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButtonDinheiro = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButtonPayPal = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabelTotalDaCompra = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabelQuantidadeDeParcelas = new javax.swing.JLabel();
         jComboBoxQuantidadeDeParcelas = new javax.swing.JComboBox();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Carrinho de Compras");
@@ -94,38 +107,38 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Master-Card-Black.png"))); // NOI18N
 
-        buttonGroup1.add(jRadioButton5);
-        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jRadioMasterCard);
+        jRadioMasterCard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton5ActionPerformed(evt);
+                jRadioMasterCardActionPerformed(evt);
             }
         });
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Visa-Balck.png"))); // NOI18N
 
-        buttonGroup1.add(jRadioButton4);
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jRadioButtonVisa);
+        jRadioButtonVisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                jRadioButtonVisaActionPerformed(evt);
             }
         });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Money-Black.png"))); // NOI18N
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setSelected(true);
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jRadioButtonDinheiro);
+        jRadioButtonDinheiro.setSelected(true);
+        jRadioButtonDinheiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                jRadioButtonDinheiroActionPerformed(evt);
             }
         });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Paypal-Black.png"))); // NOI18N
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jRadioButtonPayPal);
+        jRadioButtonPayPal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                jRadioButtonPayPalActionPerformed(evt);
             }
         });
 
@@ -154,6 +167,13 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
 
         jComboBoxQuantidadeDeParcelas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A vista" }));
 
+        jButton2.setText("Desistir da Compra");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -162,83 +182,93 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jRadioButton2)
+                        .addComponent(jRadioButtonPayPal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton3)
+                        .addComponent(jRadioButtonDinheiro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton4)
+                        .addComponent(jRadioButtonVisa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton5)
+                        .addComponent(jRadioMasterCard)
                         .addGap(6, 6, 6)
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabelQuantidadeDeParcelas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBoxQuantidadeDeParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabelQuantidadeDeParcelas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxQuantidadeDeParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelTotalDaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelTotalDaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel1, jLabel2, jLabel3, jLabel4});
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jRadioButton2, jRadioButton3, jRadioButton4, jRadioButton5});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jRadioButtonDinheiro, jRadioButtonPayPal, jRadioButtonVisa, jRadioMasterCard});
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2});
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelTotalDaCompra)
-                    .addComponent(jLabel7))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jRadioButtonVisa, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jRadioMasterCard, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jRadioButtonPayPal, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButtonDinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jRadioButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jRadioButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jRadioButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addComponent(jLabelQuantidadeDeParcelas)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBoxQuantidadeDeParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBoxQuantidadeDeParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelTotalDaCompra)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, jLabel2, jLabel3, jLabel4, jRadioButton2, jRadioButton3, jRadioButton4, jRadioButton5});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel7, jLabelTotalDaCompra});
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel5, jLabel7, jLabelTotalDaCompra});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2});
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, jLabel2, jLabel3, jLabel4, jRadioButtonDinheiro, jRadioButtonPayPal, jRadioButtonVisa, jRadioMasterCard});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 891, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1115, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,32 +279,82 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(CarrinhoDeCompras.getProdutos().size() <= 0){
+            JOptionPane.showMessageDialog(this, 
+                    Warnings.CARRINHO_VAZIO.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         
+        try {
+            if (areUSure()) {
+                Venda venda = new Venda();
+                venda.setData(new Date());
+                venda.setFormaDePagamento(getFormaDePagamento());
+                venda.setQuantidadeDeParcelas(1);
+                venda.setTotal(CarrinhoDeCompras.getValorTotalDaCompra());
+                VendaControl.add(venda);
+
+                ArrayList<Produto> produtos = CarrinhoDeCompras.getProdutos();
+                for (Produto produto : produtos) {
+                    Vendaefetuada vendaefetuada = new Vendaefetuada();
+                    vendaefetuada.setProduto(produto);
+                    vendaefetuada.setQuantidadeVendida(CarrinhoDeCompras.getQuantidadeDoProduto(produto));
+                    vendaefetuada.setVenda(venda);
+                    VendaEfetuadaControl.add(vendaefetuada);
+
+                    produto.setQuantidade(produto.getQuantidade() - CarrinhoDeCompras.getQuantidadeDoProduto(produto));
+                    ProdutoControl.add(produto);
+                }
+
+                JOptionPane.showMessageDialog(this,
+                        Mensagens.COMPRA_SUCESSO.getDescricao(),
+                        Titles.SUCESSO.getDescricao(),
+                        JOptionPane.INFORMATION_MESSAGE);
+
+                CarrinhoDeCompras.removeAllProdutosFromCarrinho();
+                CarrinhoDeCompras.updateTelaDeCarrinhos();
+                this.dispose();
+            }
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(this,
+                    Warnings.COMPRA_INSUCESSO.getDescricao(),
+                    Titles.WARNING.getDescricao(),
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void jRadioButtonPayPalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPayPalActionPerformed
         jComboBoxQuantidadeDeParcelas.setVisible(false);
         jLabelQuantidadeDeParcelas.setVisible(false);
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_jRadioButtonPayPalActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void jRadioButtonDinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonDinheiroActionPerformed
         jComboBoxQuantidadeDeParcelas.setVisible(false);
         jLabelQuantidadeDeParcelas.setVisible(false);
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_jRadioButtonDinheiroActionPerformed
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+    private void jRadioButtonVisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonVisaActionPerformed
         jComboBoxQuantidadeDeParcelas.setVisible(true);
         jLabelQuantidadeDeParcelas.setVisible(true);
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
+    }//GEN-LAST:event_jRadioButtonVisaActionPerformed
 
-    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+    private void jRadioMasterCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioMasterCardActionPerformed
         jComboBoxQuantidadeDeParcelas.setVisible(true);
         jLabelQuantidadeDeParcelas.setVisible(true);
-    }//GEN-LAST:event_jRadioButton5ActionPerformed
+    }//GEN-LAST:event_jRadioMasterCardActionPerformed
 
     private void atualizaTotalDaCompra(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_atualizaTotalDaCompra
         jLabelTotalDaCompra.setText(CarrinhoDeCompras.getValorTotalDaCompra().toString());
     }//GEN-LAST:event_atualizaTotalDaCompra
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        CarrinhoDeCompras.removeAllProdutosFromCarrinho();
+        CarrinhoDeCompras.updateTelaDeCarrinhos();
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -310,10 +390,10 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBoxQuantidadeDeParcelas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -325,39 +405,60 @@ public class TelaCarrinhoDeCompras extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTotalDaCompra;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelCarrinho;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
+    private javax.swing.JRadioButton jRadioButtonDinheiro;
+    private javax.swing.JRadioButton jRadioButtonPayPal;
+    private javax.swing.JRadioButton jRadioButtonVisa;
+    private javax.swing.JRadioButton jRadioMasterCard;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
     private void initItensDoCarrinhoDeCompras() {
         x = 10;
         y = 10;
-        
-        jPanelCarrinho.removeAll(); 
-        
+
+        jPanelCarrinho.removeAll();
+
         for (Produto produto : CarrinhoDeCompras.getProdutos()) {
             ItemDoCarrinhoDeCompras itemDoCarrinhoDeCompras = new ItemDoCarrinhoDeCompras();
             itemDoCarrinhoDeCompras.setProduto(produto, CarrinhoDeCompras.getQuantidadeDoProduto(produto));
-            
+
             preparaItemMenu(itemDoCarrinhoDeCompras);
-            
+
             jPanelCarrinho.add(itemDoCarrinhoDeCompras);
             itemDoCarrinhoDeCompras.setVisible(true);
         }
     }
 
     private void preparaItemMenu(ItemDoCarrinhoDeCompras itemDoCarrinhoDeCompras) {
-        itemDoCarrinhoDeCompras.setBounds(x,y,1000,124);
+        itemDoCarrinhoDeCompras.setBounds(x, y, 1000, 124);
         y += 134;
     }
-    
-    public void updateCarrinho(){
+
+    public void updateCarrinho() {
         initItensDoCarrinhoDeCompras();
         jLabelTotalDaCompra.setText(CarrinhoDeCompras.getValorTotalDaCompra().toString());
         jPanelCarrinho.repaint();
         revalidate();
+    }
+
+    private Formadepagamento getFormaDePagamento() {
+        if (jRadioButtonPayPal.isSelected()) {
+            return FormaDePagamentoControl.findById(1);
+        }
+        if (jRadioButtonDinheiro.isSelected()) {
+            return FormaDePagamentoControl.findById(2);
+        }
+        if (jRadioButtonVisa.isSelected()) {
+            return FormaDePagamentoControl.findById(3);
+        }
+        return FormaDePagamentoControl.findById(4);
+    }
+
+    private boolean areUSure() {
+        return JOptionPane.showConfirmDialog(this,
+                ConfirmMessages.COMPRAR_CONFIRMACAO.getDescricao(),
+                Titles.CONFIRM.getDescricao(),
+                JOptionPane.WARNING_MESSAGE,
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 }

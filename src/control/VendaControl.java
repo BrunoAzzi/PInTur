@@ -4,23 +4,18 @@
  */
 package control;
 
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import messages.Titles;
-import model.Vendaefetuada;
+import model.Venda;
 
 /**
  *
- * @author gustavo_yuri
+ * @author BrunoAzzi
  */
-public class VendaEfetuadaControl {
-
-    public static ArrayList<Vendaefetuada> retornaListaOrdenadaDeProdutosMaisVendidos() {
-        return new ArrayList(Conexao.namedQuery("Vendaefetuada.orderByQuantidadeVendida"));
-    }
-
-    public static void add(Vendaefetuada vendaefetuada) {
-        Conexao.persist(vendaefetuada);
+public class VendaControl {
+    
+    public static void add(Venda venda) {
+        Conexao.persist(venda);
         try {
             Conexao.commit();
         } catch (Exception exception) {
@@ -29,6 +24,6 @@ public class VendaEfetuadaControl {
                     Titles.WARNING.getDescricao(),
                     JOptionPane.ERROR_MESSAGE);
         }
-
     }
+    
 }

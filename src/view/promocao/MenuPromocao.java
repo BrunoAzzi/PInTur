@@ -206,6 +206,7 @@ public class MenuPromocao extends java.awt.Panel {
 
     private void jButtonAddCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCarrinhoActionPerformed
         CarrinhoDeCompras.addProdutoNoCarrinho(produtosPromocionais.get(produtoIndex));
+        CarrinhoDeCompras.updateMenuCategoriasQuantidadeNoCarrinho();
     }//GEN-LAST:event_jButtonAddCarrinhoActionPerformed
 
     private void jButtonVoltarPromocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarPromocaoActionPerformed

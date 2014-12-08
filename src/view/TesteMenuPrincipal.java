@@ -5,7 +5,9 @@
 package view;
 
 import control.PromocaoControl;
+import model.Categoria;
 import utilidades.Tela;
+import view.buychart.CarrinhoDeCompras;
 import view.categoria.MenuCategorias;
 import view.produto.MenuProdutos;
 import view.produto.MenuProdutosSelecionados;
@@ -36,6 +38,7 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
         menuProdutos.setMenuProdutosSelecionados(menuProdutosSelecionados);
         //DEIXANDO OS PRODUTOS SEREM MANIPULADOS PELO MENU CATEGORIA
         menuCategorias.setMenuProdutos(menuProdutos);
+        CarrinhoDeCompras.setMenuCategorias(menuCategorias);
     }
 
     /**
@@ -75,6 +78,8 @@ public class TesteMenuPrincipal extends javax.swing.JFrame {
 
     private void updateListas(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_updateListas
         menuCategorias.atualizaMenuCategorias();
+        menuProdutos.initListaDeProdutos(new Categoria());
+        menuPromocoes.initProdutos();
     }//GEN-LAST:event_updateListas
 
     /**

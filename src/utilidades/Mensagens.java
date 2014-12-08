@@ -23,7 +23,8 @@ public enum Mensagens {
     DESCRICAO_INVALIDA("Descricao do produto inválida"), 
     IMAGEM_PRODUTO_INVALIDA("Imagem inválida no cadastro de produtos."), 
     VALOR_MENOR_OU_IGUAL_A_ZERO("O valor deve ser um número positivo diferente de zero."), 
-    QUANTIDADE_MENOR_OU_IGUAL_A_ZERO("Ä Quantidade de ser um numero positivo inteiro diferente de zero.");
+    QUANTIDADE_MENOR_OU_IGUAL_A_ZERO("Ä Quantidade de ser um numero positivo inteiro diferente de zero."),
+    COMPRA_SUCESSO("A compra foi efetuada com sucesso!");
     
     
     String descricao;
