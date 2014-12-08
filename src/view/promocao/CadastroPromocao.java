@@ -130,12 +130,14 @@ DefaultListModel defaultListModel = new DefaultListModel();
         jTable1.setGridColor(new java.awt.Color(255, 255, 255));
         jScrollPane2.setViewportView(jTable1);
 
-        jDateChooserDateInicial.setMaxSelectableDate(new java.util.Date(253370775701000L));
+        jDateChooserDateInicial.setMaxSelectableDate(new java.util.Date(1577847701000L));
         jDateChooserDateInicial.setMaximumSize(new java.awt.Dimension(89, 20));
+        jDateChooserDateInicial.setMinSelectableDate(new java.util.Date(1388545286000L));
         jDateChooserDateInicial.setMinimumSize(new java.awt.Dimension(89, 20));
 
+        jDateChooserDataFinal.setMaxSelectableDate(new java.util.Date(1577847686000L));
         jDateChooserDataFinal.setMaximumSize(new java.awt.Dimension(89, 20));
-        jDateChooserDataFinal.setMinSelectableDate(new java.util.Date(-62135755137000L));
+        jDateChooserDataFinal.setMinSelectableDate(new java.util.Date(1388545263000L));
         jDateChooserDataFinal.setMinimumSize(new java.awt.Dimension(89, 20));
 
         jLabel2.setText("Data Inicial");
@@ -264,7 +266,7 @@ DefaultListModel defaultListModel = new DefaultListModel();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // Produto retirado da lista no qual a promocao sera inserida;
+         // Produto retirado da lista no qual a promocao sera inserida;
 
         try {
             
@@ -284,8 +286,8 @@ DefaultListModel defaultListModel = new DefaultListModel();
             Calendar calendarioComputador = Calendar.getInstance();
             
             calendarioFim.setTime(dataFim);
+            System.out.println(dataFim);
             calendarioInicio.get(Calendar.MONTH);
-           
             if(valorDouble >= produto.getValor()){
                 JOptionPane.showMessageDialog(null, 
                         PromocaoFormWarning.PROMOCAO_VALOR_MAIOR_OU_IGUAL_DO_PRODUTO.getDescricao(),
@@ -299,6 +301,7 @@ DefaultListModel defaultListModel = new DefaultListModel();
                 Titles.WARNING.getDescricao(), 
                 JOptionPane.WARNING_MESSAGE);
             }
+            
             else if(calendarioInicio.get(Calendar.MONTH) != calendarioComputador.get(Calendar.MONTH)
                     || calendarioFim.get(Calendar.MONTH) != calendarioComputador.get(Calendar.MONTH)){
                 JOptionPane.showMessageDialog(null, 
@@ -378,6 +381,7 @@ DefaultListModel defaultListModel = new DefaultListModel();
                 }
                                 
                 promocaoTableModel.clear();
+                this.dispose();
             }
         }
         else{

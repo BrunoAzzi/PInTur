@@ -16,7 +16,9 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import model.Produto;
 import model.Vendaefetuada;
@@ -31,7 +33,7 @@ public class GeneratorPDF {
     public static void gerarCupomFiscalPDF(ArrayList<Produto> produtos, ArrayList<Integer> quantidadeDoProduto) {
         try {
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\GustavoCalandriniPC\\Desktop\\Cupom Fiscal.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\Sandro\\Desktop\\cuzinho.pdf"));
             document.open();
             Paragraph paragraph = new Paragraph("PInTur - Cupom Fiscal");
             paragraph.setAlignment(Element.ALIGN_CENTER);
@@ -75,7 +77,7 @@ public class GeneratorPDF {
             //Abre o documento (Mudar destino quando colocado em outro PC
             if (Desktop.isDesktopSupported()) {
                 try {
-                    File myFile = new File("C:\\Users\\GustavoCalandriniPC\\Desktop\\Cupom Fiscal.pdf");
+                    File myFile = new File("C:\\Users\\Sandro\\Desktop\\cuzinho.pdf");
                     Desktop.getDesktop().open(myFile);
                 } catch (IOException ex) {
                     System.out.println("Deu ruim");
@@ -86,12 +88,10 @@ public class GeneratorPDF {
         }
     }
 
-    public static void gerarRelatoriodeProdutosMaisVendidos(ArrayList<Vendaefetuada> vendasefetuadas, 
-                                                            Date dataInicial, Date dataFinal) {
-        
+    public static void gerarRelatoriodeProdutosMaisVendidos(ArrayList<Vendaefetuada> vendasefetuadas, Date dataInicial, Date dataFinal) {
         try {
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\GustavoCalandriniPC\\Desktop\\Produtos mais vendidos.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\Sandro\\Desktop\\cuzinho.pdf"));
             document.open();
             Paragraph paragraph = new Paragraph("PInTur - Relatórios");
             paragraph.setAlignment(Element.ALIGN_CENTER);
@@ -100,36 +100,49 @@ public class GeneratorPDF {
             document.add(paragraph);
             //Constroi a tabela
             //seta o número de colunas
-            PdfPTable table = new PdfPTable(2);
+            PdfPTable table = new PdfPTable(3);
             PdfPCell header = new PdfPCell(new Paragraph("Relatório de produtos mais vendidos"));
-            header.setColspan(2);
+            header.setColspan(3);
             header.setBackgroundColor(BaseColor.GRAY);
             table.addCell(header);
             table.addCell("Nome");
             table.addCell("Quantidade vendida");
+            table.addCell("Data de Venda");
+            
             for (Vendaefetuada vendaefetuada : vendasefetuadas) {
                 //TODO Pegar apenas itens com datas entre dataInicial e dataFinal
-                if (vendaefetuada.getVenda().getData().after(dataInicial) && vendaefetuada.getVenda().getData().before(dataFinal)) {
+                
+                System.out.println(dataInicial);
+                Calendar calendarioVendaEfetuada = Calendar.getInstance();
+                calendarioVendaEfetuada.setTime(vendaefetuada.getVenda().getData());
+                System.out.println(calendarioVendaEfetuada.getTime());
+                if (calendarioVendaEfetuada.getTime().equals(dataInicial) || vendaefetuada.getVenda().getData() == dataFinal|| vendaefetuada.getVenda().getData().after(dataInicial) && vendaefetuada.getVenda().getData().before(dataFinal)) {
                     table.addCell(vendaefetuada.getProduto().getNome());
-                    System.out.println(vendaefetuada.getProduto().getNome() + vendaefetuada.getVenda().getData());
-                    table.addCell(Integer.toString(vendaefetuada.getQuantidadeVendida()));
+                    table.addCell(Integer.toString(vendaefetuada.getQuantidadeVendida()));    
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                    table.addCell(sdf.format(vendaefetuada.getVenda().getData()));
                 }
             }
             document.add(table);
             document.close();
+            abrePDF();
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+        }
+    }
+    
+    private static void abrePDF(){        
             //Abre o documento (Mudar destino quando colocado em outro PC
             if (Desktop.isDesktopSupported()) {
                 try {
-                    File myFile = new File("C:\\Users\\GustavoCalandriniPC\\Desktop\\Produtos mais vendidos.pdf");
+                    File myFile = new File("C:\\Users\\Sandro\\Desktop\\cuzinho.pdf");
                     Desktop.getDesktop().open(myFile);
                 } catch (IOException ex) {
                     System.out.println("Deu ruim");
                 }
             }
-
-        } catch (Exception e) {
-            System.out.println(e.getCause());
-        }
     }
     //Este método gera um cupom fiscal a partir do carrinho de compras
 //    public static void gerarRelatorioDeProdutosMaisVendidos(ArrayList<Vendaefetuada> vendaefetuada) {

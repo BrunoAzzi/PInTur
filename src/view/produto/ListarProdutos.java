@@ -7,6 +7,7 @@ package view.produto;
 import control.ProdutoControl;
 import javax.swing.JOptionPane;
 import messages.ConfirmMessages;
+import messages.ProdutoFormWarning;
 import messages.Titles;
 import utilidades.Mensagens;
 import view.TableModels.ProdutoTableModel.ListaProdutosTableModel;
@@ -165,6 +166,9 @@ public class ListarProdutos extends javax.swing.JFrame {
 
         if (areUsure()) {
             ProdutoControl.delete(listaProdutosTableModel.getProdutoAt(jTable2.getSelectedRow()));
+            JOptionPane.showMessageDialog(null, ProdutoFormWarning.PRODUTO_REMOVIDO_COM_SUCESSO.getDescricao(),
+                    Titles.SUCESSO.getDescricao(),
+                    JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
